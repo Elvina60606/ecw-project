@@ -1,0 +1,112 @@
+.cart-border {
+  border: 1px solid $neutral-300;
+  border-radius: 16px;
+}
+
+//填寫資訊區塊
+.shipping-info {
+  max-width: 1296px;
+  margin: 0 auto;
+}
+
+.resize-none {
+  resize: none;
+}
+
+.placeholder-neutral-500 {
+  // 這是關鍵：使用 ::placeholder 鎖定佔位符
+  &::placeholder {
+    color: $neutral-500;
+    opacity: 1; // 確保顏色不會變淡
+  }
+
+  // 瀏覽器兼容性補齊
+  &:-ms-input-placeholder,
+  &::-ms-input-placeholder {
+    color: $neutral-500;
+  }
+}
+
+.date-text-trigger {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $neutral-300;
+  border-left: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: white;
+
+  &:hover {
+    background-color: $secondary-500;
+    border-color: $secondary-500;
+    color: $neutral-0;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1400px) {
+  .address-col-200 {
+    flex: 0 0 auto;
+    width: 200px;
+    max-width: 200px;
+  }
+
+  .address-col-624 {
+    flex: 0 0 auto;
+    width: 624px;
+    max-width: 624px;
+  }
+
+  .mb-md-0 {
+    margin-bottom: 0;
+  }
+}
+
+/* 平板與小桌機 (768px–1399px) → 自動分配，避免水平捲軸 */
+@media (min-width: 768px) and (max-width: 1399px) {
+  .address-col-200,
+  .address-col-624 {
+    flex: 1 1 0;
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .address-col-200,
+  .address-col-624 {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.list-group-item {
+  &:hover {
+    background-color: $primary-500;
+  }
+}
+
+/* 移除瀏覽器內建小箭頭 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+
+.coupons {
+  // 設置使用者輸入文字的顏色 (可選)
+  color: $neutral-500; 
+
+  // 設置 Placeholder 偽元素的顏色 (跨瀏覽器寫法)
+  &::placeholder {
+    color: $neutral-500; // 設定您想要的紫色或其他顏色
+    opacity: 1; /* 這是關鍵！確保不會被瀏覽器預設的半透明覆蓋 */
+  }
+}

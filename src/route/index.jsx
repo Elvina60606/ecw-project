@@ -1,4 +1,5 @@
 import MainLayout from "../layout/MainLayout";
+import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Home from "../views/Home";
 
@@ -14,9 +15,15 @@ const routes = [
                 element: <Home />,
             },
             {
-                path: 'products',
-                element: <Products />,
-            }
+                path: '/products_sidebar_layout',
+                element: <ProductsSidebarLayout />,
+                children: [
+                    {
+                        path: 'products',
+                        element: <Products />,
+                    }
+                ]
+            },
         ]
     },
 ]

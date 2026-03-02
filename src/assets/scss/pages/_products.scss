@@ -1,0 +1,51 @@
+.card {
+  // 滑過整張卡片
+  &:hover {
+    .btn-card-cart {
+      background-color: $secondary-500; // hover 後背景
+      color: $primary-500; // hover 後 icon 顏色
+    }
+  }
+}
+
+.sidebar {
+  border: 1px solid $neutral-200;
+  border-radius: 8px;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.sidebar-item {
+  border: 1px solid $neutral-200;
+  padding: 1rem 2.5rem;
+  color: $primary-800;
+
+// 圓角處理
+  &:first-child {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+  &:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  + .sidebar-item {
+    border-top-width: 0;
+  }
+  
+  a {
+    display: block; // 讓 a 填滿整個 li
+  }
+
+  &.active {
+    background-color: $secondary-50;
+    color: $primary-600;
+    pointer-events: none;
+  }
+&:hover{
+    color:$secondary-500;
+}
+
+}
+

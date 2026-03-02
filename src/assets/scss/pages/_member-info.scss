@@ -1,0 +1,26 @@
+.sideBar-hover:hover{
+    background: $secondary-50;
+}
+
+.rounded-16{
+    border-radius: 16px;
+}
+
+.order-info-mobile div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.order-thead th{
+    color: $neutral-500;
+    font-weight: normal;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.order-body td{
+    padding-top: 24px;
+    padding-bottom: 24px;
+}

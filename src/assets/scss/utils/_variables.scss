@@ -67,8 +67,8 @@ $colors: (
 ) !default;
 // scss-docs-end colors-map
 
-// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.2 are 3, 4.5 and 7.
-// See https://www.w3.org/TR/WCAG/#contrast-minimum
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 $min-contrast-ratio:   4.5 !default;
 
 // Customize the light and dark text colors for use in our color contrast function.
@@ -297,6 +297,7 @@ $cyans: (
 ) !default;
 // fusv-enable
 
+// scss-docs-start theme-color-variables
 //---onon_cake theme-color-variables---//
 $primary-800: #3F3E3E;
 $primary-700: #5F523D;
@@ -322,7 +323,7 @@ $neutral-300: #E0E0E0;
 $neutral-200: #EEEEEE;
 $neutral-100: #F5F5F5;
 $neutral-50: #FAFAFA;
-$neutral-0: #FFFFFF;
+$neutral-0: #FFFFFF;//---onon_cake---//
 $neutral: $neutral-900;
 
 $alert-900: #B71C1C;
@@ -342,8 +343,6 @@ $success-50: #E8F5E9;
 $success: $success-900;
 //-------------------------------//
 
-
-// scss-docs-start theme-color-variables
 //$primary:       $blue !default;
 //$secondary:     $gray-600 !default;
 //$success:       $green !default;
@@ -355,6 +354,7 @@ $dark:          $gray-900 !default;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
+
 //---onon_cake theme-colors-map---//
 $theme-colors: (
   "primary-800": $primary-800,
@@ -401,9 +401,9 @@ $theme-colors: (
   "success": $success,
 //--------------------------------------//
 
-  // "primary":    $primary,
-  // "secondary":  $secondary,
-  // "success":    $success,
+  //"primary":    $primary,
+  //"secondary":  $secondary,
+  //"success":    $success,
   "info":       $info,
   "warning":    $warning,
   "danger":     $danger,
@@ -518,17 +518,17 @@ $spacers: (
   12:$spacer * 5,    //80
   13:$spacer * 7.5,  //120
 );
-//----------------------------//
 
-// $spacer: 1rem !default;
-// $spacers: (
-//   0: 0,
-//   1: $spacer * .25,
-//   2: $spacer * .5,
-//   3: $spacer,
-//   4: $spacer * 1.5,
-//   5: $spacer * 3,
-// ) !default;
+
+//$spacer: 1rem !default;
+//$spacers: (
+//  0: 0,
+//  1: $spacer * .25,
+//  2: $spacer * .5,
+//  3: $spacer,
+//  4: $spacer * 1.5,
+//  5: $spacer * 3,
+//) !default;
 // scss-docs-end spacer-variables-maps
 
 // Position
@@ -716,7 +716,7 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",  "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$prefix}font-sans-serif) !default;
@@ -735,8 +735,8 @@ $font-weight-normal:          400 !default;
 $font-weight-medium:          500 !default;
 $font-weight-semibold:        600 !default;
 $font-weight-bold:            700 !default;
-//$font-weight-bolder:          bolder !default;
-$font-weight-bolder:           900; //---onon_cake---//
+$font-weight-bolder:          bolder !default;
+$font-weight-black:           900 !default; //---onon_cake---//
 
 $font-weight-base:            $font-weight-normal !default;
 
@@ -752,7 +752,6 @@ $h5-font-size:                $font-size-base * 1.25 !default;
 $h6-font-size:                $font-size-base !default;
 $h7-font-size:  14px; //--onon_cake-多加入的h7-//
 $h8-font-size:  52px; //--onon_cake-多加入的h8-//
-
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
@@ -762,7 +761,9 @@ $font-sizes: (
   3: $h3-font-size,
   4: $h4-font-size,
   5: $h5-font-size,
-  6: $h6-font-size
+  6: $h6-font-size,
+  7: $h7-font-size, //--onon_cake-多加入的fs-7//
+  8: $h8-font-size, //--onon_cake-多加入的fs-8//
 ) !default;
 // scss-docs-end font-sizes
 
@@ -780,7 +781,7 @@ $headings-color:              inherit !default;
 $display-font-sizes: (
   1: 5rem,
   2: 4.5rem,
-  3: 4rem,
+  3: 4rem,  //--onon_cake display heading--//
   4: 3.5rem,
   5: 3rem,
   6: 2.5rem
@@ -1062,8 +1063,8 @@ $form-color-width:                      3rem !default;
 $form-check-input-width:                  1em !default;
 $form-check-min-height:                   $font-size-base * $line-height-base !default;
 $form-check-padding-start:                $form-check-input-width + .5em !default;
-//$form-check-margin-bottom:                .125rem !default;
-$form-check-margin-bottom:   1rem;  //onon_cake//
+$form-check-margin-bottom:   1rem; 
+//.125rem !default; //onon_cake//
 $form-check-label-color:                  null !default;
 $form-check-label-cursor:                 null !default;
 $form-check-transition:                   null !default;
@@ -1077,9 +1078,9 @@ $form-check-radio-border-radius:          50% !default;
 $form-check-input-focus-border:           $input-focus-border-color !default;
 $form-check-input-focus-box-shadow:       $focus-ring-box-shadow !default;
 
-$form-check-input-checked-color:          $component-active-color !default;
-$form-check-input-checked-bg-color:       $component-active-bg !default;
-$form-check-input-checked-border-color:   $form-check-input-checked-bg-color !default;
+$form-check-input-checked-color:  $primary-300;//$component-active-color !default;
+$form-check-input-checked-bg-color: white;//$component-active-bg !default;
+$form-check-input-checked-border-color: $primary-300;//$form-check-input-checked-bg-color !default;
 $form-check-input-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !default;
 $form-check-radio-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
 
@@ -1215,7 +1216,7 @@ $form-feedback-valid-color:         $success !default;
 $form-feedback-invalid-color:       $danger !default;
 
 $form-feedback-icon-valid-color:    $form-feedback-valid-color !default;
-$form-feedback-icon-valid:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/></svg>") !default;
+$form-feedback-icon-valid:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>") !default;
 $form-feedback-icon-invalid-color:  $form-feedback-invalid-color !default;
 $form-feedback-icon-invalid:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{$form-feedback-icon-invalid-color}'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='#{$form-feedback-icon-invalid-color}' stroke='none'/></svg>") !default;
 // scss-docs-end form-feedback-variables
@@ -1329,7 +1330,7 @@ $navbar-toggler-padding-x:          .75rem !default;
 $navbar-toggler-font-size:          $font-size-lg !default;
 $navbar-toggler-border-radius:      $btn-border-radius !default;
 //$navbar-toggler-focus-width:        $btn-focus-width !default;
-$navbar-toggler-focus-width:0;      //onon_cake//
+$navbar-toggler-focus-width:0;//onon_cake//
 $navbar-toggler-transition:         box-shadow .15s ease-in-out !default;
 
 $navbar-light-color:                rgba(var(--#{$prefix}emphasis-color-rgb), .65) !default;
@@ -1415,6 +1416,7 @@ $dropdown-dark-header-color:        $gray-500 !default;
 // Pagination
 
 // scss-docs-start pagination-variables
+//onon_cake//
 $pagination-padding-y:              .375rem !default;
 $pagination-padding-x:              .75rem !default;
 $pagination-padding-y-sm:           .25rem !default;
@@ -1423,32 +1425,36 @@ $pagination-padding-y-lg:           .75rem !default;
 $pagination-padding-x-lg:           1.5rem !default;
 
 //$pagination-font-size:              $font-size-base !default;
-$pagination-font-size:   14px;  //onon-cake//
+$pagination-font-size:   14px;
 
 $pagination-color:                  var(--#{$prefix}link-color) !default;
 $pagination-bg:                     var(--#{$prefix}body-bg) !default;
 //$pagination-border-radius:          var(--#{$prefix}border-radius) !default;
-$pagination-border-radius:  100px; //onon-cake//
+$pagination-border-radius:  100px;
 //$pagination-border-width:           var(--#{$prefix}border-width) !default;
-$pagination-border-width:   0px;  //onon-cake//
-$pagination-margin-start:           calc(-1 * #{$pagination-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$pagination-border-width:   0px;
+$pagination-margin-start:           calc(#{$pagination-border-width} * -1) !default; // stylelint-disable-line function-disallowed-list
 $pagination-border-color:           var(--#{$prefix}border-color) !default;
 
 $pagination-focus-color:            var(--#{$prefix}link-hover-color) !default;
 $pagination-focus-bg:               var(--#{$prefix}secondary-bg) !default;
-$pagination-focus-box-shadow:       $focus-ring-box-shadow !default;
+$pagination-focus-box-shadow: 0;
+//$focus-ring-box-shadow !default;
 $pagination-focus-outline:          0 !default;
 
 $pagination-hover-color:            var(--#{$prefix}link-hover-color) !default;
 $pagination-hover-bg:               var(--#{$prefix}tertiary-bg) !default;
 $pagination-hover-border-color:     var(--#{$prefix}border-color) !default; // Todo in v6: remove this?
 
-$pagination-active-color:           $component-active-color !default;
-$pagination-active-bg:              $component-active-bg !default;
-$pagination-active-border-color:    $component-active-bg !default;
+$pagination-active-color: rgba(0, 0, 0, 0.87);
+//$component-active-color !default;
+$pagination-active-bg: rgba(0, 0, 0, 0.08);  
+//$component-active-bg !default;
+$pagination-active-border-color:  $component-active-bg !default;
 
-$pagination-disabled-color:         var(--#{$prefix}secondary-color) !default;
-$pagination-disabled-bg:            var(--#{$prefix}secondary-bg) !default;
+$pagination-disabled-color: rgba(0, 0, 0, 0.3);
+//var(--#{$prefix}secondary-color) !default;
+$pagination-disabled-bg:var(--#{$prefix}body-bg) !default; //var(--#{$prefix}secondary-bg) !default;
 $pagination-disabled-border-color:  var(--#{$prefix}border-color) !default;
 
 $pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
@@ -1475,7 +1481,7 @@ $card-title-color:                  null !default;
 $card-subtitle-color:               null !default;
 $card-border-width:                 var(--#{$prefix}border-width) !default;
 $card-border-color:                 var(--#{$prefix}border-color-translucent) !default;
-$card-border-radius:                var(--#{$prefix}border-radius) !default;
+$card-border-radius: 16px;//var(--#{$prefix}border-radius) !default;
 $card-box-shadow:                   null !default;
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
@@ -1523,8 +1529,8 @@ $accordion-icon-active-color:             $primary-text-emphasis !default;
 $accordion-icon-transition:               transform .2s ease-in-out !default;
 $accordion-icon-transform:                rotate(-180deg) !default;
 
-$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-color}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>") !default;
-$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-active-color}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>") !default;
+$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-color}' stroke-linecap='round' stroke-linejoin='round'><path d='M2 5L8 11L14 5'/></svg>") !default;
+$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$accordion-icon-active-color}' stroke-linecap='round' stroke-linejoin='round'><path d='M2 5L8 11L14 5'/></svg>") !default;
 // scss-docs-end accordion-variables
 
 // Tooltips
@@ -1631,7 +1637,6 @@ $badge-color:                       $white !default;
 // scss-docs-end badge-variables
 
 
-
 // Modals
 
 // scss-docs-start modal-variables
@@ -1644,7 +1649,7 @@ $modal-dialog-margin-y-sm-up:       1.75rem !default;
 
 $modal-title-line-height:           $line-height-base !default;
 
-$modal-content-color:               var(--#{$prefix}body-color) !default;
+$modal-content-color:               null !default;
 $modal-content-bg:                  var(--#{$prefix}body-bg) !default;
 $modal-content-border-color:        var(--#{$prefix}border-color-translucent) !default;
 $modal-content-border-width:        var(--#{$prefix}border-width) !default;
@@ -1789,7 +1794,6 @@ $carousel-control-width:             15% !default;
 $carousel-control-opacity:           .5 !default;
 $carousel-control-hover-opacity:     .9 !default;
 $carousel-control-transition:        opacity .15s ease !default;
-$carousel-control-icon-filter:       null !default;
 
 $carousel-indicator-width:           30px !default;
 $carousel-indicator-height:          3px !default;
@@ -1807,17 +1811,17 @@ $carousel-caption-spacer:            1.25rem !default;
 
 $carousel-control-icon-width:        2rem !default;
 
-$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/></svg>") !default;
-$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'/></svg>") !default;
+$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
 
 $carousel-transition-duration:       .6s !default;
 $carousel-transition:                transform $carousel-transition-duration ease-in-out !default; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
 // scss-docs-end carousel-variables
 
 // scss-docs-start carousel-dark-variables
-$carousel-dark-indicator-active-bg:  $black !default; // Deprecated in v5.3.4
-$carousel-dark-caption-color:        $black !default; // Deprecated in v5.3.4
-$carousel-dark-control-icon-filter:  invert(1) grayscale(100) !default; // Deprecated in v5.3.4
+$carousel-dark-indicator-active-bg:  $black !default;
+$carousel-dark-caption-color:        $black !default;
+$carousel-dark-control-icon-filter:  invert(1) grayscale(100) !default;
 // scss-docs-end carousel-dark-variables
 
 
@@ -1844,14 +1848,13 @@ $btn-close-height:           $btn-close-width !default;
 $btn-close-padding-x:        .25em !default;
 $btn-close-padding-y:        $btn-close-padding-x !default;
 $btn-close-color:            $black !default;
-$btn-close-bg:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$btn-close-color}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/></svg>") !default;
+$btn-close-bg:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$btn-close-color}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
 $btn-close-focus-shadow:     $focus-ring-box-shadow !default;
 $btn-close-opacity:          .5 !default;
 $btn-close-hover-opacity:    .75 !default;
 $btn-close-focus-opacity:    1 !default;
 $btn-close-disabled-opacity: .25 !default;
-$btn-close-filter:           null !default;
-$btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%) !default; // Deprecated in v5.3.4
+$btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%) !default;
 // scss-docs-end close-variables
 
 

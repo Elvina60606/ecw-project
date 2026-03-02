@@ -1,0 +1,12 @@
+.hero-banner {
+  min-height: 317px;
+  background-image:
+    linear-gradient(rgba(178, 178, 178, 0.4), rgba(0, 0, 0, 0.6)),
+    url("/src/assets/images/signUpBanner.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  @media (max-width: 768px) {
+    min-height: 300px;
+  }
+}

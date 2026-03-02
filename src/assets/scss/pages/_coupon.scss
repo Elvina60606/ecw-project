@@ -1,0 +1,27 @@
+.coupon-card-up {
+    background: $primary-100;
+    padding: 16px 0px 16px 0px;
+    background-image: linear-gradient(
+        to right,
+        $primary-300 50%,
+        transparent 0
+    );
+    background-size: 50px 2px;   /* 一段虛線 + 間隔 */
+    background-repeat: repeat-x;
+    background-position: 45px bottom;
+
+}
+
+.coupon-card-left {
+  background-color: $primary-100;
+  padding: 60px 20px;
+
+  background-image: linear-gradient(
+    to bottom,
+    $primary-300 35%,
+    transparent 0
+  );
+  background-size: 2px 25px;     // 寬 2px，高度一循環
+  background-repeat: repeat-y;
+  background-position: right top;
+}

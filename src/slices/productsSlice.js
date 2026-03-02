@@ -18,6 +18,18 @@ export const getAsyncProducts = createAsyncThunk(
             console.log(error)
         }
     }
+);
+
+export const getAsyncProduct = createAsyncThunk(
+    'products/getAsyncProduct',
+    async(id) => {
+        try {
+            const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/product/${id}`)
+            return res.data.product
+        } catch (error) {
+            console.log(error)
+        }
+    }
 )
 
 export const productsSlice = createSlice({
@@ -25,19 +37,28 @@ export const productsSlice = createSlice({
     initialState: {
         products: [],
         pagination: {},
+        product: null,
         currentPage: 1,
         error: null,
     },
-    reducers: {},
+    reducers: {
+        setCurrentPage(state, action) {
+            state.currentPage = action.payload
+        },
+    },
     extraReducers: (builder) => {
-        builder.addCase(getAsyncProducts.fulfilled, (state, action) => {
+        builder
+        .addCase(getAsyncProducts.fulfilled, (state, action) => {
             state.products = action.payload.products
             state.pagination = action.payload.pagination
             state.currentPage = action.meta.arg  
         })
+        .addCase(getAsyncProduct.fulfilled, ( state, action) => {
+            state.product = action.payload
+        })
     }
 })
 
-
+export const { setCurrentPage } = productsSlice.actions;
 
 export default productsSlice.reducer;

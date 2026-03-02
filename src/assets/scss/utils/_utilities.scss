@@ -1,0 +1,49 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "font-size": map-merge(
+      map-get($utilities, "font-size"),
+      ( responsive: true ),
+    ),
+  )
+);
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fw-black {
+  font-weight: 900;
+}
+
+.lh-24{
+  line-height: 24px;
+}
+
+.lh-288{
+  line-height: 28.8px;
+}
+
+.lh-336{
+  line-height: 33.6px;
+}
+
+.lh-48{
+  line-height: 48px;
+}
+
+.lh-768{
+  line-height: 76.8px;
+}
+
+.nowrap{
+  white-space: nowrap;
+}
+
+.icon-filled {
+  font-variation-settings: 'FILL' 1;
+}

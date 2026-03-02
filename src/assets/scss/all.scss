@@ -12,7 +12,7 @@
 @import './base/reset';        // Reset 必須在 utilities 之前
 
 // 5. Utilities (自定義工具類)
-//@import './utils/utilities';
+@import './utils/utilities';
 
 // 6. Components (小元件)
 @import './component/icon';
@@ -23,13 +23,13 @@
 // @import './layout/header';
 
 // 8. Pages (頁面樣式)
-// @import "./pages/index";
-// @import "./pages/product";
-// @import "./pages/product_detail";
-// @import "./pages/shopping.cart";
-// @import "./pages/member-signUp";
-// @import "./pages/member-info";
-// @import "./pages/coupon";
+ @import "./pages/index";
+ @import './pages/products';
+ @import "./pages/product_detail";
+ @import "./pages/shopping.cart";
+ @import "./pages/member-signUp";
+ @import "./pages/member-info";
+ @import "./pages/coupon";
 
 // 9. Bootstrap Utilities API (最後，確保生成的 utilities 正確覆蓋)
-//@import "bootstrap/scss/utilities/api";
+@import "bootstrap/scss/utilities/api";
