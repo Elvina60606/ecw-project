@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
-import Pagination from "../../component/Pagination";
+import Pagination from "../../component/utils/Pagination";
 
 const Products =() => {
     const dispatch = useDispatch();

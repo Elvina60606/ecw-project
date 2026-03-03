@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router";
-import ScrollToTop from "../component/ScrollToTop";
+import ScrollToTop from "../component/utils/ScrollToTop";
 
 const ProductsSidebarLayout =() =>{
 

@@ -1,6 +1,6 @@
 import Footer from "../views/frontend/Footer";
 import Header from "../views/frontend/Header";
-import ScrollToTop from "../component/ScrollToTop";
+import ScrollToTop from "../component/utils/ScrollToTop";
 import { useState } from "react";
 import { Outlet } from "react-router-dom"
 
