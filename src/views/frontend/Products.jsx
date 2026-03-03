@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
+import { getAsyncCarts, postAsyncCarts } from "../../slices/cartsSlice";
+
 import Pagination from "../../component/utils/Pagination";
 
 const Products =() => {
@@ -14,6 +16,15 @@ const Products =() => {
     },[dispatch, currentPage])
 
     const [ dropdownShow, setDropdownShow ] = useState(false);
+
+    const addOneToCart = async(id) => {
+        await dispatch(postAsyncCarts({
+            productId: id,
+            qty: 1
+        }));
+        dispatch(getAsyncCarts())
+    }
+
 
     //pagination
     const handlePageChange = (page) => {

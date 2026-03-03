@@ -18,7 +18,7 @@ export const getAsyncCarts = createAsyncThunk(
 
 export const postAsyncCarts = createAsyncThunk(
     'carts/postAsyncCarts',
-    async({productId, qty}, {dispatch}) => {
+    async({productId, qty =1}, {dispatch}) => {
         const data = {
             product_id: productId,
             qty
@@ -40,12 +40,12 @@ export const cartsSlice = createSlice({
         totalQuantity: 0, //for header badge
     },
     reducers: {
-        addQty( state, action ){
-            state.totalQuantity += action.payload
-        },
-        removeQty(state, action) {
-        state.totalQuantity -= action.payload;
-        }
+        // addQty( state, action ){
+        //     state.totalQuantity += action.payload
+        // },
+        // removeQty(state, action) {
+        // state.totalQuantity -= action.payload;
+        // }
     },
     extraReducers: (builder) => {
         builder

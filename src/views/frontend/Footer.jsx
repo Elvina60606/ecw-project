@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 
 
 const Footer =() => {
@@ -5,7 +6,9 @@ const Footer =() => {
     return (<>
         <div className="bg-primary-800">
             <div className="container py-8 d-flex flex-column flex-lg-row align-items-center justify-content-between">
-                <img className="mb-6 mb-lg-0" src='https://raw.githubusercontent.com/Elvina60606/Onon_cake_React/b7d4258906d9bffb3ea738abedf479fb6fdb1ce4/src/assets/images/ononLogoWhite.svg' alt="onon_logo-white" />
+                <Link to='/'>
+                    <img className="mb-6 mb-lg-0" src='https://raw.githubusercontent.com/Elvina60606/Onon_cake_React/b7d4258906d9bffb3ea738abedf479fb6fdb1ce4/src/assets/images/ononLogoWhite.svg' alt="onon_logo-white" />
+                </Link>
     {/*--contact info--*/}
                     <div className="mb-6 mb-lg-0">
                         <p className="fs-7 text-white py-2 py-lg-1 d-flex align-items-center justify-content-center justify-content-lg-start">

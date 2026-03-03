@@ -8,6 +8,7 @@ import { ProgressBar } from "react-loader-spinner";
 
 import ProductImages from "../../component/product/ProductImages";
 import ProductNote from "../../component/product/ProductNote";
+import HotProductsContainer from "../../component/utils/hotProducts/HotProductsContainer";
 
 
 
@@ -76,7 +77,7 @@ const Product =() => {
 
     return(<>
         {/* Product */}
-             <section className="container pt-8 pb-5">
+            <section className="container pt-8 pb-5">
               {/* breadcrumb */}
                         <nav className="my-breadcrumb"
                             aria-label="breadcrumb">
@@ -90,7 +91,6 @@ const Product =() => {
                         </nav>
                         <div className="row">
                             <ProductImages images={images}/> 
-
                             <div className="col-12 col-lg-7 order-3 ps-lg-8">
                                 <div className="d-flex align-items-center justify-content-between mb-4">
                                     <h3 className="fw-bold mb-0 text-primary-800 fs-lg-2">
@@ -169,18 +169,18 @@ const Product =() => {
                                                 type='button'
                                                 onClick={()=> {
                                                     addCarts();
-                                                    setShowMobileControl(false)
-                                                }}>確認</button>
+                                                    setShowMobileControl(false)}}>
+                                                確認
+                                        </button>
                                     </div>
                                 </div>
                             </div>                        
                         </div>
-             </section>
+            </section>
+            <ProductNote />
+            {/* <HotProducts />   */}
 
-          <ProductNote />
-              
-
-          {/*  <HotProductsContainer /> */}
+          <HotProductsContainer />
     </>)
 }
 
