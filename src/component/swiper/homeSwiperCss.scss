@@ -1,0 +1,17 @@
+@import '../../assets/scss/all.scss';
+
+
+
+.mySwiper .swiper-pagination-bullet {
+  background-color: #E4E2D1;  
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: #FC8D5D; 
+  width: 24px;
+  height: 8px;
+  border-radius: 8px;
+}
+
