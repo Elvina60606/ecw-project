@@ -1,35 +1,26 @@
-// 1. Bootstrap Functions
+
 @import "../../../node_modules/bootstrap/scss/functions";
 
-// 2. 自定義變數 (覆蓋 Bootstrap 預設變數)
+
 @import './utils/variables';
 
-// 3. Bootstrap 核心
+
 @import "../../../node_modules/bootstrap";
 
-// 4. Base (字體、reset)
-//@import "./base/typography";   // 字體/排版設定
-@import './base/reset';        // Reset 必須在 utilities 之前
+@import './base/reset';  
 
-// 5. Utilities (自定義工具類)
 @import './utils/utilities';
 
-// 6. Components (小元件)
 @import './component/icon';
 @import './component/button';
 @import "./component/list";
 
-// 7. Layout (大區塊結構)
-// @import './layout/header';
+@import "./pages/index";
+@import './pages/products';
+@import "./pages/product_detail";
+@import "./pages/shopping.cart";
+@import "./pages/member-signUp";
+@import "./pages/member-info";
+@import "./pages/coupon";
 
-// 8. Pages (頁面樣式)
- @import "./pages/index";
- @import './pages/products';
- @import "./pages/product_detail";
- @import "./pages/shopping.cart";
- @import "./pages/member-signUp";
- @import "./pages/member-info";
- @import "./pages/coupon";
-
-// 9. Bootstrap Utilities API (最後，確保生成的 utilities 正確覆蓋)
 @import "bootstrap/scss/utilities/api";

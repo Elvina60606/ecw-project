@@ -3,6 +3,7 @@ import Home from "../views/Home";
 import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
+import MemberRegistration from "../views/frontend/MemberRegistration";
 
 
 
@@ -16,11 +17,15 @@ const routes = [
                 element: <Home />,
             },
             {
+                path: '/member_registration',
+                element: <MemberRegistration />,
+            },
+            {
                 path: '/products_sidebar_layout',
                 element: <ProductsSidebarLayout />,
                 children: [
                     {
-                        path: 'products',
+                        path: 'products',  // all products
                         element: <Products />,
                     },
                 ]
