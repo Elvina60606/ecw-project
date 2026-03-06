@@ -4,3 +4,31 @@
   font-weight: normal;
 }
 
+
+.table-carts-tbody {
+  tr td {
+    padding: 0;         // 清除 td 預設 padding
+    border: none;       // 去掉邊框，讓卡片完整顯示
+  }
+
+  .table-body-hover {
+    background: white;              // 卡片底色
+    border-radius: 12px;            // 圓角
+    transition: all 0.25s ease;     // hover 平滑動畫
+    position: relative;             // 讓 box-shadow 顯示
+    z-index: 0;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // 卡片浮起陰影
+      border: 1px solid $primary-200;             // hover 邊框
+      transform: translateY(-2px);               // 輕微浮起效果
+      z-index: 1;                                 // 避免被其他 row 擋住
+    }
+  }
+}
+
+/* 可選：增加每列間距，陰影更明顯 */
+.table {
+  border-collapse: separate;   // 分離邊框，陰影不被裁切
+  border-spacing: 0 12px;      // 每列垂直間距
+}
