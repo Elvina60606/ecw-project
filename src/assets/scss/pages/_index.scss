@@ -300,14 +300,14 @@
 .sub-section-bg {
   // 只在桌機以上顯示 //
   @media (min-width: 992px) {
-  background-image: url('@/assets/images/subBg.png');
+  background-image: url('https://github.com/Elvina60606/onon_images/blob/main/images/subBg.png?raw=true');
   background-repeat: no-repeat;
   background-position: center;
   }
 }
 
 .shape-bg {
-  background-image: url('@/assets/images/vector4.png');
+  background-image: url('https://github.com/Elvina60606/onon_images/blob/main/images/vector4.png?raw=true');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;  

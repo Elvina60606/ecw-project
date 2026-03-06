@@ -4,11 +4,11 @@
   font-weight: normal;
 }
 
-
 .table-carts-tbody {
   tr td {
     padding: 0;         // 清除 td 預設 padding
     border: none;       // 去掉邊框，讓卡片完整顯示
+    margin-bottom: 16px;
   }
 
   .table-body-hover {
