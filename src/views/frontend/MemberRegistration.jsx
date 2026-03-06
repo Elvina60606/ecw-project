@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
+import AddressSelect from "../../component/utils/AddressSelect";
+import { useState } from "react";
 
 
 const  MemberRegistration =() =>{
@@ -8,6 +10,8 @@ const  MemberRegistration =() =>{
     const {
         register,
         handleSubmit,
+        watch,
+        setValue,
         reset,
         formState: { errors, isValid},
     } = useForm({
@@ -15,12 +19,21 @@ const  MemberRegistration =() =>{
         defaultValues: {
             memberName: '野原廣志',
             gender: 'male',
+            tel: '0911888888',
+            email: 'good888@gmail.com',
+            address: 'good good address'
         }
     });
 
     const onSubmit =(data) => {
         console.log(data)
     };
+
+    // Password 顯示切換
+    const [ show, setShow ] = useState(false);
+    const [ confirmShow, setConfirmShow ] = useState(false);
+    const password = watch('password');
+
 
     return(
     <>
@@ -108,7 +121,7 @@ const  MemberRegistration =() =>{
                                             </div>
                                         </div>
 
-                                        {/* 生日 */}
+                                    {/* 生日 */}
                                         <div className="col-12">
                                             <label htmlFor="birthday" className="form-label">
                                                     生日 
@@ -124,21 +137,21 @@ const  MemberRegistration =() =>{
                                                     )}
                                         </div>
 
-                                        {/* 電話 */}
+                                    {/* 電話 */}
                                         <div className="col-12">
                                             <div className="d-flex justify-content-between align-items-end">
-                                                <label  htmlFor="phoneNumber" className="form-label">
+                                                <label  htmlFor="tel" className="form-label">
                                                         電話 
                                                         <span className="text-danger">*</span>
                                                 </label>
                                             </div>
                                             <input  type="tel"
                                                     className="form-control"
-                                                    id="phone"
-                                                    name="phone"
+                                                    id="tel"
+                                                    name="tel"
                                                     placeholder="請填寫電話"
                                                     maxLength="10"
-                                                    {...register('phone',{
+                                                    {...register('tel',{
                                                         required:'請輸入電話',
                                                         minLength: {
                                                             value: 8,
@@ -153,15 +166,12 @@ const  MemberRegistration =() =>{
                                                             message: '只能輸入數字'
                                                         }
                                                         })}/>
-                                                {errors.phone && (
-                                                    <small className="text-danger ms-2">{errors.phone.message}</small>
+                                                {errors.tel && (
+                                                    <small className="text-danger ms-2">{errors.tel.message}</small>
                                                 )}
                                         </div>
 
-
-            從email認證開始
-
-                                        {/* Email */}
+                                    {/* Email */}
                                         <div className="col-12">
                                             <div className="d-flex justify-content-between align-items-end">
                                                 <label htmlFor="email" className="form-label">
@@ -173,66 +183,28 @@ const  MemberRegistration =() =>{
                                                     className="form-control"
                                                     id="email"
                                                     name="email"
-                                                    placeholder="請填寫電子信箱"/>
+                                                    placeholder="請輸入電子信箱"
+                                                    {...register('email',{
+                                                        required: '請輸入電子信箱',
+                                                        pattern: {
+                                                            value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+                                                            message: '信箱格式錯誤，至少為6~12個半形英文及數字'
+                                                        }
+                                                        })}/>
+                                                {errors.email && (
+                                                    <small className="text-danger ms-2">{errors.email.message}</small>
+                                                )}
                                         </div>
 
-                                        {/* 地址 */}
-                                        <div className="col-12">
-                                            <label  htmlFor="postCode" 
-                                                    className="form-label">
-                                                    聯絡地址
-                                            </label>
-                                            <div className="row g-2">
-                                            {/* 郵遞區號 */}
-                                                <div className="col-12 col-md-4">
-                                                    <input  type="number"
-                                                            className="form-control bg-light"
-                                                            id="postCode"
-                                                            name="postCode"
-                                                            placeholder="郵遞區號"/>
-                                                </div>
-                                            {/* 縣市選單 */}
-                                                <div className="col-6 col-md-4">
-                                                    <select className="form-select"
-                                                            name="city"
-                                                            id="city">
-                                                    <option>縣市</option>
-                                                    {/* {taiwanDistricts.map((item) => (
-                                                        <option key={item.city} value={item.city}>
-                                                        {item.city}
-                                                        </option>
-                                                    ))} */}
-                                                    </select>
-                                                </div>
-                                            {/* 行政區選單 */}
-                                                <div className="col-6 col-md-4">
-                                                    <select className="form-select"
-                                                            name="district"
-                                                            id="district">
-                                                    <option value="">鄉鎮市區</option>
-                                                    {/* {taiwanDistricts
-                                                        .find((item) => item.city === formData.city)
-                                                        ?.districts.map((d) => (
-                                                        <option key={d.name} value={d.name}>
-                                                            {d.name}
-                                                        </option>
-                                                        ))} */}
-                                                    </select>
-                                                </div>
-                                                <div className="col-12">
-                                                    <input  type="text"
-                                                            className="form-control"
-                                                            id="address"
-                                                            name="address"
-                                                            placeholder="請輸入地址"/>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    {/* 地址 */}
+                                        <AddressSelect  register={register} 
+                                                        setValue={setValue} 
+                                                        watch={watch} 
+                                                        errors={errors}/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                     {/* Right */}
                         <div className="col-12 col-lg-6">
@@ -246,14 +218,31 @@ const  MemberRegistration =() =>{
                                                 <span className="text-danger">*</span>
                                             </label>
                                             <div className="input-group">
-                                                <input  type='password'
+                                                <input  type={show ? 'text' : 'password'}
                                                         className='form-control'
                                                         id="password"
                                                         name="password"
-                                                        placeholder="請填寫密碼"/>
-                                                <span   className="material-symbols-outlined fill cursor-pointer input-group-text bg-white">visibility_off
-                                                </span>
+                                                        placeholder="請填寫密碼"
+                                                        {...register('password',{
+                                                            required: '請輸入密碼',
+                                                            minLength: {
+                                                                value: 6,
+                                                                message: '密碼至少為 6 碼',
+                                                            },
+                                                            maxLength: {
+                                                                value: 12,
+                                                                message: '密碼最多為 12 碼',
+                                                            }
+                                                        })}/>
+                                                <button type="button"  
+                                                        className="material-symbols-outlined fill cursor-pointer input-group-text bg-white"
+                                                        onClick={()=>setShow(prev=>!prev)}>
+                                                        { show ? 'visibility' : 'visibility_off'}
+                                                </button>
                                             </div>
+                                                {errors.password && (
+                                                    <small className="text-danger ms-2">{errors.password.message}</small>
+                                                )}
                                         </div>
 
                                         <div className="mb-lg-4 mb-0">
@@ -262,14 +251,24 @@ const  MemberRegistration =() =>{
                                                 <span className="text-danger">*</span>
                                             </label>
                                             <div className="input-group">
-                                                <input type='password'
+                                                <input type={confirmShow? 'text' : 'password'}
                                                 className='form-control'
                                                 id="confirmPassword"
                                                 name="confirmPassword"
-                                                placeholder="請再次填寫密碼"/>
-                                                    <span className=" material-symbols-outlined fill cursor-pointer input-group-text bg-white">visibility
-                                                    </span>
+                                                placeholder="請再次輸入密碼"
+                                                {...register('confirmPassword',{
+                                                    required: '請再次輸入密碼',
+                                                    validate: value => value === password || '密碼不一致',
+                                                })}/>
+                                                    <button type="button"
+                                                            className=" material-symbols-outlined fill cursor-pointer input-group-text bg-white"
+                                                            onClick={()=>setConfirmShow(prev=>!prev)}>
+                                                        {confirmShow? 'visibility' : 'visibility_off'}
+                                                    </button>
                                             </div>
+                                            {errors.confirmPassword && (
+                                                <small className="text-danger ms-2">{errors.confirmPassword.message}</small>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +281,8 @@ const  MemberRegistration =() =>{
                                             <input  type="checkbox"
                                                     className="form-check-input"
                                                     id="terms"
-                                                    name="isAgreed"/>
+                                                    name="terms"
+                                                    {...register('terms',{required: '請務必閱讀並勾選同意隱私權政策及服務條款。'})}/>
                                             <label  className="form-check-label" 
                                                     htmlFor="terms">
                                                         您已詳閱我們的
@@ -290,13 +290,16 @@ const  MemberRegistration =() =>{
                                                         隱私權政策/服務條款
                                                     </Link>，同意本網站所提供的服務。
                                             </label>
+                                        {errors.terms && (
+                                            <small className="text-danger ms-md-2">{errors.terms.message}</small>
+                                        )}
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+
                     {/* Submit */}
                     <div className="col-12 mt-8">
                         <button type="submit"
