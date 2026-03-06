@@ -4,6 +4,7 @@ import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
 import MemberRegistration from "../views/frontend/MemberRegistration";
+import Carts from "../views/frontend/Carts";
 
 
 
@@ -21,6 +22,10 @@ const routes = [
                 element: <MemberRegistration />,
             },
             {
+                path: '/carts',
+                element: <Carts />,
+            },
+            {
                 path: '/products_sidebar_layout',
                 element: <ProductsSidebarLayout />,
                 children: [
@@ -33,7 +38,7 @@ const routes = [
             {
                 path: '/product/:id',
                 element: <Product />
-            }
+            },
         ]
     },
 ]
