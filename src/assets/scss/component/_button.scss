@@ -54,9 +54,13 @@
 
 .btn-coupon {
   border: 1px solid $primary-700;
+  height: 42px;
+  white-space: nowrap;
 }
 
 .btn-coupon-clear {
   background-color: $primary-700;
   color: white;
+  height: 42px;
+  white-space: nowrap;
 }
