@@ -1,3 +1,4 @@
+import images from '@/assets/images/images.js';
 import { useNavigate } from 'react-router';
 import HomeSwiper from '../component/swiper/HomeSwiper';
 import HotProductsContainer from '../component/utils/hotProducts/HotProductsContainer';
@@ -24,31 +25,31 @@ const Home = () => {
                     <p>在平淡的生活中，用甜點找回你的心跳</p>
                 </div>
                     <img className="cake-img" alt="杯子蛋糕"
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/cake.png?raw=true'/>
+                         src={images.cake}/>
                     <img className="cake2-img" alt="切片蛋糕" 
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/cake2.png?raw=true'/>
+                         src={images.cake2}/>
                     <img className="cake3-img" alt="法國麵包" 
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/cake3.png?raw=true'/>
+                         src={images.cake3}/>
                     <img className="vector11-img" alt="裝飾向量圖案1" 
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/vector1.png?raw=true'/>
+                         src={images.vector1}/>
                     <img className="vector2-img" alt="裝飾向量圖案2" 
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/vector2.png?raw=true'/>
+                         src={images.vector2}/>
                     <img className="vector3-img" alt="裝飾向量圖案3" 
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/vector3.png?raw=true'/>
+                         src={images.vector3}/>
                     <img className="rectangle303-img" alt="背景波浪圖案"
-                         src='https://github.com/Elvina60606/onon_images/blob/main/images/rectangle303.png?raw=true'/>
+                         src={images.rectangle303}/>
         </section>
 
         <HotProductsContainer />
         
         <section className="sub-section-bg">
                 <img className="d-none d-lg-block" alt="背景波浪圖" 
-                     src='https://raw.githubusercontent.com/Elvina60606/onon_images/9293e00e07fe7fe2cd091fc4d80231aca192325d/images/rectangle304.svg'/>
+                     src={images.rectangle304}/>
                 <div className="container position-relative">
                     <div className="row my-8 my-lg-0">
                         <div className="col-12 col-lg-7 position-relative z-3">
                             <div className="py-lg-12 mb-8 mb-lg-0">
-                                <img src='https://github.com/Elvina60606/onon_images/blob/main/images/caneleSub.png?raw=true' alt="可麗露圖" />
+                                <img src={images.caneleSub} alt="可麗露圖" />
                             </div>
                         </div>
                       {/* Mobile */}
@@ -56,7 +57,7 @@ const Home = () => {
                             <div className="col-12">
                                 <div className="text-center shape-bg mb-12">
                                     <img className="mb-6" alt="可麗露" 
-                                         src='https://github.com/Elvina60606/onon_images/blob/main/images/caneleVector.png?raw=true'/>
+                                         src={images.caneleVector}/>
                                     <h3 className="text-primary-800 mb-6">可麗露・寄甜計劃</h3>
                                     <h5 className="text-primary-700 mb-6">
                                         品嚐一顆可麗露，體現職人精神
@@ -74,11 +75,11 @@ const Home = () => {
                       {/* Desktop */}
                         <div className="d-none d-lg-block">
                         <div className="col-lg-7 pt-lg-12 position-absolute top-0 end-0 z-1">
-                            <img src='https://github.com/Elvina60606/onon_images/blob/main/images/vector4.png?raw=true' alt="裝飾向量圖案4" />
+                            <img src={images.vector4} alt="裝飾向量圖案4" />
                             <div className="position-absolute top-50 start-50 translate-middle z-2">
                                 <div className="py-12 text-center">
                                     <img className="mb-6" alt="可麗露" 
-                                         src='https://github.com/Elvina60606/onon_images/blob/main/images/caneleVector.png?raw=true'/>
+                                         src={images.caneleVector}/>
                                     <h1 className="text-primary-800 mb-6">可麗露・寄甜計劃</h1>
                                     <h5 className="text-primary-700 mb-6">
                                         品嚐一顆可麗露，體現職人精神
@@ -118,7 +119,7 @@ const Home = () => {
                             <div className="col-12 col-lg-5">
                                 <div className="pb-8 pb-lg-12 text-center text-lg-start">
                                     <img className="img-excess"
-                                         src='https://github.com/Elvina60606/onon_images/blob/main/images/joinUs.png?raw=true'
+                                         src={images.joinUs}
                                          alt="加入會員插圖" />
                                 </div>
                             </div>

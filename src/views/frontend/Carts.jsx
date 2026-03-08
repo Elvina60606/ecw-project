@@ -1,4 +1,4 @@
-
+import images from '@/assets/images/images.js';
 
 const Carts =() =>{
 

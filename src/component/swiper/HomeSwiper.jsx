@@ -1,3 +1,4 @@
+import images from '@/assets/images/images.js';
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -71,20 +72,20 @@ const Discount =({onNavigate}) => (
 const swipeData = [
     {
         key: 'hero',
-        imagesDesktop: 'https://github.com/Elvina60606/onon_images/blob/main/products-img/caneleBanner.jpg?raw=true',
-        imagesMobile:  'https://github.com/Elvina60606/onon_images/blob/main/products-img/caneleBannerMd.jpg?raw=true',
+        imagesDesktop: images.caneleBanner,
+        imagesMobile: images.caneleBannerMd,
         component: Hero, 
     },
     {
         key: 'mid_autumn',
-        imagesDesktop: 'https://github.com/Elvina60606/onon_images/blob/main/products-img/midautumnfestivalBanner.jpg?raw=true',
-        imagesMobile:  'https://github.com/Elvina60606/onon_images/blob/main/products-img/midautumnfestivalBannerMd.jpg?raw=true',
+        imagesDesktop: images.midautumnfestivalBanner,
+        imagesMobile: images.midautumnfestivalBannerMd,
         component: MidAutumn, 
     },
     {
         key: 'discount',
-        imagesDesktop: 'https://github.com/Elvina60606/onon_images/blob/main/products-img/discountsBanner.jpg?raw=true',
-        imagesMobile:  'https://github.com/Elvina60606/onon_images/blob/main/products-img/discountsBannerMd.jpg?raw=true',
+        imagesDesktop: images.discountsBanner,
+        imagesMobile: images.discountsBannerMd,
         component: Discount, 
     },
 ];
@@ -135,7 +136,7 @@ const HomeSwiper =() =>{
                     </div>
                 </div>
                 <img className="vector1-img z-0"
-                     src='https://github.com/Elvina60606/onon_images/blob/main/products-img/vector1.png?raw=true'
+                     src={images.vector1}
                      alt="裝飾向量圖案1" />
         </section>
     

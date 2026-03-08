@@ -1,3 +1,4 @@
+import images from '@/assets/images/images.js';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
@@ -37,7 +38,9 @@ const  MemberRegistration =() =>{
 
     return(
     <>
-        <section className="hero-banner d-flex align-items-center">
+        <section className="hero-banner d-flex align-items-center"
+                 style={{ backgroundImage:  `linear-gradient(rgba(178, 178, 178, 0.4), rgba(0, 0, 0, 0.6)),
+                                             url(${images.signUpBanner})` }}>
             <div className="container text-center text-white">
                 <h3 className="fs-lg-8 fs-3 mb-6">
                     加入會員，即享首購不限金額88折
