@@ -1,7 +1,38 @@
 import images from '@/assets/images/images.js';
+import { useForm } from 'react-hook-form';
+
+import ShippingAddress from '../../component/utils/ShippingAddress';
+import paymemtMethods from '../../data/paymentMethods.json';
+import invoice from '../../data/invoice.json';
 
 const Carts =() =>{
 
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        formState: {errors}
+    } = useForm({
+        mode: 'onChange',
+        defaultValues: {
+            invoice_type: "",
+            personal_option: "",
+            company_name: "",
+            tax_id: "",
+            member_carrier: "",
+            mobile_barcode: "",
+            citizen_certificate: ""
+            }
+    });
+
+    const selectInvoice = watch('invoice_type');
+    const selectPersonalInvoice = watch('personal_option');
+
+    const onSubmit =(data) =>{
+        console.log(data)
+    };
 
     return (
     <>
@@ -167,7 +198,96 @@ const Carts =() =>{
         <section className="py-8 py-md-12">
             <div className="container">
                 <h3 className="fs-md-2 text-black mb-6 mb-md-8">填寫資訊</h3>
+                <div className="row g-6">
+                    <div className="col-12">
+                        <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
+                            <div className="form-check d-flex align-items-center mb-4 py-2">
+                                <input className="form-check-input me-2" type="checkbox" value="" id="sameAsMemberInfo" />
+                                <label className="form-check-label" htmlFor="sameAsMemberInfo">同會員資料</label>
+                            </div>
 
+                            <div className="row g-4">
+                                <div className="col-md-6">
+                                    <label htmlFor="recipient" className="form-label">
+                                        收件人姓名 
+                                        <span className="text-danger">*</span>
+                                    </label>
+                                    <input type="text"
+                                            className="form-control"
+                                            id="recipient"
+                                            name="recipient"
+                                            placeholder="請填寫姓名"/>
+                                </div>
+                                <div className="col-md-6">
+                                    <label  htmlFor="tel" className="form-label">
+                                        聯絡電話 
+                                        <span className="text-danger">*</span>
+                                    </label>
+                                    <input  type="tel"
+                                            className="form-control"
+                                            id="tel"
+                                            name="tel"
+                                            placeholder="請填寫聯絡電話"
+                                            maxLength="10" />
+                                </div>
+                                <div className="col-12">
+                                    <ShippingAddress register={register}
+                                                   watch={watch}
+                                                   setValue={setValue}
+                                                   errors={errors} />
+                                </div>
+                                <div className="col-12">
+                                    <label className="form-label" htmlFor="orderNote">備註</label>
+                                    <textarea className="form-control rounded-3" 
+                                              id="orderNote" rows="5"
+                                              placeholder='請填寫備註'>
+                                    </textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
+                            <h6 className='fs-md-5 mb-4'>付款方式</h6>
+                            <div>
+                                {   paymemtMethods.map(payment => (
+                                        <div className="form-check py-2" key={payment.id}>
+                                            <input  type="radio"
+                                                    className="form-check-input"  
+                                                    name="paymentMethod" 
+                                                    id={payment.id} />
+                                            <label className="form-check-label" 
+                                                htmlFor={payment.id}>
+                                                {payment.name}
+                                            </label>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
+                                <h6 className='fs-md-5 mb-4'>發票開立</h6>
+                                <div>
+
+                                    渲染發票類型開始
+                                    <select className="form-select">
+                                        <option selected>請選擇發票類型</option>
+                                        <option value="1">One</option>
+                                    </select>
+
+
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </section>

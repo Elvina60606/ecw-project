@@ -9,7 +9,7 @@ const Home = () => {
         navigate('/member_registration')
     };
     
-//手機版banner第一張可麗露背景做改變。及swipe的pagination顏色改成深咖。
+// ！！手機版banner第一張可麗露背景做改變。及swipe的pagination顏色改成深咖。
     return (<>
         <HomeSwiper />
 

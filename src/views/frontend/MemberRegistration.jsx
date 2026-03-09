@@ -14,7 +14,7 @@ const  MemberRegistration =() =>{
         watch,
         setValue,
         reset,
-        formState: { errors, isValid},
+        formState: { errors },
     } = useForm({
         mode: 'onChange',
         defaultValues: {

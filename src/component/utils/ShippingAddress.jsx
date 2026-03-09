@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import taiwanDistricts from '../../data/taiwanDistricts.json';
 
 
-const AddressSelect =({ register, watch, setValue, errors }) =>{
+const ShippingAddress =({ register, watch, setValue, errors }) =>{
 
     const [ districts, setDistricts ] = useState([]);
 
@@ -32,16 +32,17 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
         };
     }, [ selectDistrict ]);
 
+
     return(
     <>
         <div className="col-12">
             <label  htmlFor="city" 
-                    className="form-label">聯絡地址
+                    className="form-label">收件地址
                     <span className="text-danger">*</span>
             </label>
             <div className="row g-2">
         {/* 郵遞區號 */}
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-md-2">
                     <input  type="text"
                             className="form-control bg-light"
                             id="zipCode"
@@ -51,7 +52,7 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
                             {...register('zipCode')}/>
                 </div>
         {/* 縣市選單 */}
-                <div className="col-6 col-md-4">
+                <div className="col-6 col-md-2">
                     <select className="form-select"
                             name="city"
                             id="city"
@@ -68,7 +69,7 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
                     )}
                 </div>
         {/* 行政區選單 */}
-                <div className="col-6 col-md-4">
+                <div className="col-6 col-md-2">
                     <select className="form-select"
                             name="district"
                             id="district"
@@ -84,7 +85,7 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
                         <small className="text-danger ms-2">{errors.district.message}</small>
                     )}
                 </div>
-                <div className="col-12">
+                <div className="col-12 col-md-6">
                     <input  type="text"
                             className="form-control"
                             id="address"
@@ -97,7 +98,8 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
                 </div>
             </div>
         </div>    
+    
     </>)
 }
 
-export default AddressSelect;
+export default ShippingAddress;
