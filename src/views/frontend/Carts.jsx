@@ -28,7 +28,12 @@ const Carts =() =>{
     });
 
     const selectInvoice = watch('invoice_type');
-    const selectPersonalInvoice = watch('personal_option');
+    const selectedInvoiceType = watch('personal_option');
+
+    const selectPersonalInvoice = invoice.find(
+        item => item.id === selectInvoice
+    );
+
 
     const onSubmit =(data) =>{
         console.log(data)
@@ -248,6 +253,7 @@ const Carts =() =>{
 
                         </div>
                     </div>
+            {/* payment & invoice */}
                     <div className="col-12 col-md-6">
                         <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
                             <h6 className='fs-md-5 mb-4'>付款方式</h6>
@@ -273,15 +279,36 @@ const Carts =() =>{
                             <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
                                 <h6 className='fs-md-5 mb-4'>發票開立</h6>
                                 <div>
-
-                                    渲染發票類型開始
-                                    <select className="form-select">
-                                        <option selected>請選擇發票類型</option>
-                                        <option value="1">One</option>
+                                    <select className="form-select mb-4"
+                                            name='invoice'
+                                            id='invoice'
+                                            {...register('invoice_type')}>
+                                        <option value="">請選擇發票類型</option>
+                                        { invoice.map(item => (
+                                            <option value={item.id} key={item.id}>{item.name}</option>
+                                        ))}
                                     </select>
+                                        { selectPersonalInvoice?.subOptions?.map( option => (
+                                            <div className="form-check py-2 d-flex align-items-center" key={option.id}>
+                                                <input className="form-check-input me-2" 
+                                                       type="radio" 
+                                                       name="personalInvoiceType" 
+                                                       id={option.id}
+                                                       value={option.id} 
+                                                       {...register('personal_option')}/>
+                                                <label className="form-check-label" 
+                                                       htmlFor={option.id}> {option.name}
+                                                </label>
+                                                { selectedInvoiceType === option.id && option.placeholder && (
+                                                    <input type='text'
+                                                           className='form-control w-50 ms-4'
+                                                           placeholder={option.placeholder}/>
+                                                )}
+                                            </div>
+                                            )    
+                                        )}
 
-
-
+//寫公司發票開始
 
                                 </div>
                             </div>

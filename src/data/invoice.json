@@ -3,22 +3,22 @@
     "id": "personal_invoice",
     "name": "個人發票",
     "subOptions": [
-      {
-        "id": "member_carrier",
-        "name": "會員載具"
-      },
-      {
-        "id": "mobile_barcode",
-        "name": "手機條碼",
-        "placeholder": "請填寫手機條碼"
-      },
-      {
-        "id": "citizen_certificate",
-        "name": "自然人憑證",
-        "placeholder": "請填寫自然人憑證"
-      }
-    ]
-  },
+        {
+          "id": "member_carrier",
+          "name": "會員載具"
+        },
+        {
+          "id": "mobile_barcode",
+          "name": "手機條碼",
+          "placeholder": "請填寫手機條碼"
+        },
+        {
+          "id": "citizen_certificate",
+          "name": "自然人憑證",
+          "placeholder": "請填寫自然人憑證"
+        }
+      ]
+    },
   {
     "id": "company_invoice",
     "name": "公司發票",
