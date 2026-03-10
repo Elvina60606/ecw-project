@@ -8,9 +8,37 @@ export const getAsyncOrders = createAsyncThunk(
     async(page = 1) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/orders?page=${page}`)
-            console.log(res) //從這裡開始
+            console.log(res.data)
+            return {
+                orders: res.data.orders,
+                pagination: res.data.pagination
+            }
         } catch (error) {
             console.log('getAsyncOrders:',error)
+        }
+    }
+);
+
+export const postAsyncOrders =createAsyncThunk(
+    'orders/postAsyncOrders',
+    async({recipient, email, tel, address, orderNote},{dispatch}) => {
+        const data = {
+                "user": {
+                "name": recipient,
+                "email": email,
+                "tel": tel,
+                "address": address,
+                },
+                "message": orderNote
+            }
+
+            console.log(data)
+
+        try {
+            const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/order`,{data})
+            dispatch(getAsyncOrders())
+        } catch (error) {
+            console.log('postAsyncOrders:',error)
         }
     }
 )
@@ -23,9 +51,18 @@ export const ordersSlice = createSlice({
         pagination: {},
         current_page: 1,
     },
-    reducers: []
+    reducers: [],
+    extraReducers: (builder) => {
+        builder
+        .addCase(getAsyncOrders.fulfilled, (state, action) => {
+            state.orders = action.payload.orders
+            state.pagination = action.payload.pagination
+            state.current_page = action.meta.arg  
+        })
+    }
 });
 
+export const { current_page } = ordersSlice.actions
 
 
 export default ordersSlice.reducer;

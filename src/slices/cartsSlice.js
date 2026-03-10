@@ -66,6 +66,7 @@ export const cartsSlice = createSlice({
     name: 'carts',
     initialState: {
         carts: [],
+        totalPrice: 0,
         totalQuantity: 0, //for header badge
     },
     reducers: {},
@@ -73,11 +74,10 @@ export const cartsSlice = createSlice({
         builder
             .addCase(getAsyncCarts.fulfilled, ( state, action ) => {
                 state.carts = action.payload.carts
+                state.totalPrice = action.payload.carts.reduce((sum, cart) => sum + cart.product.price * cart.qty, 0 )
                 state.totalQuantity = action.payload.carts.reduce((sum , item) => sum + item.qty, 0 )
             })
     }
 });
-
-export const { addQty, removeQty } = cartsSlice.actions;
 
 export default cartsSlice.reducer;

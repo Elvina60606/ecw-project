@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { getAsyncCarts, deleteAsyncCarts, updateAsyncCarts } from '../../slices/cartsSlice';
+import { getAsyncOrders, postAsyncOrders } from '../../slices/ordersSlice';
 
 import ShippingAddress from '../../component/utils/ShippingAddress';
 import paymemtMethods from '../../data/paymentMethods.json';
@@ -10,7 +11,8 @@ import invoice from '../../data/invoice.json';
 
 const Carts =() =>{
     const dispatch = useDispatch();
-    const carts = useSelector(state => state.carts.carts)
+    const { carts, totalPrice } = useSelector(state => state.carts) //帶入各項金額開始
+    const shippingCost = totalPrice> 1000 ? '0' : '60';
 
     useEffect(()=>{
         const fetchCarts = async() =>{
@@ -22,6 +24,8 @@ const Carts =() =>{
         }
         fetchCarts();
     },[]);
+
+
 
     const incrementQty =(cart) => {
         if(cart.qty >= 10) return;
@@ -45,7 +49,7 @@ const Carts =() =>{
 
 
 
-
+    // validation
     const {
         register,
         handleSubmit,
@@ -57,6 +61,11 @@ const Carts =() =>{
         mode: 'onChange',
         defaultValues: {
             invoice_type: "personal",
+            recipient: 'David',
+            tel: "0988888888",
+            address: '88888號',
+            email: 'david@oooooo.com'
+
             }
     });
 
@@ -86,8 +95,11 @@ const Carts =() =>{
     }, [carrierType])
 
 
-    const onSubmit =(data) =>{
+    const onSubmit = async(data) =>{
         console.log(data)
+        await dispatch(postAsyncOrders(data))
+
+        dispatch(getAsyncOrders())
     };
 
     return (
@@ -261,11 +273,12 @@ const Carts =() =>{
                 <div className="bg-white border rounded-4 p-5 p-md-6">
                     <div className="d-flex justify-content-between mb-2">
                         <p className="fs-7">小計</p>
-                        <p className="fs-7">$ 商品總價</p>
+                        <p className="fs-7">$ {totalPrice}</p>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="fs-7">運費</p>
-                        <p className="fs-7">$ 運費</p>
+                        { totalPrice > 1000 ? (<p className="fs-7">已達免運資格!</p>)
+                                             : (<p className="fs-7">$ 60 </p>) }
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="fs-7">點數</p>
@@ -340,6 +353,23 @@ const Carts =() =>{
                                                 })}/>
                                         { errors.tel && (
                                             <small className='text-danger ms-2'>{errors.tel.message}</small>
+                                        )}
+                                    </div>
+                                    <div className="col-12">
+                                        <label  htmlFor="email" className="form-label">
+                                            聯絡信箱 
+                                            <span className="text-danger">*</span>
+                                        </label>
+                                        <input  type="email"
+                                                className="form-control"
+                                                id="email"
+                                                placeholder="請填寫聯絡信箱"
+                                                maxLength="10" 
+                                                {...register('email', {
+                                                    required: '請填寫聯絡信箱'
+                                                })}/>
+                                        { errors.email && (
+                                            <small className='text-danger ms-2'>{errors.email.message}</small>
                                         )}
                                     </div>
                                     <div className="col-12">
