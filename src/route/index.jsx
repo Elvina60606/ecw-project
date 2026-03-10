@@ -3,6 +3,7 @@ import Home from "../views/Home";
 import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
+import Login from "../views/frontend/Login";
 import MemberRegistration from "../views/frontend/MemberRegistration";
 import Carts from "../views/frontend/Carts";
 
@@ -20,6 +21,10 @@ const routes = [
             {
                 path: '/member_registration',
                 element: <MemberRegistration />,
+            },
+            {
+                path: '/login',
+                element: <Login />,
             },
             {
                 path: '/carts',

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
@@ -11,8 +11,9 @@ import invoice from '../../data/invoice.json';
 
 const Carts =() =>{
     const dispatch = useDispatch();
-    const { carts, totalPrice } = useSelector(state => state.carts) //帶入各項金額開始
-    const shippingCost = totalPrice> 1000 ? '0' : '60';
+    const { carts, totalPrice } = useSelector(state => state.carts) 
+    const shippingCost = totalPrice > 1000 ? 0 : 60;
+    const finalPrice = totalPrice + shippingCost;
 
     useEffect(()=>{
         const fetchCarts = async() =>{
@@ -24,8 +25,6 @@ const Carts =() =>{
         }
         fetchCarts();
     },[]);
-
-
 
     const incrementQty =(cart) => {
         if(cart.qty >= 10) return;
@@ -277,8 +276,7 @@ const Carts =() =>{
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="fs-7">運費</p>
-                        { totalPrice > 1000 ? (<p className="fs-7">已達免運資格!</p>)
-                                             : (<p className="fs-7">$ 60 </p>) }
+                        <p className="fs-7">$ {shippingCost}</p>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="fs-7">點數</p>
@@ -294,7 +292,7 @@ const Carts =() =>{
                     </div>
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <h5 className="fw-500">總金額</h5>
-                        <h4 className="fw-500 text-secondary-500">$ 總金額</h4>
+                        <h4 className="fw-500 text-secondary-500">$ {finalPrice}</h4>
                     </div>
                 </div>
             </div>
