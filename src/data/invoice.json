@@ -1,27 +1,61 @@
 [
     {
-    "id": "personal_invoice",
+    "id": "personal",
     "name": "個人發票",
-    "subOptions": [
+    "carriers": [
         {
           "id": "member_carrier",
-          "name": "會員載具"
+          "name": "會員載具",
+          "fields": []
         },
         {
           "id": "mobile_barcode",
           "name": "手機條碼",
-          "placeholder": "請填寫手機條碼"
+          "fields": [
+            {
+              "id": "mobile_barcode",
+              "label": "手機載具",
+              "type": "text",
+              "placeholder": "請填寫手機條碼",
+              "required": true,
+              "pattern": "^\\/[0-9A-Z.+-]{7}$"
+            }
+          ]
         },
         {
           "id": "citizen_certificate",
           "name": "自然人憑證",
-          "placeholder": "請填寫自然人憑證"
+          "fields": [
+            {
+              "id": "citizen_certificate",
+              "label": "自然人憑證",
+              "type": "text",
+              "placeholder": "請填寫自然人憑證",
+              "required": true
+            }
+          ]
         }
       ]
     },
   {
-    "id": "company_invoice",
+    "id": "company",
     "name": "公司發票",
-    "requires": ["company_name", "tax_id"]
+    "carriers": [],
+    "fields": [
+          {
+            "id": "company_name",
+            "label": "公司抬頭",
+            "type": "text",
+            "placeholder": "請填寫公司抬頭",
+            "required": true
+          },
+          {
+            "id": "tax_id",
+            "label": "統一編號",
+            "type": "text",
+            "placeholder": "請填寫統一編號",
+            "required": true
+          }
+      ]
   }
 ]

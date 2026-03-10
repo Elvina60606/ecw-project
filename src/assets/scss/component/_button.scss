@@ -58,9 +58,17 @@
   white-space: nowrap;
 }
 
-.btn-coupon-clear {
+.btn-coupon-clear,
+.btn-order {
   background-color: $primary-700;
   color: white;
   height: 42px;
   white-space: nowrap;
+}
+
+.btn-qty {
+  padding: 8px 8px;
+  &:hover {
+    background-color: white;
+  }
 }

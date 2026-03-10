@@ -9,7 +9,6 @@ export const getAsyncProducts = createAsyncThunk(
     async( page =1) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/products?page=${page}`)
-            console.log(res.data)
             return {
                 products: res.data.products,
                 pagination: res.data.pagination
