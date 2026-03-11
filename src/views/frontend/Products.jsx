@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, NavLink, useParams } from "react-router";
 
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
 import { getAsyncCarts, postAsyncCarts } from "../../slices/cartsSlice";
 
+import categories from "../../data/categories";
 import Pagination from "../../component/utils/Pagination";
 
 const Products =() => {
@@ -25,12 +26,17 @@ const Products =() => {
         dispatch(getAsyncCarts())
     }
 
+    //product category
+    const {category} = useParams();
+
+    const filterProducts = category ? products.filter( product => product.category === category) : products;
+
+
 
     //pagination
     const handlePageChange = (page) => {
       dispatch(setCurrentPage(page));
     };
-
 
     return(<>
             <section className="col-12 col-md-9">
@@ -42,48 +48,20 @@ const Products =() => {
                         商品總覽
                     </Link>
                     <ul className={`dropdown-menu w-100 mt-1 ${dropdownShow && 'show'}`}>
-                        <li>
-                            <Link to='/products_sidebar_layout/products'
-                                  className="dropdown-item">
-                                可麗露
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/products_sidebar_layout/products' 
-                                  className="dropdown-item">
-                                巴斯克
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/products_sidebar_layout/products' 
-                                  className="dropdown-item">
-                                瑪德蓮
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/products_sidebar_layout/products' 
-                                className="dropdown-item">
-                                法式小塔
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/products_sidebar_layout/products' 
-                                  className="dropdown-item">
-                                寄甜計畫
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/products_sidebar_layout/products'
-                                  className="dropdown-item">
-                                中秋禮盒
-                            </Link>
-                        </li>
+                        { categories.map( c => (
+                            <li key={ c.id }>
+                                <NavLink to={`/products_sidebar_layout/products/${c.id}`}
+                                    className='dropdown-item'>
+                                    { c.name }
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
               {/* 商品資料 */}
                 <div className="row py-6 py-md-8 g-6">
-                    {products?.map((product) => {
+                    {filterProducts?.map((product) => {
                         return (
                             <div className="col-12 col-sm-6 col-lg-4" key={product.id}>
                                 <div className="card h-100">

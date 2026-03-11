@@ -2,7 +2,7 @@ import images from '../../assets/images/images';
 import { useDispatch, useSelector } from "react-redux";
 import { getAsyncCarts } from "../../slices/cartsSlice";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const Header =({ mobileOpen, setMobileOpen}) =>{
     const isLogin = true;
@@ -14,6 +14,12 @@ const Header =({ mobileOpen, setMobileOpen}) =>{
     useEffect(() => {
         dispatch(getAsyncCarts())
     },[])
+
+    const location = useLocation();
+    useEffect(() => {
+        setDesktopOpen(false)
+        setMobileOpen(false)
+    },[location])
     
     return (
     <>

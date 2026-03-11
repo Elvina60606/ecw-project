@@ -1,8 +1,10 @@
-import { Link, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import ScrollToTop from "../component/utils/ScrollToTop";
-//串接category data來渲染sidebar
+import categories from "../data/categories";
 
 const ProductsSidebarLayout =() =>{
+
+    console.log(categories);
 
     return (<>
         <main className="container py-8 py-md-12">
@@ -10,41 +12,20 @@ const ProductsSidebarLayout =() =>{
                 <div className="col-3 d-none d-md-block">
                     <nav>
                         <ul className="sidebar">
-                            <li className="sidebar-item active">
-                                <Link to='/products_sidebar_layout/products'>
+                            <li className="sidebar-item">
+                                <NavLink to='/products_sidebar_layout/products'>
                                     <h5 className="fs-md-6 fs-lg-5">商品總覽</h5>
-                                </Link>
+                                </NavLink>
                             </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">可麗露</h5>
-                                </Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">巴斯克</h5>
-                                </Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">瑪德蓮</h5>
-                                </Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">法式小塔</h5>
-                                </Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">寄甜計畫</h5>
-                                </Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link to='/products_sidebar_layout/products'>
-                                    <h5 className="fs-md-6 fs-lg-5">中秋禮盒</h5>
-                                </Link>
-                            </li>
+                            { categories.map( c => (
+                                <li className="sidebar-item" key={c.id}>
+                                    <NavLink to={`/products_sidebar_layout/products/${c.id}`}
+                                             className={({ isActive }) => `${ isActive ? 'active' : '' } sidebar-link`}>
+                                        <h5 className='fs-md-6 fs-lg-5'>{c.name}</h5>
+                                    </NavLink>
+                                </li>
+                            ))}
+                            
                         </ul>
                     </nav>
                 </div>

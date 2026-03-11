@@ -1,12 +1,14 @@
 import images from '@/assets/images/images.js';
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux';
 
 import AddressSelect from "../../component/utils/AddressSelect";
-import { useState } from "react";
-
+import { registerMember } from '../../slices/memberSlice';
 
 const  MemberRegistration =() =>{
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -27,7 +29,9 @@ const  MemberRegistration =() =>{
     });
 
     const onSubmit =(data) => {
+        dispatch(registerMember(data))
         console.log(data)
+        reset()
     };
 
     // Password 顯示切換

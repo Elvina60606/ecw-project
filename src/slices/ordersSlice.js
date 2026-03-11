@@ -8,7 +8,6 @@ export const getAsyncOrders = createAsyncThunk(
     async(page = 1) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/orders?page=${page}`)
-            console.log(res.data)
             return {
                 orders: res.data.orders,
                 pagination: res.data.pagination
@@ -31,8 +30,6 @@ export const postAsyncOrders =createAsyncThunk(
                 },
                 "message": orderNote
             }
-
-            console.log(data)
 
         try {
             const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/order`,{data})

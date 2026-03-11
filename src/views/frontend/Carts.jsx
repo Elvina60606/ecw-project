@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router';
 
 import { getAsyncCarts, deleteAsyncCarts, updateAsyncCarts } from '../../slices/cartsSlice';
 import { getAsyncOrders, postAsyncOrders } from '../../slices/ordersSlice';
@@ -46,8 +47,6 @@ const Carts =() =>{
         }))
     };
 
-
-
     // validation
     const {
         register,
@@ -55,19 +54,36 @@ const Carts =() =>{
         watch,
         setValue,
         resetField,
+        reset,
+        getValues,
         formState: {errors}
     } = useForm({
         mode: 'onChange',
         defaultValues: {
             invoice_type: "personal",
-            recipient: '野原新之助',
-            tel: "0988888888",
-            address: '春日部防衛隊',
-            email: 'shin@oooooo.com',
-            orderNote: '請幫忙下午配送，謝謝！'
             }
     });
 
+    // same as member    //處理zipCode及district沒有成功帶入
+    const member = useSelector(state => state.member.member)
+    const sameAsMember = watch('sameAsMember')
+    useEffect(()=>{
+        if(sameAsMember && member){
+            reset({
+                ...getValues(),
+                recipient: member.memberName,
+                tel: member.tel,
+                email: member.email,
+                address: member.address,
+                city: member.city,
+                district: member.district,
+                zipCode: member.zipCode
+            })
+        }
+    },[sameAsMember, member, setValue ])
+
+
+    // invoice
     const invoiceType = watch('invoice_type');
     const carrierType = watch('carrier_type');
 
@@ -99,6 +115,8 @@ const Carts =() =>{
         await dispatch(postAsyncOrders(data))
 
         dispatch(getAsyncOrders())
+        dispatch(getAsyncCarts())
+        reset()
     };
 
     return (
@@ -120,84 +138,104 @@ const Carts =() =>{
                             </tr>
                         </thead>
                         <tbody className="table-carts-tbody">
-                            { carts?.map(cart => (
-                                <tr key={cart.id}>
-                                    <td colSpan={5} className="rounded-4 p-0">
-                                        <div className="d-flex align-items-center ps-7 py-4 table-body-hover">
-                                            <div className="d-flex align-items-center" style={{width: '46%'}}>
-                                                <img src={cart.product.imageUrl}   
-                                                    alt="product-imageUrl" 
-                                                    className="rounded-4 me-4 object-fit-cover"
-                                                    style={{width:80, height:80}}/>
-                                                <h5>{cart.product.title}</h5>
-                                            </div>
-                                            <div style={{width: '10%'}}><h6>NT$ {cart.product.price}</h6></div>
-                                            <div style={{width: '20%'}}>
-                                                <div className='d-inline-flex justify-content-center align-items-center border rounded-3 mx-auto'>
-                                                    <button type='button' className='btn btn-qty'
-                                                            onClick={()=>decrementQty(cart)}>
-                                                        <i className="bi bi-dash-lg"></i>
-                                                    </button>
-                                                    <h6 className='px-4'>{cart.qty}</h6>
-                                                    <button type='button' className='btn btn-qty'
-                                                            onClick={()=>incrementQty(cart)}>
-                                                        <i className="bi bi-plus-lg"></i>
+                            { carts.length > 0 ? (
+                                 carts?.map(cart => (
+                                    <tr key={cart.id}>
+                                        <td colSpan={5} className="rounded-4 p-0">
+                                            <div className="d-flex align-items-center ps-7 py-4 table-body-hover">
+                                                <div className="d-flex align-items-center" style={{width: '46%'}}>
+                                                    <img src={cart.product.imageUrl}   
+                                                        alt="product-imageUrl" 
+                                                        className="rounded-4 me-4 object-fit-cover"
+                                                        style={{width:80, height:80}}/>
+                                                    <h5>{cart.product.title}</h5>
+                                                </div>
+                                                <div style={{width: '10%'}}><h6>NT$ {cart.product.price}</h6></div>
+                                                <div style={{width: '20%'}}>
+                                                    <div className='d-inline-flex justify-content-center align-items-center border rounded-3 mx-auto'>
+                                                        <button type='button' className='btn btn-qty'
+                                                                onClick={()=>decrementQty(cart)}>
+                                                            <i className="bi bi-dash-lg"></i>
+                                                        </button>
+                                                        <h6 className='px-4'>{cart.qty}</h6>
+                                                        <button type='button' className='btn btn-qty'
+                                                                onClick={()=>incrementQty(cart)}>
+                                                            <i className="bi bi-plus-lg"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div style={{width: '15%'}}>
+                                                    <h5 className='text-secondary-500'>NT$ {cart.product.price * cart.qty}</h5>
+                                                </div>
+                                                <div style={{width: '10%'}}>
+                                                    <button type='button' className='btn btn-trash'
+                                                            onClick={()=>dispatch(deleteAsyncCarts(cart.id))}>
+                                                        <i className="bi bi-trash3-fill"></i>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div style={{width: '15%'}}>
-                                                <h5 className='text-secondary-500'>NT$ {cart.product.price * cart.qty}</h5>
-                                            </div>
-                                            <div style={{width: '10%'}}>
-                                                <button type='button' className='btn btn-trash'
-                                                        onClick={()=>dispatch(deleteAsyncCarts(cart.id))}>
-                                                    <i className="bi bi-trash3-fill"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan={5} className='rounded-4 py-8'>
+                                        <Link to="/products_sidebar_layout/products" 
+                                            className="text-primary-700 fw-bold">
+                                            目前購物車是空的，去逛逛商品吧！
+                                        </Link>
                                     </td>
                                 </tr>
-                            ))}
+                            ) }
                         </tbody>
                     </table>
                 </div>
             {/* mobile */}
                 <div className="row px-3 d-md-none">
-                    { carts?.map(cart => (
-                        <div className="bg-white rounded-4 p-4 pb-0 mb-4 mobile-product" key={cart.id}>
-                            <div className="d-flex align-items-center">
-                                <img className="rounded-4 me-4 object-fit-cover" style={{width:80, height:80}}
-                                    src={cart.product.imageUrl}   
-                                    alt="product-imageUrl" />
-                                <div>
-                                    <h6 className="mb-2">{cart.product.title}</h6>
-                                    <h6>NT$ {cart.product.price}</h6>
+                    { carts.length > 0 ? (
+                        ( carts?.map(cart => (
+                            <div className="bg-white rounded-4 p-4 pb-0 mb-4 mobile-product" key={cart.id}>
+                                <div className="d-flex align-items-center">
+                                    <img className="rounded-4 me-4 object-fit-cover" style={{width:80, height:80}}
+                                        src={cart.product.imageUrl}   
+                                        alt="product-imageUrl" />
+                                    <div>
+                                        <h6 className="mb-2">{cart.product.title}</h6>
+                                        <h6>NT$ {cart.product.price}</h6>
+                                    </div>
+                                </div>
+                                
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div className='d-flex align-items-center border rounded-3'
+                                         style={{width: '40%'}}>
+                                        <button type='button' className='btn btn-qty flex-fill'
+                                                onClick={()=>decrementQty(cart)}>
+                                            <i className="bi bi-dash-lg"></i>
+                                        </button>
+                                        <h6 className='text-center px-4 flex-fill'>{cart.qty}</h6>
+                                         <button type='button' className='btn btn-qty flex-fill'
+                                                 onClick={()=>incrementQty(cart)}>
+                                            <i className="bi bi-plus-lg"></i>
+                                        </button>
+                                    </div>
+                                    <div className='d-flex align-items-center'>
+                                        <h5 className='text-secondary-500'>NT$ {cart.product.price * cart.qty}</h5>
+                                        <button type='button' className='btn btn-trash m-4'
+                                                onClick={()=>dispatch(deleteAsyncCarts(cart.id))}>
+                                            <i className="bi bi-trash3-fill"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div className="d-flex justify-content-between align-items-center">
-                                <div className='d-flex align-items-center border rounded-3'
-                                     style={{width: '40%'}}>
-                                    <button type='button' className='btn btn-qty flex-fill'
-                                            onClick={()=>decrementQty(cart)}>
-                                        <i className="bi bi-dash-lg"></i>
-                                    </button>
-                                    <h6 className='text-center px-4 flex-fill'>{cart.qty}</h6>
-                                     <button type='button' className='btn btn-qty flex-fill'
-                                             onClick={()=>incrementQty(cart)}>
-                                        <i className="bi bi-plus-lg"></i>
-                                    </button>
-                                </div>
-                                <div className='d-flex align-items-center'>
-                                    <h5 className='text-secondary-500'>NT$ {cart.product.price * cart.qty}</h5>
-                                    <button type='button' className='btn btn-trash m-4'
-                                            onClick={()=>dispatch(deleteAsyncCarts(cart.id))}>
-                                        <i className="bi bi-trash3-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        )))
+                    ) : (
+                        <div className='bg-white rounded-4 p-4 mb-4 text-center'>
+                            <Link to="/products_sidebar_layout/products" 
+                                className="text-primary-700 fw-bold">
+                                目前購物車是空的，去逛逛商品吧！
+                            </Link>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
 
@@ -307,8 +345,11 @@ const Carts =() =>{
                         <div className="col-12">
                             <div className="border border-neutral-300 rounded-4 p-4 p-md-6">
                                 <div className="form-check d-flex align-items-center mb-4 py-2">
-                                    <input className="form-check-input me-2" type="checkbox" value="" id="sameAsMemberInfo" />
-                                    <label className="form-check-label" htmlFor="sameAsMemberInfo">同會員資料</label>
+                                    <input className="form-check-input me-2" 
+                                           type="checkbox" value="" 
+                                           id="sameAsMember" 
+                                           {...register('sameAsMember')}/>
+                                    <label className="form-check-label" htmlFor="sameAsMember">同會員資料</label>
                                 </div>
 
                                 <div className="row g-4">
@@ -362,7 +403,6 @@ const Carts =() =>{
                                                 className="form-control"
                                                 id="email"
                                                 placeholder="請填寫聯絡信箱"
-                                                maxLength="10" 
                                                 {...register('email', {
                                                     required: '請填寫聯絡信箱'
                                                 })}/>
