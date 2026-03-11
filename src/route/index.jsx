@@ -1,11 +1,15 @@
 import MainLayout from "../layout/MainLayout";
 import Home from "../views/Home";
+import Login from "../views/frontend/Login";
+import Carts from "../views/frontend/Carts";
+import MemberRegistration from "../views/frontend/MemberRegistration";
+
 import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
-import Login from "../views/frontend/Login";
-import MemberRegistration from "../views/frontend/MemberRegistration";
-import Carts from "../views/frontend/Carts";
+
+import MemberSidebarLayout from "../layout/MemberSidebarLayout";
+import Orders from "../views/frontend/Orders";
 
 
 
@@ -43,6 +47,16 @@ const routes = [
             {
                 path: '/product/:id',
                 element: <Product />
+            },
+            {
+                path: '/member_sidebar_layout',
+                element: <MemberSidebarLayout />,
+                children: [
+                    {
+                        path: 'orders',
+                        element: <Orders />
+                    },
+                ]
             },
         ]
     },

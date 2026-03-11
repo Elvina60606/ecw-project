@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form';
 import images from '../../assets/images/images';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
-import { Value } from 'sass';
+
 
 const Login =() => {
 
@@ -69,7 +69,7 @@ const Login =() => {
                                 )}
                         </div>
 
-                        {/* 密碼欄位 */}. //從驗證密碼欄位開始
+                        {/* 密碼欄位 */}
                         <div className="form-group d-flex flex-column">
                             <label className="form-label fs-6 mb-1 text-neutral-800"
                                    htmlFor='password'>
@@ -80,12 +80,22 @@ const Login =() => {
                                        id="password"
                                        name="password"
                                        className="login-input flex-grow-1 border-0 bg-transparent py-2"
-                                       placeholder="請輸入密碼"/>
+                                       placeholder="請輸入密碼"
+                                       {...register('password', {
+                                        required: "請輸入密碼",
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+                                            message: "密碼需包含英文與數字，長度 8-20 碼"
+                                        }
+                                       })}/>
                                 <span className="material-symbols-outlined cursor-pointer icon-hover-secondary text-neutral-600"
                                       id="toggle-password">
                                         visibility_off
                                 </span>
                             </div>
+                            { errors.password && (
+                                <small className='text-danger ms-2'>{errors.password.message}</small>
+                            )}
                             <Link to="#"
                                   className="forgot-password forgot-password--desktop text-primary-700 align-self-end mt-2 text-decoration-underline hover-secondary d-none d-lg-block">
                                     忘記密碼 ?
@@ -106,7 +116,7 @@ const Login =() => {
                         <span className="register-text me-3 text-neutral-800">
                             還不是會員嗎?
                         </span>
-                        <Link to="/membersignup"
+                        <Link to="/member_registration"
                               className="btn btn-register text-primary-700 fw-bold rounded-pill">
                                 手刀加入
                         </Link>

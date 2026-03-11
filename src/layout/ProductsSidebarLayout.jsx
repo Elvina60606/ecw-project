@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router";
 import ScrollToTop from "../component/utils/ScrollToTop";
+//串接category data來渲染sidebar
 
 const ProductsSidebarLayout =() =>{
 

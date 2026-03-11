@@ -60,11 +60,11 @@ const Carts =() =>{
         mode: 'onChange',
         defaultValues: {
             invoice_type: "personal",
-            recipient: 'David',
+            recipient: '野原新之助',
             tel: "0988888888",
-            address: '88888號',
-            email: 'david@oooooo.com'
-
+            address: '春日部防衛隊',
+            email: 'shin@oooooo.com',
+            orderNote: '請幫忙下午配送，謝謝！'
             }
     });
 

@@ -49,20 +49,24 @@ export const ordersSlice = createSlice({
     initialState: {
         orders: [],
         pagination: {},
-        current_page: 1,
+        currentPage: 1,
     },
-    reducers: [],
+    reducers: {
+        setCurrentPage(state, action) {
+            state.currentPage = action.payload
+        },
+    },
     extraReducers: (builder) => {
         builder
         .addCase(getAsyncOrders.fulfilled, (state, action) => {
             state.orders = action.payload.orders
             state.pagination = action.payload.pagination
-            state.current_page = action.meta.arg  
+            state.currentPage = action.meta.arg  
         })
     }
 });
 
-export const { current_page } = ordersSlice.actions
+export const { setCurrentPage } = ordersSlice.actions
 
 
 export default ordersSlice.reducer;

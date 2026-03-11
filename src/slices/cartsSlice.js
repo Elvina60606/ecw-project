@@ -8,7 +8,6 @@ export const getAsyncCarts = createAsyncThunk(
     async() => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/cart`)
-            console.log(res.data.data)
             return res.data.data
         } catch (error) {
             console.log('getAsyncCarts:',error)

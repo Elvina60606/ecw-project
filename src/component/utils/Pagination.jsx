@@ -1,7 +1,6 @@
-import { useDispatch } from "react-redux";
+
 
 const Pagination =({ currentPage, totalPages, onPageChange }) =>{
-    const dispatch = useDispatch();
 
     const handleChangePage= (page) => {
       if(onPageChange){
