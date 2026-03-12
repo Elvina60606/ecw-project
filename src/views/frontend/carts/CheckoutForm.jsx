@@ -2,45 +2,18 @@ import ShippingAddress from './ShippingAddress';
 import Payment from './Payment';
 import Invoice from './Invoice';
 
-import invoice from '../../../data/invoice.json';
 
-import { useEffect } from 'react';
 const CheckoutForm =({
     register,
     handleSubmit,
     watch,
     setValue,
     resetField,
-    reset,
     errors,
     onSubmit
 }) =>{
 
-// invoice 
-const invoiceType = watch('invoice_type');
-const carrierType = watch('carrier_type');
 
-const invoiceConfig = invoice.find(
-    item => item.id === invoiceType
-    );
-
-    // 切換發票時清空
-    useEffect(() => {
-        resetField('carrier_type');
-        invoice.forEach(inv => {
-            inv.carriers?.forEach(carrier => {
-            carrier.fields?.forEach(field => resetField(field.id));
-            });
-            inv.fields?.forEach(field => resetField(field.id));
-        });
-    }, [invoiceType]);
-
-    // 切換carriers時清空
-    useEffect(() =>{
-        invoiceConfig?.carriers
-            ?.filter(c => c.id !== carrierType)
-            .forEach(c => c.fields?.forEach(f => resetField(f.id)));
-    }, [carrierType])
 
     return(
     <>
@@ -132,12 +105,11 @@ const invoiceConfig = invoice.find(
                             </div>
                         </div>
 
-                {/* payment & invoice */} 
                         <Payment register={register}/>
                         
                         <Invoice register={register}
-                        i        nvoice={invoice}
-                                 invoiceConfig={invoiceConfig}/>
+                                 watch={watch}
+                                 resetField={resetField}/>
                     </div>
                     <button type='submit'
                             className='btn btn-order w-100'>確認訂購
@@ -148,6 +120,3 @@ const invoiceConfig = invoice.find(
 }
 
 export default CheckoutForm;
-
-
-拆分發票元件

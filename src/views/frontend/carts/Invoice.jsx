@@ -1,12 +1,37 @@
-
+import invoiceData from '../../../data/invoice.json';
+import { useEffect } from 'react';
 
 const Invoice =({
     register,
-    invoice,
-    invoiceConfig
-
+    watch,
+    resetField
 }) =>{
 
+    // invoice 
+    const invoiceType = watch('invoice_type');
+    const carrierType = watch('carrier_type');
+
+    const invoiceConfig = invoiceData.find(
+        item => item.id === invoiceType
+        );
+
+    // 切換發票時清空
+    useEffect(() => {
+        resetField('carrier_type');
+        invoiceData.forEach(inv => {
+            inv.carriers?.forEach(carrier => {
+            carrier.fields?.forEach(field => resetField(field.id));
+            });
+            inv.fields?.forEach(field => resetField(field.id));
+        });
+    }, [invoiceType]);
+
+    // 切換carriers時清空
+    useEffect(() =>{
+        invoiceConfig?.carriers
+            ?.filter(c => c.id !== carrierType)
+            .forEach(c => c.fields?.forEach(f => resetField(f.id)));
+    }, [carrierType])
 
     return(
     <>
@@ -18,7 +43,7 @@ const Invoice =({
                                 name='invoice'
                                 id='invoice'
                                 {...register('invoice_type')}>    
-                                { invoice.map(item => (
+                                { invoiceData.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                         </select>

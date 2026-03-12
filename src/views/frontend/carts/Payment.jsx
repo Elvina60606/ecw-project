@@ -12,9 +12,9 @@ const Payment =({register}) => {
                             <div className="form-check py-2" key={payment.id}>
                                 <input  type="radio"
                                         className="form-check-input"  
-                                        name="paymentMethod" 
+                                        value={payment.id} 
                                         id={payment.id} 
-                                        {...register(payment.id)}/>
+                                        {...register('paymentMethod',{required: '請選擇付款方式'})}/>
                                 <label className="form-check-label" 
                                     htmlFor={payment.id}>
                                     {payment.name}

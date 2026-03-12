@@ -100,9 +100,6 @@ const Carts =() =>{
     },[sameAsMember, member, setValue ])
 
 
-    
-
-
     const onSubmit = async(data) =>{
         console.log(data)
         await dispatch(postAsyncOrders(data))
