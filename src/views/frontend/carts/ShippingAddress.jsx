@@ -1,36 +1,27 @@
 import { useEffect, useState } from "react";
 
-import taiwanDistricts from '../../data/taiwanDistricts.json';
+import taiwanDistricts from '../../../data/taiwanDistricts.json';
 
 
 const ShippingAddress =({ register, watch, setValue, errors }) =>{
 
-    const [ districts, setDistricts ] = useState([]);
-
     const selectCity = watch("city");
     const selectDistrict = watch("district");
 
-    // City
-    useEffect(() => {
-        const city = taiwanDistricts.find(
-            item => item.city === selectCity
-        );
+    const districts =
+        taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
 
-        setDistricts(city ? city.districts : []);
-        setValue("district", "");
-        setValue("zipCode", "");
-    },[ selectCity ]);
-
-    // District
+    // 自動帶入 zipCode
     useEffect(() => {
         const district = districts.find(
             d => d.name === selectDistrict
         );
 
-        if(district){
-            setValue("zipCode",district.zipCode)
-        };
-    }, [ selectDistrict ]);
+        if (district) {
+            setValue("zipCode", district.zipCode);
+        }
+    }, [selectDistrict, districts, setValue]);
+
 
 
     return(

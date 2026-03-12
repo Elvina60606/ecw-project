@@ -1,7 +1,7 @@
 import MainLayout from "../layout/MainLayout";
 import Home from "../views/Home";
 import Login from "../views/frontend/Login";
-import Carts from "../views/frontend/Carts";
+import Carts from "../views/frontend/carts/Carts";
 import MemberRegistration from "../views/frontend/MemberRegistration";
 
 import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";

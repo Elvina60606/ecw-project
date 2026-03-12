@@ -5,32 +5,22 @@ import taiwanDistricts from '../../data/taiwanDistricts.json';
 
 const AddressSelect =({ register, watch, setValue, errors }) =>{
 
-    const [ districts, setDistricts ] = useState([]);
-
     const selectCity = watch("city");
     const selectDistrict = watch("district");
 
-    // City
-    useEffect(() => {
-        const city = taiwanDistricts.find(
-            item => item.city === selectCity
-        );
+    const districts = taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
 
-        setDistricts(city ? city.districts : []);
-        setValue("district", "");
-        setValue("zipCode", "");
-    },[ selectCity ]);
-
-    // District
     useEffect(() => {
         const district = districts.find(
             d => d.name === selectDistrict
         );
 
-        if(district){
-            setValue("zipCode",district.zipCode)
-        };
-    }, [ selectDistrict ]);
+        if (district) {
+            setValue("zipCode", district.zipCode);
+        }
+    }, [selectDistrict, districts, setValue]);
+
+    
 
     return(
     <>
