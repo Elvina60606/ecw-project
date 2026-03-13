@@ -5,6 +5,7 @@ import ordersReducer from './slices/ordersSlice';
 import memberReducer from './slices/memberSlice';
 import modalReducer from './slices/modalSlice';
 import loginReducer from './slices/loginSlice';
+import messageReducer from './slices/messageSlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         member: memberReducer,
         modal: modalReducer,
         login: loginReducer,
+        message: messageReducer,
     }
 });

@@ -7,6 +7,8 @@ import HotProductsContainer from '../component/utils/hotProducts/HotProductsCont
 
 import { openModal } from '../slices/modalSlice';
 import ModalManager from '../component/modal/ModalManager';
+import MessageToast from '../component/utils/MessageToast';
+import { getAsyncMessage } from '../slices/messageSlice';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -16,8 +18,22 @@ const Home = () => {
         navigate('/member_registration')
     };
     
+
 // ！！手機版banner第一張可麗露背景做改變。及swipe的pagination顏色改成深咖。
     return (<>
+
+
+
+    <button type='button'
+            onClick={()=>dispatch(getAsyncMessage({text:'test'}))}>test
+    </button>
+
+    //繼續messageSlice
+    
+    
+    
+    
+        <MessageToast />
         <HomeSwiper />
 
         <section className="story-container">
