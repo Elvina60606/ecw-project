@@ -1,13 +1,14 @@
 import MainLayout from "../layout/MainLayout";
 import Home from "../views/Home";
 import Login from "../views/frontend/Login";
-import Carts from "../views/frontend/carts/Carts";
 import MemberRegistration from "../views/frontend/MemberRegistration";
 
 import ProductsSidebarLayout from "../layout/ProductsSidebarLayout";
 import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
 
+import ProtectedRoute from "./ProtectedRoute";
+import Carts from "../views/frontend/carts/Carts";
 import MemberSidebarLayout from "../layout/MemberSidebarLayout";
 import Orders from "../views/frontend/Orders";
 
@@ -31,10 +32,6 @@ const routes = [
                 element: <Login />,
             },
             {
-                path: '/carts',
-                element: <Carts />,
-            },
-            {
                 path: '/products_sidebar_layout',
                 element: <ProductsSidebarLayout />,
                 children: [
@@ -53,12 +50,21 @@ const routes = [
                 element: <Product />
             },
             {
-                path: '/member_sidebar_layout',
-                element: <MemberSidebarLayout />,
+                element: <ProtectedRoute />,
                 children: [
                     {
-                        path: 'orders',
-                        element: <Orders />
+                        path: '/carts',
+                        element: <Carts />,
+                    },
+                    {
+                        path: '/member_sidebar_layout',
+                        element: <MemberSidebarLayout />,
+                        children: [
+                            {
+                                path: 'orders',
+                                element: <Orders />
+                            },
+                        ]
                     },
                 ]
             },

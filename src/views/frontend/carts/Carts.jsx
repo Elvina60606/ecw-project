@@ -97,7 +97,7 @@ const Carts =() =>{
                 zipCode: ""
             })
         }
-    },[sameAsMember, member, setValue ])
+    },[sameAsMember, member ])
 
 
     const onSubmit = async(data) =>{

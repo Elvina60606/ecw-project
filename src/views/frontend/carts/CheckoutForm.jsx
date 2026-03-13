@@ -13,8 +13,6 @@ const CheckoutForm =({
     onSubmit
 }) =>{
 
-
-
     return(
     <>
          <form onSubmit={handleSubmit(onSubmit)}>

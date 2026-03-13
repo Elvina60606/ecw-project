@@ -4,8 +4,6 @@ import categories from "../data/categories";
 
 const ProductsSidebarLayout =() =>{
 
-    console.log(categories);
-
     return (<>
         <main className="container py-8 py-md-12">
             <div className="row">

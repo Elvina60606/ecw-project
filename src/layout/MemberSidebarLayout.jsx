@@ -1,8 +1,11 @@
 import images from '../assets/images/images';
 import { Link, Outlet } from "react-router";
 import ScrollToTop from "../component/utils/ScrollToTop";
+import { useDispatch } from 'react-redux';
+import { openModal } from '../slices/modalSlice';
 
 const MemberSidebarLayout =() =>{
+  const dispatch = useDispatch();
 
     return(
     <>
@@ -20,7 +23,7 @@ const MemberSidebarLayout =() =>{
                       </div>
                       <ul className="li-style-none d-flex flex-column justify-content-start p-0">
                         <li className="mx-6" role="presentation">
-                            <Link to='/login'
+                            <Link to='#'
                                   className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover">
                                   <span className="fs-6 text-primary-700 ps-6">
                                     <span className="material-symbols-outlined fill align-bottom me-2">person</span>
@@ -66,7 +69,8 @@ const MemberSidebarLayout =() =>{
                             </Link>
                         </li>
                         <li className="mx-6" role="presentation">
-                            <button className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover">
+                            <button className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover"
+                                    onClick={()=>dispatch(openModal({type: 'SWEET_PLAN'}))}>
                                   <span className="fs-6 text-primary-700 ps-6">
                                     <span className="material-symbols-outlined fill align-bottom me-2">takeout_dining</span>
                                       寄甜商品
@@ -75,7 +79,8 @@ const MemberSidebarLayout =() =>{
                         </li>
                         <li className="mx-6" role="presentation">
                             <button className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover"
-                                    type="button">
+                                    type="button"
+                                    onClick={()=>dispatch(openModal({type: 'LOGOUT'}))}>
                                     <span className="fs-6 text-primary-700 ps-6">
                                       <span className="material-symbols-outlined align-bottom me-2">logout</span>
                                       登出
@@ -93,9 +98,6 @@ const MemberSidebarLayout =() =>{
               </div>
             </main>
           </div>
-    
-    
-    
     </>)
 }
 

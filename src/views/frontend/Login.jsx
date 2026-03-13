@@ -1,21 +1,40 @@
+import { useEffect, useState } from 'react';
 import images from '../../assets/images/images';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router';
+import { loginSuccess } from '../../slices/loginSlice';
 
 
 const Login =() => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+  
+    const [ show, setShow ] = useState(false);
+    const member = useSelector(state => state.member.member);
 
     const {
         register,
         handleSubmit,
+        reset,
+        getValues,
         formState: {errors}
     } = useForm({
         mode: 'onChange',
-        defaultValues: {
-            username: 'ononcake@gmail.com'
         }
-        }
-    )
+    );
+
+    useEffect(() => {
+        reset({
+            ...getValues,
+            username: member.email
+        })
+    }, []);
+
+    const onSubmit =() =>{
+        dispatch(loginSuccess());
+        navigate('/')
+    }
 
     return(
     <>
@@ -39,7 +58,7 @@ const Login =() => {
                         歡迎登入
                     </h2>
 
-                    <form className="login-form d-flex flex-column align-items-center">
+                    <form className="login-form d-flex flex-column align-items-center" onSubmit={handleSubmit(onSubmit)}>
                         {/* 帳號欄位 */}
                         <div className="form-group mb-4 d-flex flex-column">
                             <label className="form-label fs-6 mb-1 text-neutral-800"
@@ -76,7 +95,7 @@ const Login =() => {
                                 密碼 <span className="text-danger">*</span>
                             </label>
                             <div className="input-wrapper d-flex align-items-center bg-white border border-neutral-400 rounded-2 px-3">
-                                <input type="password"
+                                <input type={show ? 'text' : 'password'}
                                        id="password"
                                        name="password"
                                        className="login-input flex-grow-1 border-0 bg-transparent py-2"
@@ -89,8 +108,8 @@ const Login =() => {
                                         }
                                        })}/>
                                 <span className="material-symbols-outlined cursor-pointer icon-hover-secondary text-neutral-600"
-                                      id="toggle-password">
-                                        visibility_off
+                                      onClick={()=>setShow(prev=>!prev)}>
+                                        {show? 'visibility' : 'visibility_off'}
                                 </span>
                             </div>
                             { errors.password && (
@@ -102,8 +121,10 @@ const Login =() => {
                             </Link>
                         </div>
 
-                        <Link className="btn btn-login mt-4 w-100 rounded-pill text-white border-0">會員登入
-                        </Link>
+                        <button type='submit'
+                                className="btn btn-login mt-4 w-100 rounded-pill text-white border-0">
+                                會員登入
+                        </button>
 
                         <Link to="#"
                               className="forgot-password forgot-password--mobile text-primary-700 text-decoration-underline hover-secondary d-block d-lg-none">
@@ -111,7 +132,6 @@ const Login =() => {
                         </Link>
                     </form>
 
-                {/* 修正: 只在桌面版使用 mt-auto */}
                     <div className="register-footer d-flex justify-content-center align-items-center bg-white rounded-4 mt-lg-auto">
                         <span className="register-text me-3 text-neutral-800">
                             還不是會員嗎?

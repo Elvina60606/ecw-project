@@ -1,9 +1,16 @@
 import images from '@/assets/images/images.js';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+
 import HomeSwiper from '../component/swiper/HomeSwiper';
 import HotProductsContainer from '../component/utils/hotProducts/HotProductsContainer';
 
+import { openModal } from '../slices/modalSlice';
+import ModalManager from '../component/modal/ModalManager';
+
 const Home = () => {
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
     const handleNavigateToMemberRes =() =>{
         navigate('/member_registration')
@@ -65,7 +72,8 @@ const Home = () => {
                                         將這份職人甜點，寄給未來的你
                                     </h5>
                                     <button type='button' 
-                                            className="btn btn-primary">
+                                            className="btn btn-primary"
+                                            onClick={()=>dispatch(openModal({ type: 'SWEET_PLAN'}))}>
                                             點我了解寄甜計劃
                                     </button>
                                 </div>
@@ -87,7 +95,8 @@ const Home = () => {
                                         將這份職人甜點，寄給未來的你
                                     </h5>
                                     <button type='button' 
-                                            className="btn btn-primary">
+                                            className="btn btn-primary"
+                                            onClick={()=>dispatch(openModal({ type: 'SWEET_PLAN'}))}>
                                             點我了解寄甜計劃
                                     </button>
                                 </div>
@@ -127,6 +136,8 @@ const Home = () => {
                     </div>
                 </div>
         </section>
+
+        <ModalManager />
     </>)
 }
 

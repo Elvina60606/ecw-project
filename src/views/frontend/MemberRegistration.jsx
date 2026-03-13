@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import AddressSelect from "../../component/utils/AddressSelect";
 import { registerMember } from '../../slices/memberSlice';
+import { openModal } from '../../slices/modalSlice';
 
 const  MemberRegistration =() =>{
     const dispatch = useDispatch();
@@ -22,8 +23,8 @@ const  MemberRegistration =() =>{
         defaultValues: {
             memberName: '野原廣志',
             gender: 'male',
-            tel: '0911888888',
-            email: 'good888@gmail.com',
+            tel: '0912345678',
+            email: 'Nohara@gmail.com',
             address: 'good good address'
         }
     });
@@ -32,6 +33,7 @@ const  MemberRegistration =() =>{
         dispatch(registerMember(data))
         console.log(data)
         reset()
+        dispatch(openModal({type: 'REGISTER_SUCCESS'}))
     };
 
     // Password 顯示切換
@@ -232,14 +234,10 @@ const  MemberRegistration =() =>{
                                                         placeholder="請填寫密碼"
                                                         {...register('password',{
                                                             required: '請輸入密碼',
-                                                            minLength: {
-                                                                value: 6,
-                                                                message: '密碼至少為 6 碼',
-                                                            },
-                                                            maxLength: {
-                                                                value: 12,
-                                                                message: '密碼最多為 12 碼',
-                                                            }
+                                                            pattern: {
+                                                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+                                                            message: "密碼需包含英文與數字，長度 8-20 碼"
+                                                        }
                                                         })}/>
                                                 <button type="button"  
                                                         className="material-symbols-outlined fill cursor-pointer input-group-text bg-white"
