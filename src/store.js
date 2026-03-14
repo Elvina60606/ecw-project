@@ -7,6 +7,9 @@ import modalReducer from './slices/modalSlice';
 import loginReducer from './slices/loginSlice';
 import messageReducer from './slices/messageSlice';
 
+import adminAuthReducer from './slices/admin/AdminAuthSlice';
+import adminProductsReducer from './slices/admin/AdminProductsSlice';
+
 export const store = configureStore({
     reducer: {
         products: productsReducer,
@@ -16,5 +19,7 @@ export const store = configureStore({
         modal: modalReducer,
         login: loginReducer,
         message: messageReducer,
+        adminAuth: adminAuthReducer,
+        adminProducts: adminProductsReducer,
     }
 });

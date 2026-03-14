@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const MessageToast =() =>{
     const message = useSelector(state => state.message.message)
-    console.log(message)
 
     return(
     <>

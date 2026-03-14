@@ -7,6 +7,7 @@ import { getAsyncCarts, postAsyncCarts } from "../../slices/cartsSlice";
 
 import categories from "../../data/categories";
 import Pagination from "../../component/utils/Pagination";
+import MessageToast from "../../component/utils/MessageToast";
 
 const Products =() => {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Products =() => {
             qty: 1
         }));
         dispatch(getAsyncCarts())
-    }
+    };
 
     //product category
     const {category} = useParams();
@@ -39,6 +40,7 @@ const Products =() => {
     };
 
     return(<>
+            <MessageToast />
             <section className="col-12 col-md-9">
                 <h2 className="fs-3 fs-lg-2 mb-6 mb-md-0">商品介紹</h2>
                 <div className="dropdown d-block d-md-none">

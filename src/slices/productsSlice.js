@@ -24,7 +24,6 @@ export const getAsyncProduct = createAsyncThunk(
     async(id) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/product/${id}`)
-            //console.log(res.data.product)
             return res.data.product
         } catch (error) {
             console.log("API失敗:", error);

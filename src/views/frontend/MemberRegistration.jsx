@@ -197,7 +197,7 @@ const  MemberRegistration =() =>{
                                                         required: '請輸入電子信箱',
                                                         pattern: {
                                                             value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-                                                            message: '信箱格式錯誤，至少為6~12個半形英文及數字'
+                                                            message: '信箱格式錯誤'
                                                         }
                                                         })}/>
                                                 {errors.email && (

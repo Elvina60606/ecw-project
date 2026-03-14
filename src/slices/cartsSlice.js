@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getAsyncMessage } from "./messageSlice";
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -26,6 +27,7 @@ export const postAsyncCarts = createAsyncThunk(
         try {
             const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/cart`,{data})
             dispatch(getAsyncCarts());
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
             console.log('postAsyncCarts:',error)
         }
@@ -43,6 +45,7 @@ export const updateAsyncCarts = createAsyncThunk(
         try {
             const res = await axios.put(`${VITE_URL}/v2/api/${VITE_PATH}/cart/${cartId}`, {data})
             dispatch(getAsyncCarts())
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
             console.log('updateAsyncCarts:',error)
         }
@@ -55,6 +58,7 @@ export const deleteAsyncCarts =createAsyncThunk(
         try {
             const res = await axios.delete(`${VITE_URL}/v2/api/${VITE_PATH}/cart/${cartId}`)
             dispatch(getAsyncCarts())
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
             console.log('deleteAsyncCarts:',error)
         }

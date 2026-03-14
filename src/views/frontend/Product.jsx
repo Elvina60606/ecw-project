@@ -9,7 +9,7 @@ import { ProgressBar } from "react-loader-spinner";
 import ProductImages from "../../component/product/ProductImages";
 import ProductNote from "../../component/product/ProductNote";
 import HotProductsContainer from "../../component/utils/hotProducts/HotProductsContainer";
-
+import MessageToast from "../../component/utils/MessageToast";
 
 
 const Product =() => {
@@ -76,7 +76,7 @@ const Product =() => {
      }
 
     return(<>
-        {/* Product */}
+            <MessageToast />
             <section className="container pt-8 pb-5">
               {/* breadcrumb */}
                         <nav className="my-breadcrumb"

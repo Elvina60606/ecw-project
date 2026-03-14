@@ -1,6 +1,7 @@
 import ShippingAddress from './ShippingAddress';
 import Payment from './Payment';
 import Invoice from './Invoice';
+import MessageToast from '../../../component/utils/MessageToast';
 
 
 const CheckoutForm =({
@@ -15,6 +16,7 @@ const CheckoutForm =({
 
     return(
     <>
+        <MessageToast />
          <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row g-6 pb-6 pb-md-8">
                         <div className="col-12">
@@ -112,7 +114,7 @@ const CheckoutForm =({
                     <button type='submit'
                             className='btn btn-order w-100'>確認訂購
                     </button>
-                </form>
+        </form>
     
     </>)
 }

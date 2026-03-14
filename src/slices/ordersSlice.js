@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getAsyncMessage } from "./messageSlice";
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -34,12 +35,12 @@ export const postAsyncOrders =createAsyncThunk(
         try {
             const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/order`,{data})
             dispatch(getAsyncOrders())
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
             console.log('postAsyncOrders:',error)
         }
     }
 )
-
 
 export const ordersSlice = createSlice({
     name: 'orders',

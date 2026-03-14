@@ -5,10 +5,9 @@ import { useForm } from 'react-hook-form';
 import { getAsyncCarts, deleteAsyncCarts, updateAsyncCarts } from '../../../slices/cartsSlice';
 import { getAsyncOrders, postAsyncOrders } from '../../../slices/ordersSlice';
 
+import MessageToast from '../../../component/utils/MessageToast';
 import CartLists from './CartLists';
 import Promotion from './Promotion';
-
-
 import OrderPrice from './OrderPrice';
 import CheckoutForm from './CheckoutForm';
 
@@ -111,6 +110,7 @@ const Carts =() =>{
 
     return (
     <>
+        <MessageToast />
         <section className="bg-neutral-50 py-8 py-md-12">
             <CartLists carts={carts}
                     incrementQty={incrementQty}
