@@ -4,6 +4,20 @@ import { getAsyncMessage } from "../messageSlice";
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
+const INITIAL_TEMPLATE_DATA = {
+  id: "",
+  title: "",
+  category: "",
+  origin_price: "",
+  price: "",
+  unit: "",
+  description: "",
+  content: "",
+  is_enabled: false,
+  imageUrl: "",
+  imagesUrl: [],
+};
+
 export const getAsynsAdminProducts = createAsyncThunk(
     '/adminProducts/getAsynsAdminProducts',
     async(page=1) => {
@@ -30,7 +44,40 @@ export const deleteAsyncAdminProduct = createAsyncThunk(
             console.log('deleteAsyncAdminProduct:', error)
         }
     }
-)
+);
+
+export const createAsyncAdminProduct = createAsyncThunk(
+    'adminProducts/createAsyncAdminProduct',
+    async(data) => {
+        const productData = {
+          data : {
+            ...data,
+            origin_price : Number(data.origin_price),
+            price : Number(data.price),
+            is_enabled : data.is_enabled ? 1 : 0,
+            imagesUrl : [...data.imagesUrl.filter((url) =>  url !== "")]
+          }
+        }
+
+        try {
+        const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/admin/product`,productData)
+        console.log(res)           
+        } catch (error) {
+            console.log('createAsyncAdminProduct:',error.response?.data)
+        }
+    }
+);
+
+export const updateAsyncAdminProduct = createAsyncThunk(
+    'adminProducts/updateAsyncAdminProduct',
+    async({id, data}) => {
+        try {
+            const res = await axios.put(`${VITE_URL}/v2/api/${VITE_PATH}/admin/product/${id}`,data)
+        } catch (error) {
+            console.log('updateAsyncAdminProduct:',error)
+        }
+    }
+);
 
 export const adminProductsSlice = createSlice({
     name: 'adminProducts',
@@ -38,10 +85,17 @@ export const adminProductsSlice = createSlice({
         adminProducts: [],
         pagination: {},
         currentPage: 1,
+        tempProduct: {...INITIAL_TEMPLATE_DATA},
     },
     reducers:{
         setCurrentPage(state, action) {
             state.currentPage = action.payload
+        },
+        setTempProduct(state, action) {
+            state.tempProduct = action.payload
+        },
+        resetTempProduct(state) {
+            state.tempProduct = {...INITIAL_TEMPLATE_DATA}
         }
     },
     extraReducers: (builder) => {
@@ -54,6 +108,6 @@ export const adminProductsSlice = createSlice({
     }
 });
 
-export const { setCurrentPage } = adminProductsSlice.actions;
+export const { setCurrentPage, setTempProduct, resetTempProduct } = adminProductsSlice.actions;
 
 export default adminProductsSlice.reducer;

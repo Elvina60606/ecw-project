@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAsynsAdminProducts, setCurrentPage, deleteAsyncAdminProduct } from "../../slices/admin/AdminProductsSlice";
+import { openModal } from "../../slices/modalSlice";
+import { getAsynsAdminProducts, setCurrentPage, setTempProduct, deleteAsyncAdminProduct, resetTempProduct } from "../../slices/admin/AdminProductsSlice";
 
 import MessageToast from "../../component/utils/MessageToast";
 import Pagination from "../../component/utils/Pagination";
+import ModalManager from "../../component/modal/ModalManager";
 
 const AdminProducts =() =>{
     const dispatch = useDispatch();
@@ -11,7 +13,15 @@ const AdminProducts =() =>{
 
     useEffect(()=>{
          dispatch(getAsynsAdminProducts(currentPage))
-    }, [currentPage])
+    }, [currentPage]);
+
+    const handleCreateProduct = () => {
+      dispatch(resetTempProduct())
+      dispatch(openModal({
+        type: 'PRODUCT',
+        props: {mode: 'create'}
+      }))
+    };
     
 
     //pagination
@@ -21,13 +31,14 @@ const AdminProducts =() =>{
 
     return(
     <>
-    //從後台產品新增與編輯開始
+        <ModalManager />
         <MessageToast />
         <div className="container">
             <h3>產品列表</h3>
             <div className="text-end my-4 me-5">
                 <button type='button' 
-                        className='btn btn-primary' >
+                        className='btn btn-primary' 
+                        onClick={handleCreateProduct}>
                         建立新的產品
                 </button>
             </div>

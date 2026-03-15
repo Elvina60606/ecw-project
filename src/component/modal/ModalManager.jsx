@@ -2,8 +2,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 
 import Modal from "./Modal"
+import AdminModal from "./AdminModal"
 import { closeModal } from "../../slices/modalSlice"
 import { logout } from "../../slices/loginSlice"
+
+const MODAL_COMPONENT = {
+    PRODUCT : AdminModal
+};
 
 const MODAL_CONTENTS = {
     SWEET_PLAN: {
@@ -21,17 +26,24 @@ const MODAL_CONTENTS = {
         message: '優惠券已匯入您的帳戶！',
         confirm: '立即登入'
     },
-}
+};
+
 
 const ModalManager =() => {
-    const { isOpen, modalType } = useSelector(state => state.modal)
-    
-    const content = MODAL_CONTENTS[modalType] || {};
-
-
+    const { isOpen, modalType, props } = useSelector(state => state.modal)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    if(!isOpen) return null;
+
+    // 後台 modal
+    if (MODAL_COMPONENT[modalType]) {
+    const Component = MODAL_COMPONENT[modalType]
+    return <Component {...props} />
+    };
+    
+    // 前台 modal
+    const content = MODAL_CONTENTS[modalType] || {};
     const handleConfirm =() =>{
         if ( modalType === 'LOGOUT'){
             dispatch(logout())
@@ -43,10 +55,9 @@ const ModalManager =() => {
         } else {
             dispatch(closeModal());
         }
-    }
+    };
 
-    if(!isOpen) return null;
-    return <Modal {...content} onConfirm={handleConfirm}/>
+    return <Modal {...content} onConfirm={handleConfirm}/>;
 }
 
 export default ModalManager;
