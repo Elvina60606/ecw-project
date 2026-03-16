@@ -1,6 +1,6 @@
 import images from '@/assets/images/images.js';
 import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import HomeSwiper from '../component/swiper/HomeSwiper';
 import HotProductsContainer from '../component/utils/hotProducts/HotProductsContainer';
