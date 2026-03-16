@@ -3,11 +3,13 @@ import { useNavigate } from "react-router"
 
 import Modal from "./Modal"
 import AdminModal from "./AdminModal"
+import AdminOrderModal from "./AdminOrderModal"
 import { closeModal } from "../../slices/modalSlice"
 import { logout } from "../../slices/loginSlice"
 
 const MODAL_COMPONENT = {
-    PRODUCT : AdminModal
+    PRODUCT : AdminModal,
+    ORDER: AdminOrderModal
 };
 
 const MODAL_CONTENTS = {

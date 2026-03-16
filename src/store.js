@@ -9,6 +9,7 @@ import messageReducer from './slices/messageSlice';
 
 import adminAuthReducer from './slices/admin/AdminAuthSlice';
 import adminProductsReducer from './slices/admin/AdminProductsSlice';
+import adminOrdersReducer from './slices/admin/adminOrderSlice';
 
 export const store = configureStore({
     reducer: {
@@ -21,5 +22,6 @@ export const store = configureStore({
         message: messageReducer,
         adminAuth: adminAuthReducer,
         adminProducts: adminProductsReducer,
+        adminOrders: adminOrdersReducer,
     }
 });

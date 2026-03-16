@@ -105,7 +105,7 @@ const Orders =() =>{
                             <td className="text-center">{formatTime(order.create_at, 3)}</td>
                             <td className="text-center">{order.is_paid ? 
                                  <span className="border border-0 rounded-pill bg-success-50 text-success-700 px-3 py-2">已完成</span>
-                               : <span className="border border-0 rounded-pill bg-alert-50 text-alert-700 px-3 py-2">已成立</span>}                              
+                               : <span className="border border-0 rounded-pill bg-alert-50 text-alert-700 px-3 py-2">待付款</span>}                              
                             </td>
                             <td>
                               {Object.values(order.products || {}).map(product => (

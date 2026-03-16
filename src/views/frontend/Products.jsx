@@ -70,7 +70,7 @@ const Products =() => {
                                     <Link to={`/product/${product.id}`}>
                                         <img src={product.imageUrl}
                                              className="card-img-top object-fit-cover"
-                                             alt="canele"
+                                             alt={`${product.title}圖`}
                                              style={{ height: 200 }}/>
                                     </Link>
                                     <div className="card-body d-flex flex-column">

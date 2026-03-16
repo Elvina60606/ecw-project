@@ -22,6 +22,14 @@ const AdminProducts =() =>{
         props: {mode: 'create'}
       }))
     };
+
+    const handleUpdateProduct = (product) => {
+      dispatch(setTempProduct(product));
+      dispatch(openModal({
+        type: 'PRODUCT',
+        props: {mode: 'edit'}
+      }))
+    };
     
 
     //pagination
@@ -66,7 +74,8 @@ const AdminProducts =() =>{
                       <td>
                         <div className="btn-group" role="group" aria-label="Basic example">
                           <button type="button" 
-                                  className="btn btn-outline-primary btn-sm">
+                                  className="btn btn-outline-primary btn-sm"
+                                  onClick={()=>handleUpdateProduct(item)}>
                                   編輯
                           </button>
                           <button type="button" 

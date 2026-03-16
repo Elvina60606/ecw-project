@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAsyncMessage } from "../messageSlice";
+
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -28,7 +29,7 @@ export const getAsynsAdminProducts = createAsyncThunk(
                 pagination: res.data.pagination
             }
         } catch (error) {
-            console.log('getAsynsAdminProducts:', error)
+            dispatch(getAsyncMessage(error.response?.data))
         }
     }
 );
@@ -41,14 +42,14 @@ export const deleteAsyncAdminProduct = createAsyncThunk(
             dispatch(getAsyncMessage(res.data))
             dispatch(getAsynsAdminProducts())
         } catch (error) {
-            console.log('deleteAsyncAdminProduct:', error)
+            dispatch(getAsyncMessage(error.response?.data))
         }
     }
 );
 
 export const createAsyncAdminProduct = createAsyncThunk(
     'adminProducts/createAsyncAdminProduct',
-    async(data) => {
+    async(data,{dispatch}) => {
         const productData = {
           data : {
             ...data,
@@ -61,20 +62,31 @@ export const createAsyncAdminProduct = createAsyncThunk(
 
         try {
         const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/admin/product`,productData)
-        console.log(res)           
+        dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('createAsyncAdminProduct:',error.response?.data)
+        dispatch(getAsyncMessage(error.response?.data))
         }
     }
 );
 
 export const updateAsyncAdminProduct = createAsyncThunk(
     'adminProducts/updateAsyncAdminProduct',
-    async({id, data}) => {
+    async({id, data},{dispatch}) => {
+        const productData = {
+          data : {
+            ...data,
+            origin_price : Number(data.origin_price),
+            price : Number(data.price),
+            is_enabled : data.is_enabled ? 1 : 0,
+            imagesUrl : [...data.imagesUrl.filter((url) =>  url !== "")]
+          }
+        }
+
         try {
-            const res = await axios.put(`${VITE_URL}/v2/api/${VITE_PATH}/admin/product/${id}`,data)
+            const res = await axios.put(`${VITE_URL}/v2/api/${VITE_PATH}/admin/product/${id}`,productData)
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('updateAsyncAdminProduct:',error)
+            dispatch(getAsyncMessage(error.response?.data))
         }
     }
 );
