@@ -27,7 +27,7 @@ const Login =() => {
     useEffect(() => {
         reset({
             ...getValues,
-            username: member.email
+            username: member?.email
         })
     }, []);
 

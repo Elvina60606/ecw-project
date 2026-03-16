@@ -120,7 +120,7 @@ const Product =() => {
                                         </button>
                                         <input  type="text"
                                                 id='productQty'
-                                                className="form-control text-center"
+                                                className="text-center"
                                                 value={qty}
                                                 readOnly
                                                 style={{width: 60}}/>
