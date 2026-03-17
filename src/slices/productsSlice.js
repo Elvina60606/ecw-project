@@ -1,12 +1,13 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getAsyncMessage } from "./messageSlice";
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 
 export const getAsyncProducts = createAsyncThunk(
     'products/getAsyncProducts',
-    async( page =1) => {
+    async( page =1,{dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/products?page=${page}`)
             return {
@@ -14,19 +15,19 @@ export const getAsyncProducts = createAsyncThunk(
                 pagination: res.data.pagination
             }
         } catch (error) {
-            console.log(error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
 
 export const getAsyncProduct = createAsyncThunk(
     'products/getAsyncProduct',
-    async(id) => {
+    async(id,{dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/product/${id}`)
             return res.data.product
         } catch (error) {
-            console.log("API失敗:", error);
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 )

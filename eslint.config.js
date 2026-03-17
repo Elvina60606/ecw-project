@@ -3,6 +3,7 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -23,11 +24,13 @@ export default defineConfig([
       },
     },
     rules: {
+      //'@stylistic/indent': ['error', 2],
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      "no-console": 'error',
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react-hooks/set-state-in-effect": "warn",
-      "react-hooks/incompatible-library": "warn"
+    },
+    plugins: {
+      '@stylistic': stylistic
     },
   },
 ])

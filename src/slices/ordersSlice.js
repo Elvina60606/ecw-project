@@ -6,7 +6,7 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export const getAsyncOrders = createAsyncThunk(
     'orders/getAsyncOrders',
-    async(page = 1) => {
+    async(page = 1,{dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/orders?page=${page}`)
             return {
@@ -14,7 +14,7 @@ export const getAsyncOrders = createAsyncThunk(
                 pagination: res.data.pagination
             }
         } catch (error) {
-            console.log('getAsyncOrders:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
@@ -37,7 +37,7 @@ export const postAsyncOrders =createAsyncThunk(
             dispatch(getAsyncOrders())
             dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('postAsyncOrders:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 )

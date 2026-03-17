@@ -26,10 +26,10 @@ const Login =() => {
 
     useEffect(() => {
         reset({
-            ...getValues,
+            ...getValues(),
             username: member?.email
         })
-    }, []);
+    }, [reset, getValues, member?.email]);
 
     const onSubmit =() =>{
         dispatch(loginSuccess());

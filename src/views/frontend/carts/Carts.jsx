@@ -10,6 +10,7 @@ import CartLists from './CartLists';
 import Promotion from './Promotion';
 import OrderPrice from './OrderPrice';
 import CheckoutForm from './CheckoutForm';
+import { getAsyncMessage } from '../../../slices/messageSlice';
 
 const Carts =() =>{
     const dispatch = useDispatch();
@@ -22,11 +23,11 @@ const Carts =() =>{
             try {
                 await dispatch(getAsyncCarts());
             } catch (error) {
-                console.log(error)
+                dispatch(getAsyncMessage(error.response.data))
             }
         }
         fetchCarts();
-    },[]);
+    },[dispatch]);
 
     const incrementQty =(cart) => {
         if(cart.qty >= 10) return;
@@ -96,11 +97,10 @@ const Carts =() =>{
                 zipCode: ""
             })
         }
-    },[sameAsMember, member ])
+    },[sameAsMember, member, reset, getValues ])
 
 
     const onSubmit = async(data) =>{
-        console.log(data)
         await dispatch(postAsyncOrders(data))
 
         dispatch(getAsyncOrders())

@@ -13,9 +13,8 @@ const AdminOrders =() =>{
 
     useEffect(()=>{
         dispatch(getAsyncAdminOrders(currentPage))
-    },[currentPage]);
+    },[dispatch, currentPage]);
 
-    console.log(adminOrders)
 
     const handleSelectOrder =(order) => {
       dispatch(setAdminOrder(order))

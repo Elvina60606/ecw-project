@@ -31,7 +31,6 @@ const  MemberRegistration =() =>{
 
     const onSubmit =(data) => {
         dispatch(registerMember(data))
-        console.log(data)
         reset()
         dispatch(openModal({type: 'REGISTER_SUCCESS'}))
     };

@@ -13,7 +13,7 @@ const AdminProducts =() =>{
 
     useEffect(()=>{
          dispatch(getAsynsAdminProducts(currentPage))
-    }, [currentPage]);
+    }, [dispatch, currentPage]);
 
     const handleCreateProduct = () => {
       dispatch(resetTempProduct())

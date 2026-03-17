@@ -17,7 +17,7 @@ export const getAsyncAuth = createAsyncThunk(
 
             return res.data
         } catch (error) {
-            console.log('getAsyncAuth:', error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
@@ -30,7 +30,7 @@ export const asyncLogout = createAsyncThunk(
             dispatch(getAsyncMessage(res.data))
             return res.data
         } catch (error) {
-            console.log('asyncLogout:', error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 )

@@ -10,6 +10,7 @@ import ProductImages from "../../component/product/ProductImages";
 import ProductNote from "../../component/product/ProductNote";
 import HotProductsContainer from "../../component/utils/hotProducts/HotProductsContainer";
 import MessageToast from "../../component/utils/MessageToast";
+import { getAsyncMessage } from "../../slices/messageSlice";
 
 
 const Product =() => {
@@ -25,15 +26,18 @@ const Product =() => {
             try {
                 await dispatch(getAsyncProduct(id));              
             } catch (error) {
-                console.log(error)           
+                dispatch(getAsyncMessage(error.response.data))          
             }
         }
         fetchProduct();
     },[dispatch, id]);
 
     useEffect(() => {
-        if (product) {
+    if (product) {
+        const timer = setTimeout(() => {
             setImages([product.imageUrl, ...(product.imagesUrl?.slice(0, 3) || [])]);
+            });
+            return () => clearTimeout(timer);
         }
     }, [product]);
 
@@ -55,7 +59,7 @@ const Product =() => {
             await dispatch(postAsyncCarts({ productId: product.id, qty }))
             setQty(1)
         } catch (error) {
-            console.log('addCarts:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 

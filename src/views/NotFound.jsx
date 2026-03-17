@@ -10,8 +10,7 @@ const NotFound =() =>{
         setTimeout(() => {
             navigate('/', { replace: true})
         }, 2000)
-
-    },[])
+    },[navigate])
 
     return(
     <>

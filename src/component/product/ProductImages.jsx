@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 
 const ProductImages =({ images: initialImages }) =>{
-    const [ images, setImages ] = useState([]);
-    
-    useEffect(() => {
-        if(Array.isArray(initialImages) && initialImages.length){
-            setImages(initialImages);
-        }
-    }, [initialImages]);
+    const [images, setImages] = useState(initialImages?.length ? initialImages : []);
 
+  // 如果 initialImages 後續改變，跟著更新
+  useEffect(() => {
+    if (initialImages?.length) {
+      const timer = setTimeout(() => setImages(initialImages));
+      return () => clearTimeout(timer);
+    }
+  }, [initialImages]);
 
     const handleClickChangeImage = (index) => {
         if (!images || index >= images.length) return;

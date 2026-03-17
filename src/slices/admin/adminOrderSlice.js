@@ -6,7 +6,7 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export const getAsyncAdminOrders = createAsyncThunk(
     'adminOrders/getAsyncAdminOrders',
-    async() => {
+    async(_,{dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/admin/orders`)
             return {
@@ -14,7 +14,7 @@ export const getAsyncAdminOrders = createAsyncThunk(
                 pagination: res.data.pagination
             }
         } catch (error) {
-            console.log(error.response?.data)
+            dispatch(getAsyncMessage(error.response?.data))
         }
     }
 );

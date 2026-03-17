@@ -6,12 +6,12 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export const getAsyncCarts = createAsyncThunk(
     'carts/getAsyncCarts',
-    async() => {
+    async(_, {dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/cart`)
             return res.data.data
         } catch (error) {
-            console.log('getAsyncCarts:',error)
+             dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
@@ -29,7 +29,7 @@ export const postAsyncCarts = createAsyncThunk(
             dispatch(getAsyncCarts());
             dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('postAsyncCarts:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
@@ -47,7 +47,7 @@ export const updateAsyncCarts = createAsyncThunk(
             dispatch(getAsyncCarts())
             dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('updateAsyncCarts:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 );
@@ -60,7 +60,7 @@ export const deleteAsyncCarts =createAsyncThunk(
             dispatch(getAsyncCarts())
             dispatch(getAsyncMessage(res.data))
         } catch (error) {
-            console.log('deleteAsyncCarts:',error)
+            dispatch(getAsyncMessage(error.response.data))
         }
     }
 )
