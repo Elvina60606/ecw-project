@@ -37,7 +37,7 @@ const MobileNav =({
                             <Link to='/login' className='py-3 w-100'>會員中心</Link>
                         </li>
                         <li>
-                            <Link to='/member_registration' className='py-3 w-100'>修改會​員​資料​</Link>
+                            <Link to='/member_registration' className='py-3 w-100'>修改會員資料</Link>
                         </li>
                         <li>
                             <a href="#" className='py-3 w-100'>修改密碼</a>

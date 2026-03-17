@@ -36,7 +36,7 @@ const MemberSidebarLayout =() =>{
                                   className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover">
                                   <span className="fs-6 text-primary-700 ps-6">
                                     <span className="material-symbols-outlined fill align-bottom me-2">edit</span>
-                                      修改會​員​資料
+                                      修改會員資料
                                   </span>
                             </Link>
                         </li>

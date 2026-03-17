@@ -1,12 +1,14 @@
-
+import { useDispatch } from "react-redux";
 import { Link } from "react-router";
-
+import { deleteAsyncCarts } from "../../../slices/cartsSlice";
 
 const CartLists =(
     { carts, 
       incrementQty, 
       decrementQty, 
       deleteCart }) => {
+
+        const dispatch = useDispatch();
 
     return(
     <>

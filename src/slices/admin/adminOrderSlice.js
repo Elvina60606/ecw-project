@@ -25,6 +25,7 @@ export const updateAsyncOrder = createAsyncThunk(
         try {
             const res = await axios.put(`${VITE_URL}/v2/api/${VITE_PATH}/admin/order/${id}`,{data})
             dispatch(getAsyncAdminOrders())
+            dispatch(getAsyncMessage(res.data))
         } catch (error) {
             dispatch(getAsyncMessage(error.response.data))
         }

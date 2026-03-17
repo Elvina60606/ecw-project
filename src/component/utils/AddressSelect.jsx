@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import taiwanDistricts from '../../data/taiwanDistricts.json';
 
@@ -8,7 +8,9 @@ const AddressSelect =({ register, watch, setValue, errors }) =>{
     const selectCity = watch("city");
     const selectDistrict = watch("district");
 
-    const districts = taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
+    const districts = useMemo(() => {
+        return taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
+    }, [selectCity]);
 
     useEffect(() => {
         const district = districts.find(

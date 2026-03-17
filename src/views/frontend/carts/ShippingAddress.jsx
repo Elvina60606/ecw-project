@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import taiwanDistricts from '../../../data/taiwanDistricts.json';
 
@@ -8,8 +8,10 @@ const ShippingAddress =({ register, watch, setValue, errors }) =>{
     const selectCity = watch("city");
     const selectDistrict = watch("district");
 
-    const districts =
-        taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
+    const districts = useMemo(() => {
+            return taiwanDistricts.find(c => c.city === selectCity)?.districts || [];
+        }, [selectCity]);
+    
 
     // 自動帶入 zipCode
     useEffect(() => {

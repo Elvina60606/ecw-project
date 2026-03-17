@@ -21,7 +21,7 @@ const INITIAL_TEMPLATE_DATA = {
 
 export const getAsynsAdminProducts = createAsyncThunk(
     '/adminProducts/getAsynsAdminProducts',
-    async(page=1) => {
+    async(page=1,{dispatch}) => {
         try {
             const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/admin/products?page=${page}`)
             return {

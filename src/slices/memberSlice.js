@@ -12,7 +12,7 @@ export const memberSlice = createSlice({
             state.member = action.payload
             localStorage.setItem("member", JSON.stringify(action.payload))
         },
-        logoutMember: (state, action) => {
+        logoutMember: (state) => {
             state.member = null
             localStorage.removeItem("member")
         }

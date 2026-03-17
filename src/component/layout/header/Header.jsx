@@ -18,13 +18,16 @@ const Header =({ mobileOpen, setMobileOpen}) =>{
 
     useEffect(() => {
         dispatch(getAsyncCarts())
-    },[]);
+    },[dispatch]);
 
-    const location = useLocation();
+    const {pathname} = useLocation();
     useEffect(() => {
-        setDesktopOpen(false)
-        setMobileOpen(false)
-    },[location]);
+        const timer = setTimeout(() => {
+            setDesktopOpen(false);
+            setMobileOpen(false);
+        });
+        return () => clearTimeout(timer);
+    }, [pathname, setMobileOpen]);
 
     return (
     <>

@@ -68,7 +68,8 @@ const dispatch = useDispatch();
                             <li>
                                 <Link to='#' className="dropdown-item px-6 py-2">
                                     <span className="fs-6 text-primary-700">
-                                        <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">edit</span>修改會​員​資料
+                                        <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">edit</span>
+                                        修改會員資料
                                     </span>
                                 </Link>
                             </li>
