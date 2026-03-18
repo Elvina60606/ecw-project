@@ -5,66 +5,68 @@ import { getAsyncMessage } from "./messageSlice";
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export const getAsyncOrders = createAsyncThunk(
-    'orders/getAsyncOrders',
-    async(page = 1,{dispatch}) => {
-        try {
-            const res = await axios.get(`${VITE_URL}/v2/api/${VITE_PATH}/orders?page=${page}`)
-            return {
-                orders: res.data.orders,
-                pagination: res.data.pagination
-            }
-        } catch (error) {
-            dispatch(getAsyncMessage(error.response.data))
-        }
+  "orders/getAsyncOrders",
+  async (page = 1, { dispatch }) => {
+    try {
+      const res = await axios.get(
+        `${VITE_URL}/v2/api/${VITE_PATH}/orders?page=${page}`,
+      );
+      return {
+        orders: res.data.orders,
+        pagination: res.data.pagination,
+      };
+    } catch (error) {
+      dispatch(getAsyncMessage(error.response.data));
     }
+  },
 );
 
-export const postAsyncOrders =createAsyncThunk(
-    'orders/postAsyncOrders',
-    async({recipient, email, tel, address, orderNote},{dispatch}) => {
-        const data = {
-                "user": {
-                "name": recipient,
-                "email": email,
-                "tel": tel,
-                "address": address,
-                },
-                "message": orderNote
-            }
+export const postAsyncOrders = createAsyncThunk(
+  "orders/postAsyncOrders",
+  async ({ recipient, email, tel, address, orderNote }, { dispatch }) => {
+    const data = {
+      user: {
+        name: recipient,
+        email: email,
+        tel: tel,
+        address: address,
+      },
+      message: orderNote,
+    };
 
-        try {
-            const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/order`,{data})
-            dispatch(getAsyncOrders())
-            dispatch(getAsyncMessage(res.data))
-        } catch (error) {
-            dispatch(getAsyncMessage(error.response.data))
-        }
+    try {
+      const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/order`, {
+        data,
+      });
+      dispatch(getAsyncOrders());
+      dispatch(getAsyncMessage(res.data));
+    } catch (error) {
+      dispatch(getAsyncMessage(error.response.data));
     }
-)
+  },
+);
 
 export const ordersSlice = createSlice({
-    name: 'orders',
-    initialState: {
-        orders: [],
-        pagination: {},
-        currentPage: 1,
+  name: "orders",
+  initialState: {
+    orders: [],
+    pagination: {},
+    currentPage: 1,
+  },
+  reducers: {
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
     },
-    reducers: {
-        setCurrentPage(state, action) {
-            state.currentPage = action.payload
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-        .addCase(getAsyncOrders.fulfilled, (state, action) => {
-            state.orders = action.payload.orders
-            state.pagination = action.payload.pagination
-            state.currentPage = action.meta.arg  
-        })
-    }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getAsyncOrders.fulfilled, (state, action) => {
+      state.orders = action.payload.orders;
+      state.pagination = action.payload.pagination;
+      state.currentPage = action.meta.arg;
+    });
+  },
 });
 
-export const { setCurrentPage } = ordersSlice.actions
-
+export const { setCurrentPage } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

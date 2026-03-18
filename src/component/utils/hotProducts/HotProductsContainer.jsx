@@ -5,20 +5,25 @@ import { getAsyncProducts } from "../../../slices/productsSlice";
 
 import HotProducts from "./HotProducts";
 
+const HotProductsContainer = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
 
-const HotProductsContainer =() =>{
-    const dispatch = useDispatch();    
-    const { products } = useSelector( state => state.products )
+  useEffect(() => {
+    dispatch(getAsyncProducts());
+  }, [dispatch]);
 
-    useEffect(()=> {
-        dispatch(getAsyncProducts())
-    }, [dispatch]);
+  const hotProductsId = [
+    "-OmCaBPD7BMoohDSFVoa",
+    "-Om8_fXd3nhxI18dHkWj",
+    "-Om8X8SgK8wLoxrzYcYv",
+  ];
 
-    const hotProductsId = ['-OmCaBPD7BMoohDSFVoa', '-Om8_fXd3nhxI18dHkWj', '-Om8X8SgK8wLoxrzYcYv'];
+  const hotProducts = products.filter((product) =>
+    hotProductsId?.includes(product.id),
+  );
 
-    const hotProducts = products.filter(product => hotProductsId?.includes(product.id));
-
-    return <HotProducts products={hotProducts} />
-}
+  return <HotProducts products={hotProducts} />;
+};
 
 export default HotProductsContainer;

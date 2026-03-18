@@ -1,18 +1,18 @@
 [
-    {
-        "id": "credit_card",
-        "name": "線上刷卡"
-    },
-    {
-        "id": "line_pay",
-        "name": "LINE PAY"
-    },
-    {
-        "id": "apple_pay",
-        "name": "APPLE PAY"
-    },
-    {
-        "id": "atm",
-        "name": "ATM轉帳"
-    }
+  {
+    "id": "credit_card",
+    "name": "線上刷卡"
+  },
+  {
+    "id": "line_pay",
+    "name": "LINE PAY"
+  },
+  {
+    "id": "apple_pay",
+    "name": "APPLE PAY"
+  },
+  {
+    "id": "atm",
+    "name": "ATM轉帳"
+  }
 ]
