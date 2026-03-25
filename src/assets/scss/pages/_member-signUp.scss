@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  @media (max-width: 768px) {
+  @include media-breakpoint-down(md) {
     min-height: 300px;
   }
 }

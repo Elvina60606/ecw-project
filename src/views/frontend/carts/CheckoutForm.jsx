@@ -9,6 +9,9 @@ const CheckoutForm = ({
   watch,
   setValue,
   resetField,
+  member,
+  reset,
+  getValues,
   errors,
   onSubmit,
 }) => {
@@ -26,6 +29,34 @@ const CheckoutForm = ({
                   value=""
                   id="sameAsMember"
                   {...register("sameAsMember")}
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    if (checked && member) {
+                      reset({
+                        ...getValues(),
+                        recipient: member.memberName,
+                        tel: member.tel,
+                        email: member.email,
+                        address: member.address,
+                        city: member.city,
+                        district: member.district,
+                        zipCode: member.zipCode,
+                        sameAsMember: true,
+                      });
+                    } else {
+                      reset({
+                        ...getValues(),
+                        recipient: "",
+                        tel: "",
+                        email: "",
+                        address: "",
+                        city: "",
+                        district: "",
+                        zipCode: "",
+                        sameAsMember: false,
+                      });
+                    }
+                  }}
                 />
                 <label className="form-check-label" htmlFor="sameAsMember">
                   同會員資料

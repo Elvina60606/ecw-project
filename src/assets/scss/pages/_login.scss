@@ -5,10 +5,11 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: url("https://github.com/Elvina60606/onon_images/blob/main/images/caneleBg.png?raw=true") center repeat;
+    background: url("https://github.com/Elvina60606/onon_images/blob/main/images/caneleBg.png?raw=true")
+      center repeat;
     z-index: -1;
   }
-  
+
   > * {
     margin-top: 0;
     margin-bottom: 0;
@@ -22,7 +23,9 @@
 
 .login-input {
   outline: none;
-  &:focus { box-shadow: none; }
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 // 修正:hover 效果統一處理
@@ -30,7 +33,7 @@
 .hover-secondary,
 a.forgot-password {
   transition: color 0.2s ease;
-  
+
   &:hover,
   &:focus {
     color: $secondary-500 !important;
@@ -42,8 +45,10 @@ a.forgot-password {
   background-color: $primary-700;
   border-color: $primary-700;
   color: #ffffff;
-  transition: background-color 0.3s, border-color 0.3s;
-  
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+
   &:hover,
   &:focus,
   &:active,
@@ -60,7 +65,7 @@ a.forgot-password {
   border: 1px solid $primary-700;
   color: $primary-700;
   transition: all 0.3s;
-  
+
   &:hover,
   &:focus,
   &:active,
@@ -118,14 +123,14 @@ a.forgot-password {
 }
 
 // 添加:中等螢幕響應式處理 (992px - 1320px)
-@media (max-width: 1320px) {
+@include media-breakpoint-down(xxl) {
   .login-card {
     margin: 0 12px; // 減少邊距
   }
 }
 
 // 添加:平板尺寸響應式處理
-@media (max-width: 1199px) {
+@include media-breakpoint-down(xl) {
   .login-card {
     max-width: 960px;
     height: auto;
@@ -158,7 +163,7 @@ a.forgot-password {
   }
 }
 
-@media (max-width: 991px) {
+@include media-breakpoint-down(lg) {
   .login-container {
     padding: 40px 0 0;
     min-height: auto;
@@ -188,11 +193,11 @@ a.forgot-password {
 
   .login-form {
     width: 100%;
-    
+
     .form-group:nth-child(1) {
       margin: 40px 0 24px;
     }
-    
+
     .form-group:nth-child(2) {
       margin-bottom: 24px;
     }
@@ -202,7 +207,7 @@ a.forgot-password {
     height: 48px;
     margin-bottom: 16px;
   }
-  
+
   .forgot-password--mobile {
     width: 100%;
     text-align: center;

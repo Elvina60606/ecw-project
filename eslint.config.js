@@ -24,7 +24,7 @@ export default defineConfig([
       },
     },
     rules: {
-      //'@stylistic/indent': ['error', 2],
+      "@stylistic/indent": ["error", 2],
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
       "no-console": "error",
       "react-hooks/rules-of-hooks": "error",

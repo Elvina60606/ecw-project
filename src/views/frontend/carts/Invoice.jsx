@@ -17,18 +17,18 @@ const Invoice = ({ register, watch, resetField }) => {
       });
       inv.fields?.forEach((field) => resetField(field.id));
     });
-  }, [invoiceType]);
+  }, [invoiceType, resetField]);
 
   // 切換carriers時清空
   useEffect(() => {
     invoiceConfig?.carriers
       ?.filter((c) => c.id !== carrierType)
       .forEach((c) => c.fields?.forEach((f) => resetField(f.id)));
-  }, [carrierType]);
+  }, [carrierType, resetField, invoiceConfig]);
 
   return (
     <>
-      <div className="col-12 col-md-6">
+      <div className="col-md-6">
         <div className="border border-neutral-300 rounded-4 p-4 p-md-6 h-100">
           <h6 className="fs-md-5 mb-4">發票開立</h6>
           <div>

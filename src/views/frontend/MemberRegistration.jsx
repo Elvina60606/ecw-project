@@ -14,18 +14,19 @@ const MemberRegistration = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    getValues,
     setValue,
+    watch,
     reset,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      memberName: "野原廣志",
+      memberName: "",
       gender: "male",
-      tel: "0912345678",
-      email: "Nohara@gmail.com",
-      address: "good good address",
+      tel: "",
+      email: "",
+      address: "",
     },
   });
 
@@ -38,7 +39,6 @@ const MemberRegistration = () => {
   // Password 顯示切換
   const [show, setShow] = useState(false);
   const [confirmShow, setConfirmShow] = useState(false);
-  const password = watch("password");
 
   return (
     <>
@@ -67,7 +67,7 @@ const MemberRegistration = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row g-6">
               {/* Left */}
-              <div className="col-12 col-lg-6">
+              <div className="col-lg-6">
                 <div className="card h-100">
                   <div className="mx-md-11 my-md-8 m-4">
                     <h5 className="mb-4">會員資料</h5>
@@ -246,7 +246,7 @@ const MemberRegistration = () => {
               </div>
 
               {/* Right */}
-              <div className="col-12 col-lg-6">
+              <div className="col-lg-6">
                 <div className="d-flex flex-column gap-6">
                   <div className="card">
                     <div className="mx-md-11 my-md-8 mt-lg-8 mb-lg-13 m-4">
@@ -302,7 +302,7 @@ const MemberRegistration = () => {
                             {...register("confirmPassword", {
                               required: "請再次輸入密碼",
                               validate: (value) =>
-                                value === password || "密碼不一致",
+                                value === getValues("password") || "密碼不一致",
                             })}
                           />
                           <button

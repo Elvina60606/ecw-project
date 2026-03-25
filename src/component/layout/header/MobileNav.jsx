@@ -19,7 +19,10 @@ const MobileNav = ({ isLogin, images }) => {
               id="search"
               placeholder="輸入關鍵字"
             />
-            <button className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2">
+            <button
+              type="button"
+              className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2"
+            >
               搜尋
             </button>
           </form>
@@ -94,6 +97,7 @@ const MobileNav = ({ isLogin, images }) => {
           ></div>
           <li>
             <button
+              type="button"
               className="button-reset px-0 py-3 w-100 text-start d-flex"
               onClick={() => dispatch(openModal({ type: "LOGOUT" }))}
             >
@@ -119,7 +123,10 @@ const MobileNav = ({ isLogin, images }) => {
               id="search"
               placeholder="輸入關鍵字"
             />
-            <button className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2">
+            <button
+              type="button"
+              className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2"
+            >
               搜尋
             </button>
           </form>

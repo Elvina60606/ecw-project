@@ -80,32 +80,6 @@ const Carts = () => {
 
   // same as member
   const member = useSelector((state) => state.member.member);
-  const sameAsMember = watch("sameAsMember");
-  useEffect(() => {
-    if (sameAsMember && member) {
-      reset({
-        ...getValues(),
-        recipient: member.memberName,
-        tel: member.tel,
-        email: member.email,
-        address: member.address,
-        city: member.city,
-        district: member.district,
-        zipCode: member.zipCode,
-      });
-    } else {
-      reset({
-        ...getValues(),
-        recipient: "",
-        tel: "",
-        email: "",
-        address: "",
-        city: "",
-        district: "",
-        zipCode: "",
-      });
-    }
-  }, [sameAsMember, member, reset, getValues]);
 
   const onSubmit = async (data) => {
     await dispatch(postAsyncOrders(data));
@@ -146,6 +120,8 @@ const Carts = () => {
             setValue={setValue}
             resetField={resetField}
             reset={reset}
+            member={member}
+            getValues={getValues}
             errors={errors}
             onSubmit={onSubmit}
           />

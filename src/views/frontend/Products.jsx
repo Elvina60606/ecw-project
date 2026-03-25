@@ -46,7 +46,7 @@ const Products = () => {
   return (
     <>
       <MessageToast />
-      <section className="col-12 col-md-9">
+      <section className="col-md-9">
         <h2 className="fs-3 fs-lg-2 mb-6 mb-md-0">商品介紹</h2>
         <div className="dropdown d-block d-md-none">
           <Link
@@ -74,7 +74,7 @@ const Products = () => {
         <div className="row py-6 py-md-8 g-6">
           {filterProducts?.map((product) => {
             return (
-              <div className="col-12 col-sm-6 col-lg-4" key={product.id}>
+              <div className="col-sm-6 col-lg-4" key={product.id}>
                 <div className="card h-100">
                   <Link to={`/product/${product.id}`}>
                     <img
@@ -96,6 +96,7 @@ const Products = () => {
                     <div className="mt-auto d-flex justify-content-between align-items-center">
                       <h4 className="text-primary-700">NT$ {product.price}</h4>
                       <button
+                        type="button"
                         className="btn btn-card-cart px-6"
                         onClick={() => addOneToCart(product.id)}
                       >

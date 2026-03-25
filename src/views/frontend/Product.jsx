@@ -100,7 +100,7 @@ const Product = () => {
         </nav>
         <div className="row">
           <ProductImages images={images} />
-          <div className="col-12 col-lg-7 order-3 ps-lg-8">
+          <div className="col-lg-7 order-3 ps-lg-8">
             <div className="d-flex align-items-center justify-content-between mb-4">
               <h3 className="fw-bold mb-0 text-primary-800 fs-lg-2">
                 {product.title}

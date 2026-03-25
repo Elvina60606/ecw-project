@@ -84,6 +84,7 @@ const AdminOrders = () => {
                 <td className="">
                   {order.is_paid ? (
                     <button
+                      type="button"
                       className="border border-0 rounded-pill bg-success-50 text-success-700 px-3 py-2"
                       onClick={() => handleChangeStatus(order)}
                     >
@@ -91,6 +92,7 @@ const AdminOrders = () => {
                     </button>
                   ) : (
                     <button
+                      type="button"
                       className="border border-0 rounded-pill bg-alert-50 text-alert-700 px-3 py-2"
                       onClick={() => handleChangeStatus(order)}
                     >

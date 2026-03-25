@@ -59,7 +59,7 @@ const Home = () => {
         />
         <div className="container position-relative">
           <div className="row my-8 my-lg-0">
-            <div className="col-12 col-lg-7 position-relative z-3">
+            <div className="col-lg-7 position-relative z-3">
               <div className="py-lg-12 mb-8 mb-lg-0">
                 <img src={images.caneleSub} alt="可麗露圖" />
               </div>
@@ -125,7 +125,7 @@ const Home = () => {
         <div className="container">
           <div className="py-8 py-lg-0">
             <div className="row">
-              <div className="col-12 col-lg-7">
+              <div className="col-lg-7">
                 <div className="my-lg-12 pt-8 px-lg-8 py-lg-12 text-center text-lg-start">
                   <h3 className="fs-lg-1 text-primary-800 mb-6">
                     加入會員，即享首購不限金額88折
@@ -142,7 +142,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-              <div className="col-12 col-lg-5">
+              <div className="col-lg-5">
                 <div className="pb-8 pb-lg-12 text-center text-lg-start">
                   <img
                     className="img-excess"

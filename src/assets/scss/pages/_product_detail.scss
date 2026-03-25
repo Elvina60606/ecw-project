@@ -1,40 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 
 // 桌機版樣式
 
 // Tabs 外容器
 .tabs-container {
-    max-width: 1920px;
+  max-width: 1920px;
 }
 
 .tabs-inner-wrapper {
-    max-width: 1296px;
-    margin: 0 auto;
+  max-width: 1296px;
+  margin: 0 auto;
 }
 
 // Bootstrap Tabs 樣式
 .nav-tabs {
-    border-bottom: 1px solid $neutral-400;
+  border-bottom: 1px solid $neutral-400;
 
-    .tabs-nav-link {
-        background-color: transparent;
-        border: none;
-        transition: color 0.3s ease-in-out;
+  .tabs-nav-link {
+    background-color: transparent;
+    border: none;
+    transition: color 0.3s ease-in-out;
 
-        &:focus {
-            box-shadow: none;
-        }
-
-        &.active {
-            border-bottom: 4px solid $primary-300;
-            background-color: transparent;
-        }
+    &:focus {
+      box-shadow: none;
     }
+
+    &.active {
+      border-bottom: 4px solid $primary-300;
+      background-color: transparent;
+    }
+  }
 }
 
 // 移除 Bootstrap 的內建間距
 .nav-tabs .nav-item:first-child .nav-link {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 // P段落的圓點尺寸及位置調整
@@ -49,10 +49,10 @@
 }
 
 .product-detail-list li::before {
-  content: '•';
+  content: "•";
   font-size: 17px;
   color: $neutral-800;
-  
+
   position: absolute;
   left: 0;
   top: 50%;
@@ -67,54 +67,54 @@
 }
 
 // 手機版樣式
-  @media (max-width: 991px) {
-    .tabs-container,
-    .tabs-inner-wrapper {
-      max-width: 100%;
-      margin: 0 auto;
-      padding-top: 10px;
-      padding-bottom: 20px;
-    }
+@include media-breakpoint-down(lg) {
+  .tabs-container,
+  .tabs-inner-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
 
-    .nav-tabs{
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-    }
+  .nav-tabs {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
 
-    .tabs-nav-link {
-      display: inline-block;
-      padding: 24px;
-      font-size: 16px; 
-      line-height: 19.2px;
-      font-weight: 700;
-    }
-    
-    .tabs-nav-top {
-      margin-bottom: 24px;
-    }
+  .tabs-nav-link {
+    display: inline-block;
+    padding: 24px;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 700;
+  }
 
-    .rectangle303-svg {
-      display: none;
-    }
+  .tabs-nav-top {
+    margin-bottom: 24px;
+  }
 
-    .product-detail-list {
+  .rectangle303-svg {
+    display: none;
+  }
+
+  .product-detail-list {
     padding-left: 0;
   }
-  
+
   .product-detail-list li {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;     
+    gap: 0.5rem;
     position: initial;
     padding-left: initial;
   }
-  
+
   .product-detail-list li::before {
-    content: '•';
+    content: "•";
     font-size: 17px;
     color: $neutral-800;
-    position: initial; 
+    position: initial;
     left: initial;
     top: initial;
     transform: initial;
@@ -135,37 +135,36 @@
 }
 
 // 原價刪除字樣的顏色
-.text-gray-700{
-  color: #4F4F4F;
+.text-gray-700 {
+  color: #4f4f4f;
 }
 // 字重500
 .fw-500 {
-  font-weight: $font-weight-medium; 
+  font-weight: $font-weight-medium;
 }
-
 
 /* 整體區塊：滿版 + 左右元素撐開 */
 .cart-actions {
   display: flex;
   align-items: center;
-  width: 100%;        /* 撐滿父容器 */
-  gap: 24px;          /* 元素間距 */
+  width: 100%; /* 撐滿父容器 */
+  gap: 24px; /* 元素間距 */
 }
 
 /* 數量控制器 (撐開) */
 .quantity-control {
-  flex: 1;            /* 自動撐滿 */
+  flex: 1; /* 自動撐滿 */
   display: flex;
   align-items: center;
   border: 1px solid $neutral-500;
   border-radius: 8px;
   overflow: hidden;
   height: 40px;
-  max-width: none;   /* 如果不想太長，可以限制 */
+  max-width: none; /* 如果不想太長，可以限制 */
 }
 
 .quantity-control input {
-  flex: 1;            /* 中間 input 撐開 */
+  flex: 1; /* 中間 input 撐開 */
   text-align: center;
   border: none;
   outline: none;
@@ -187,7 +186,7 @@
 
 /* 加入購物車按鈕 (撐開) */
 .add-cart-btn {
-  flex: 1;            /* 自動撐滿 */
+  flex: 1; /* 自動撐滿 */
   background: #5a3e2b;
   color: #fff;
   border: none;
@@ -201,7 +200,6 @@
   background: #3e2a1f;
 }
 
-.bi-heart.active
-.bi-heart-fill.active {
-    color: red;
-  }
+.bi-heart.active .bi-heart-fill.active {
+  color: red;
+}

@@ -27,7 +27,7 @@ const AddressSelect = ({ register, watch, setValue, errors }) => {
         </label>
         <div className="row g-2">
           {/* 郵遞區號 */}
-          <div className="col-12 col-md-4">
+          <div className="col-md-4">
             <input
               type="text"
               className="form-control bg-light"

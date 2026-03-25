@@ -35,13 +35,17 @@ const DesktopNav = ({
               id="search"
               placeholder="輸入關鍵字"
             />
-            <button className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2">
+            <button
+              className="btn btn-search btn-primary fw-medium position-absolute top-50 end-0 translate-middle-y me-2"
+              type="button"
+            >
               搜尋
             </button>
           </form>
         </div>
         <li className="nav-item">
           <button
+            type="button"
             className="nav-link"
             onClick={() => setSearchShow((prev) => !prev)}
           >
@@ -154,6 +158,7 @@ const DesktopNav = ({
                   </li>
                   <li className="border-top">
                     <button
+                      type="button"
                       className="dropdown-item px-6 py-2"
                       onClick={() => dispatch(openModal({ type: "LOGOUT" }))}
                     >

@@ -28,7 +28,7 @@ const ShippingAddress = ({ register, watch, setValue, errors }) => {
         </label>
         <div className="row g-2">
           {/* 郵遞區號 */}
-          <div className="col-12 col-md-2">
+          <div className="col-md-2">
             <input
               type="text"
               className="form-control bg-light"
@@ -79,7 +79,7 @@ const ShippingAddress = ({ register, watch, setValue, errors }) => {
               </small>
             )}
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-md-6">
             <input
               type="text"
               className="form-control"

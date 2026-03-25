@@ -23,7 +23,7 @@ const ProductImages = ({ images: initialImages }) => {
   return (
     <>
       {/* 縮圖（桌機：左直排，手機：下方橫排） */}
-      <div className="col-12 col-lg-1 order-2 order-lg-1">
+      <div className="col-lg-1 order-2 order-lg-1">
         <div className="row flex-lg-column align-items-center justify-content-between mb-6 pe-lg-1">
           {images.slice(1)?.map((img, index) => {
             return (
@@ -44,7 +44,7 @@ const ProductImages = ({ images: initialImages }) => {
         </div>
       </div>
       {/* 主圖 */}
-      <div className="col-12 col-lg-4 order-1 order-lg-2 pe-lg-6">
+      <div className="col-lg-4 order-1 order-lg-2 pe-lg-6">
         {images.length > 0 && (
           <img
             src={images[0]}

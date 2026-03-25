@@ -3,7 +3,7 @@ import paymemtMethods from "../../../data/paymentMethods.json";
 const Payment = ({ register }) => {
   return (
     <>
-      <div className="col-12 col-md-6">
+      <div className="col-md-6">
         <div className="border border-neutral-300 rounded-4 p-4 p-md-6 h-100">
           <h6 className="fs-md-5 mb-4">付款方式</h6>
           <div>

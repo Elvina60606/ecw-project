@@ -91,6 +91,7 @@ const MemberSidebarLayout = () => {
                   </li>
                   <li className="mx-6" role="presentation">
                     <button
+                      type="button"
                       className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover"
                       onClick={() =>
                         dispatch(openModal({ type: "SWEET_PLAN" }))

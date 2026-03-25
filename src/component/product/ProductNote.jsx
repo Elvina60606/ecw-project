@@ -68,6 +68,7 @@ const ProductNote = () => {
                 <nav className="nav nav-tabs tabs-nav-top nowrap gap-2 mb-lg-6">
                   {tabs.map((tab) => (
                     <button
+                      type="button"
                       key={tab.key}
                       onClick={() => setActiveTab(tab.key)}
                       className={`tabs-nav-link fs-lg-4 text-primary-800 fw-bold lh-288 p-lg-6 ${activeTab === tab.key ? "active" : ""}`}
