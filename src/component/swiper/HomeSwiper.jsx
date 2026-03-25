@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "./homeSwiperCss.scss";
 
 const Hero = ({ onNavigate }) => (
@@ -108,7 +108,13 @@ const HomeSwiper = () => {
                   clickable: true,
                   el: ".my-pagination",
                 }}
-                modules={[Pagination]}
+                modules={[Autoplay, Pagination]}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                loop={true}
               >
                 {swipeData.map((item) => {
                   const Content = item.component;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import images from "../../assets/images/images";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { loginSuccess } from "../../slices/loginSlice";
 
@@ -10,24 +10,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
-  const member = useSelector((state) => state.member.member);
 
   const {
     register,
     handleSubmit,
-    reset,
-    getValues,
     formState: { errors },
   } = useForm({
     mode: "onChange",
   });
-
-  useEffect(() => {
-    reset({
-      ...getValues(),
-      username: member?.email,
-    });
-  }, [reset, getValues, member?.email]);
 
   const onSubmit = () => {
     dispatch(loginSuccess());

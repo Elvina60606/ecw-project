@@ -252,7 +252,7 @@ const MemberRegistration = () => {
                     <div className="mx-md-11 my-md-8 mt-lg-8 mb-lg-13 m-4">
                       <h5 className="mb-4">設定密碼</h5>
                       <div className="mb-4">
-                        <label className="form-label">
+                        <label htmlFor="password" className="form-label">
                           密碼
                           <span className="text-danger">*</span>
                         </label>
@@ -288,7 +288,7 @@ const MemberRegistration = () => {
                       </div>
 
                       <div className="mb-lg-4 mb-0">
-                        <label className="form-label">
+                        <label htmlFor="confirmPassword" className="form-label">
                           確認密碼
                           <span className="text-danger">*</span>
                         </label>

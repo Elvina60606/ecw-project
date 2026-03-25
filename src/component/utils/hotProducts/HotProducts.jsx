@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getAsyncCarts, postAsyncCarts } from "../../../slices/cartsSlice";
+import { postAsyncCarts } from "../../../slices/cartsSlice";
+import MessageToast from "../MessageToast";
 
 const HotProducts = ({ products }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ const HotProducts = ({ products }) => {
         qty: 1,
       }),
     );
-    dispatch(getAsyncCarts());
   };
 
   const handleNavigateToSingle = (id) => {
@@ -26,6 +26,7 @@ const HotProducts = ({ products }) => {
 
   return (
     <>
+      <MessageToast />
       <section className="bg-secondary-50">
         <div className="index-container">
           <div className="text-center pb-6 pt-8 py-lg-8">

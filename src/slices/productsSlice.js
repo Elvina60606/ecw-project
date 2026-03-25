@@ -43,6 +43,7 @@ export const productsSlice = createSlice({
     product: null,
     currentPage: 1,
     error: null,
+    isLoading: false,
   },
   reducers: {
     setCurrentPage(state, action) {
@@ -51,7 +52,11 @@ export const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getAsyncProducts.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(getAsyncProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.products = action.payload.products;
         state.pagination = action.payload.pagination;
         state.currentPage = action.meta.arg;
