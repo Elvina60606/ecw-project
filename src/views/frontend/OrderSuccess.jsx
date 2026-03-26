@@ -40,7 +40,7 @@ const OrderSuccess = () => {
 
   return (
     <>
-      <div className="container my-8 pb-10">
+      <div className="container my-13">
         <div className="row justify-content-center">
           <div className="text-center mt-5 mb-8">
             <h2>感謝您的訂購！</h2>
