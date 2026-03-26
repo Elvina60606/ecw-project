@@ -1,5 +1,6 @@
+import images from "../../assets/images/images";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { getAsyncOrder } from "../../slices/ordersSlice";
 import { useEffect } from "react";
 import { Comment } from "react-loader-spinner";
@@ -32,42 +33,33 @@ const OrderSuccess = () => {
       </div>
     );
 
-  const orderProducts = Object.values(order?.products || {});
-  const totalPrice = orderProducts.reduce(
-    (sum, item) => sum + item.total * item.qty,
-    0,
-  );
-
   return (
     <>
-      <div className="container my-13">
-        <div className="row justify-content-center">
-          <div className="text-center mt-5 mb-8">
-            <h2>感謝您的訂購！</h2>
-          </div>
-          <div className="col-lg-3">
-            <div className="mb-4 text-center text-lg-start">
-              <h4 className="mb-3">收件人資訊</h4>
-              <p className="mb-3">收件人姓名：{order.user?.name}</p>
-              <p className="mb-3">信箱：{order.user?.email}</p>
-              <p className="mb-3">電話：{order.user?.tel}</p>
-              <p className="mb-3">收件地址：{order.user?.address}</p>
-            </div>
-          </div>
-          <div className="col-lg-3">
-            <div className="mb-4 text-center text-lg-start">
-              <h4 className="mb-3">產品內容</h4>
-              {orderProducts.map((item) => (
-                <div key={item.id} className="mb-4">
-                  <p>{`${item.product.title} ${item.product.content}`}</p>
-                  <p>
-                    ${item.total} x {item.qty} = ${item.total * item.qty}
-                  </p>
-                </div>
-              ))}
-              <h4>總金額為 $ {totalPrice} 元</h4>
-            </div>
-          </div>
+      <div className="container mt-6 mb-13 text-center">
+        <img
+          src={images.logo4}
+          alt="logo4.svg"
+          style={{ height: 250, width: 250 }}
+        />
+        <h3 className="text-success-500 mb-5">謝謝您！您的訂單已成立！</h3>
+        <h4 className="text-primary-600 me-3">訂單編號：{order.create_at}</h4>
+        <div className="my-4">
+          <p className="fs-5">
+            可前往
+            <Link
+              to="/member_sidebar_layout/orders"
+              className="fw-bold text-success-900"
+            >
+              會員中心
+            </Link>
+            查看訂單或
+            <Link
+              to="/products_sidebar_layout/products"
+              className="fw-bold text-success-900"
+            >
+              再去逛逛
+            </Link>
+          </p>
         </div>
       </div>
     </>

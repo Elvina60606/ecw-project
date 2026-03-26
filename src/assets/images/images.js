@@ -26,6 +26,7 @@ import lemonMadeleine from "./lemonMadeleine.png";
 import lineWhite from "./lineWhite.svg";
 import loginHero from "./loginHero.jpg";
 import logo3 from "./logo3.svg";
+import logo4 from "./logo4.jpg";
 import madeleine from "./madeleine.png";
 import madeleineMobile from "./madeleineMobile.png";
 import midautumnfestivalBanner from "./midautumnfestivalBanner.jpg";
@@ -76,6 +77,7 @@ const images = {
 
   //Coupon
   logo3,
+  logo4,
   contentcopy,
 
   avatar,
