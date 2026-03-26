@@ -131,7 +131,10 @@ const DesktopNav = ({
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" className="dropdown-item px-6 py-2">
+                    <Link
+                      to="/member_sidebar_layout/coupons"
+                      className="dropdown-item px-6 py-2"
+                    >
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">
                           local_activity

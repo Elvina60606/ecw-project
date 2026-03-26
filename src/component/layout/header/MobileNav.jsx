@@ -64,7 +64,7 @@ const MobileNav = ({ isLogin, images }) => {
             </Link>
           </li>
           <li>
-            <Link to="#" className="py-3 w-100">
+            <Link to="/member_sidebar_layout/coupons" className="py-3 w-100">
               優惠券＆點數
             </Link>
           </li>

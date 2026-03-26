@@ -10,6 +10,7 @@ import Carts from "../views/frontend/carts/Carts";
 import OrderSuccess from "../views/frontend/OrderSuccess";
 import MemberSidebarLayout from "../layout/MemberSidebarLayout";
 import Orders from "../views/frontend/Orders";
+import Coupons from "../views/frontend/Coupon";
 
 import AdminLayout from "../layout/AdminLayout";
 import AdminProtectedRoute from "./AdminProtectedRoute";
@@ -72,6 +73,10 @@ const routes = [
               {
                 path: "orders",
                 element: <Orders />,
+              },
+              {
+                path: "coupons",
+                element: <Coupons />,
               },
             ],
           },

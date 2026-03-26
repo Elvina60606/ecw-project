@@ -78,7 +78,7 @@ const MemberSidebarLayout = () => {
                   </li>
                   <li className="mx-6" role="presentation">
                     <Link
-                      to="#"
+                      to="/member_sidebar_layout/coupons"
                       className="nav-link w-100 py-2 mb-2 rounded-3 text-start sideBar-hover"
                     >
                       <span className="fs-6 text-primary-700 ps-6">
