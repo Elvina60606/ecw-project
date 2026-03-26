@@ -82,7 +82,7 @@ export const ordersSlice = createSlice({
       })
 
       .addCase(getAsyncOrder.fulfilled, (state, action) => {
-        state.order = action.payload;
+        state.order = action.payload.order;
       });
   },
 });
