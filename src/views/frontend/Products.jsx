@@ -12,13 +12,20 @@ import MessageToast from "../../component/utils/MessageToast";
 
 const Products = () => {
   const dispatch = useDispatch();
+  const { category } = useParams();
   const { products, pagination, currentPage, isLoading } = useSelector(
     (state) => state.products,
   );
 
+  // 切分類 → reset page
   useEffect(() => {
-    dispatch(getAsyncProducts(currentPage));
-  }, [dispatch, currentPage]);
+    dispatch(setCurrentPage(1));
+  }, [category, dispatch]);
+
+  // 抓資料
+  useEffect(() => {
+    dispatch(getAsyncProducts({ page: currentPage, category }));
+  }, [dispatch, currentPage, category]);
 
   const [dropdownShow, setDropdownShow] = useState(false);
 
@@ -32,32 +39,30 @@ const Products = () => {
     dispatch(getAsyncCarts());
   };
 
-  //product category
-  const { category } = useParams();
-
-  const filterProducts = category
-    ? products.filter((product) => product.category === category)
-    : products;
+  const displayProducts = products;
 
   //pagination
   const handlePageChange = (page) => {
     dispatch(setCurrentPage(page));
   };
 
-  return isLoading ? (
-    <div className="col-md-6 text-center" style={{ minHeight: 400 }}>
-      <MagnifyingGlass
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="magnifying-glass-loading"
-        wrapperStyle={{}}
-        wrapperClass="magnifying-glass-wrapper"
-        glassColor="#c0efff"
-        color="#73654f"
-      />
-    </div>
-  ) : (
+  if (isLoading)
+    return (
+      <div className="col-md-6 text-center" style={{ minHeight: 400 }}>
+        <MagnifyingGlass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="magnifying-glass-loading"
+          wrapperStyle={{}}
+          wrapperClass="magnifying-glass-wrapper"
+          glassColor="#c0efff"
+          color="#73654f"
+        />
+      </div>
+    );
+
+  return (
     <>
       <MessageToast />
       <section className="col-md-9">
@@ -74,8 +79,11 @@ const Products = () => {
             {categories.map((c) => (
               <li key={c.id}>
                 <NavLink
-                  to={`/products_sidebar_layout/products/${c.id}`}
-                  className="dropdown-item"
+                  to={
+                    c.id
+                      ? `/products_sidebar_layout/products/${c.id}`
+                      : `/products_sidebar_layout/products`
+                  }
                 >
                   {c.name}
                 </NavLink>
@@ -86,7 +94,7 @@ const Products = () => {
 
         {/* 商品資料 */}
         <div className="row py-6 py-md-8 g-6">
-          {filterProducts?.map((product) => {
+          {displayProducts?.map((product) => {
             return (
               <div className="col-sm-6 col-lg-4" key={product.id}>
                 <div className="card h-100">

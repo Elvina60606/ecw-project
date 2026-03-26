@@ -18,7 +18,9 @@ const Footer = () => {
               <span className="material-symbols-outlined fill me-1 text-primary-300">
                 call
               </span>
-              +886 0800-123-456
+              <a href="tel:+886800123456" aria-label="撥打 0800-123-456">
+                0800-123-456
+              </a>
             </p>
             <p
               className="fs-7 text-white py-2 py-lg-1 d-flex align-items-center justify-content-center

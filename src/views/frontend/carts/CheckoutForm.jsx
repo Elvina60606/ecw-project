@@ -157,13 +157,15 @@ const CheckoutForm = ({
             </div>
           </div>
 
-          <Payment register={register} />
+          <Payment register={register} errors={errors} />
 
           <Invoice register={register} watch={watch} resetField={resetField} />
         </div>
-        <button type="submit" className="btn btn-order w-100">
-          確認訂購
-        </button>
+        <div className="text-center">
+          <button type="submit" className="btn btn-order w-75">
+            確認訂購
+          </button>
+        </div>
       </form>
     </>
   );

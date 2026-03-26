@@ -28,6 +28,8 @@ export const asyncLogout = createAsyncThunk(
     try {
       const res = await axios.post(`${VITE_URL}/v2/logout`);
       dispatch(getAsyncMessage(res.data));
+      document.cookie =
+        "hexToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"; //清除cookie
       return res.data;
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
@@ -42,7 +44,13 @@ export const adminAuthSlice = createSlice({
     token: null,
     success: false,
   },
-  reducers: {},
+  reducers: {
+    setAdminAuth: (state, action) => {
+      state.adminAuth = true;
+      state.token = action.payload;
+      state.success = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAsyncAuth.fulfilled, (state, action) => {
@@ -57,5 +65,7 @@ export const adminAuthSlice = createSlice({
       });
   },
 });
+
+export const { setAdminAuth } = adminAuthSlice.actions;
 
 export default adminAuthSlice.reducer;

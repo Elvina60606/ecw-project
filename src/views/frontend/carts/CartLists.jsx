@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import { deleteAsyncCarts } from "../../../slices/cartsSlice";
 
-const CartLists = ({ carts, incrementQty, decrementQty, deleteCart }) => {
+const CartLists = ({ carts, changeQty, deleteCart, formatPrice }) => {
   const dispatch = useDispatch();
 
   return (
@@ -56,16 +56,16 @@ const CartLists = ({ carts, incrementQty, decrementQty, deleteCart }) => {
                           <div className="d-inline-flex justify-content-center align-items-center border rounded-3 mx-auto">
                             <button
                               type="button"
-                              className="btn btn-qty"
-                              onClick={() => decrementQty(cart)}
+                              className={`btn btn-qty ${cart.qty === 1 ? "disabled" : ""}`}
+                              onClick={() => changeQty(cart, -1)}
                             >
                               <i className="bi bi-dash-lg"></i>
                             </button>
                             <h6 className="px-4">{cart.qty}</h6>
                             <button
                               type="button"
-                              className="btn btn-qty"
-                              onClick={() => incrementQty(cart)}
+                              className={`btn btn-qty ${cart.qty === 10 ? "disabled" : ""}`}
+                              onClick={() => changeQty(cart, +1)}
                             >
                               <i className="bi bi-plus-lg"></i>
                             </button>
@@ -73,7 +73,7 @@ const CartLists = ({ carts, incrementQty, decrementQty, deleteCart }) => {
                         </div>
                         <div style={{ width: "15%" }}>
                           <h5 className="text-secondary-500">
-                            NT$ {cart.product.price * cart.qty}
+                            NT$ {formatPrice(cart.product.price * cart.qty)}
                           </h5>
                         </div>
                         <div style={{ width: "10%" }}>
@@ -132,23 +132,23 @@ const CartLists = ({ carts, incrementQty, decrementQty, deleteCart }) => {
                   >
                     <button
                       type="button"
-                      className="btn btn-qty flex-fill"
-                      onClick={() => decrementQty(cart)}
+                      className={`btn btn-qty flex-fill ${cart.qty === 1 ? "disabled" : ""}`}
+                      onClick={() => changeQty(cart, -1)}
                     >
                       <i className="bi bi-dash-lg"></i>
                     </button>
                     <h6 className="text-center px-4 flex-fill">{cart.qty}</h6>
                     <button
                       type="button"
-                      className="btn btn-qty flex-fill"
-                      onClick={() => incrementQty(cart)}
+                      className={`btn btn-qty flex-fill ${cart.qty === 1 ? "disabled" : ""}`}
+                      onClick={() => changeQty(cart, +1)}
                     >
                       <i className="bi bi-plus-lg"></i>
                     </button>
                   </div>
                   <div className="d-flex align-items-center">
                     <h5 className="text-secondary-500">
-                      NT$ {cart.product.price * cart.qty}
+                      NT$ {formatPrice(cart.product.price * cart.qty)}
                     </h5>
                     <button
                       type="button"

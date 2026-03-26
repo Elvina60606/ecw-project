@@ -7,6 +7,7 @@ import Products from "../views/frontend/Products";
 import Product from "../views/frontend/Product";
 import ProtectedRoute from "./ProtectedRoute";
 import Carts from "../views/frontend/carts/Carts";
+import OrderSuccess from "../views/OrderSuccess";
 import MemberSidebarLayout from "../layout/MemberSidebarLayout";
 import Orders from "../views/frontend/Orders";
 
@@ -59,6 +60,10 @@ const routes = [
           {
             path: "/carts",
             element: <Carts />,
+          },
+          {
+            path: "/order_success/:Id",
+            element: <OrderSuccess />,
           },
           {
             path: "/member_sidebar_layout",

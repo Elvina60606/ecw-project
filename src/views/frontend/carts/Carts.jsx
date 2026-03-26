@@ -15,12 +15,17 @@ import Promotion from "./Promotion";
 import OrderPrice from "./OrderPrice";
 import CheckoutForm from "./CheckoutForm";
 import { getAsyncMessage } from "../../../slices/messageSlice";
+import { updateCartQtyLocal } from "../../../slices/cartsSlice";
+import { useNavigate } from "react-router";
 
 const Carts = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { carts, totalPrice } = useSelector((state) => state.carts);
   const shippingCost = totalPrice > 1000 ? 0 : 60;
   const finalPrice = totalPrice + shippingCost;
+
+  const formatPrice = (price) => price.toLocaleString("zh-Hant");
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -33,26 +38,21 @@ const Carts = () => {
     fetchCarts();
   }, [dispatch]);
 
-  const incrementQty = (cart) => {
-    if (cart.qty >= 10) return;
+  const changeQty = (cart, delta) => {
+    const newQty = cart.qty + delta;
+
+    if (newQty < 1 || newQty > 10) return;
+
+    const prevQty = cart.qty;
+
+    dispatch(updateCartQtyLocal({ cartId: cart.id, qty: newQty }));
 
     dispatch(
       updateAsyncCarts({
         cartId: cart.id,
         productId: cart.product.id,
-        qty: cart.qty + 1,
-      }),
-    );
-  };
-
-  const decrementQty = (cart) => {
-    if (cart.qty <= 1) return;
-
-    dispatch(
-      updateAsyncCarts({
-        cartId: cart.id,
-        productId: cart.product.id,
-        qty: cart.qty - 1,
+        qty: newQty,
+        prevQty,
       }),
     );
   };
@@ -82,11 +82,15 @@ const Carts = () => {
   const member = useSelector((state) => state.member.member);
 
   const onSubmit = async (data) => {
-    await dispatch(postAsyncOrders(data));
-
+    const res = await dispatch(postAsyncOrders(data));
+    const Id = res.payload.orderId;
     dispatch(getAsyncOrders());
     dispatch(getAsyncCarts());
     reset();
+
+    if (Id) {
+      navigate(`/order_success/${Id}`);
+    }
   };
 
   return (
@@ -95,9 +99,9 @@ const Carts = () => {
       <section className="bg-neutral-50 py-8 py-md-12">
         <CartLists
           carts={carts}
-          incrementQty={incrementQty}
-          decrementQty={decrementQty}
+          changeQty={changeQty}
           deleteCart={deleteCart}
+          formatPrice={formatPrice}
         />
 
         <Promotion />
@@ -106,6 +110,7 @@ const Carts = () => {
           totalPrice={totalPrice}
           shippingCost={shippingCost}
           finalPrice={finalPrice}
+          formatPrice={formatPrice}
         />
       </section>
 

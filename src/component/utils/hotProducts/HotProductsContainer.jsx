@@ -10,7 +10,7 @@ const HotProductsContainer = () => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getAsyncProducts());
+    dispatch(getAsyncProducts({}));
   }, [dispatch]);
 
   const hotProductsId = [

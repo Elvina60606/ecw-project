@@ -132,7 +132,7 @@ const Product = () => {
               {/* Product Qty */}
               <div className="quantity-control d-flex align-items-center w-50">
                 <button
-                  className="qty-btn btn btn-outline-secondary"
+                  className={`qty-btn btn btn-outline-secondary ${qty === 1 ? "disabled" : ""}`}
                   type="button"
                   onClick={() => decrementCount()}
                 >
@@ -147,7 +147,7 @@ const Product = () => {
                   style={{ width: 60 }}
                 />
                 <button
-                  className="qty-btn btn btn-outline-secondary"
+                  className={`qty-btn btn btn-outline-secondary ${qty === 10 ? "disabled" : ""}`}
                   type="button"
                   onClick={() => incrementCount()}
                 >
@@ -179,7 +179,7 @@ const Product = () => {
                   <span className="me-6">數量：</span>
                   <div className="quantity-control d-flex align-items-center">
                     <button
-                      className="qty-btn btn btn-outline-secondary"
+                      className={`qty-btn btn btn-outline-secondary ${qty === 1 ? "disabled" : ""}`}
                       type="button"
                       onClick={() => decrementCount()}
                     >
@@ -193,7 +193,7 @@ const Product = () => {
                       style={{ width: 60 }}
                     />
                     <button
-                      className="qty-btn btn btn-outline-secondary"
+                      className={`qty-btn btn btn-outline-secondary ${qty === 10 ? "disabled" : ""}`}
                       type="button"
                       onClick={() => incrementCount()}
                     >

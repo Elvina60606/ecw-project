@@ -38,7 +38,7 @@ export const postAsyncCarts = createAsyncThunk(
 
 export const updateAsyncCarts = createAsyncThunk(
   "carts/updateAsyncCarts",
-  async ({ cartId, productId, qty }, { dispatch }) => {
+  async ({ cartId, productId, qty, prevQty }, { dispatch }) => {
     const data = {
       product_id: productId,
       qty,
@@ -53,6 +53,7 @@ export const updateAsyncCarts = createAsyncThunk(
       dispatch(getAsyncMessage(res.data));
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
+      dispatch(updateCartQtyLocal({ cartId, qty: prevQty }));
     }
   },
 );
@@ -79,7 +80,13 @@ export const cartsSlice = createSlice({
     totalPrice: 0,
     totalQuantity: 0, //for header badge
   },
-  reducers: {},
+  reducers: {
+    updateCartQtyLocal(state, action) {
+      const { cartId, qty } = action.payload;
+      const target = state.carts.find((c) => c.id === cartId);
+      if (target) target.qty = qty;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAsyncCarts.fulfilled, (state, action) => {
       state.carts = action.payload.carts;
@@ -94,5 +101,7 @@ export const cartsSlice = createSlice({
     });
   },
 });
+
+export const { updateCartQtyLocal } = cartsSlice.actions;
 
 export default cartsSlice.reducer;
