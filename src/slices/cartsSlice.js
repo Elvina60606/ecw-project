@@ -73,11 +73,32 @@ export const deleteAsyncCarts = createAsyncThunk(
   },
 );
 
+// coupon
+export const applyCoupon = createAsyncThunk(
+  "carts/applyCoupon",
+  async (code, { dispatch }) => {
+    try {
+      const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/coupon`, {
+        data: { code },
+      });
+      dispatch(getAsyncCarts());
+      dispatch(getAsyncMessage(res.data));
+    } catch (error) {
+      dispatch(
+        getAsyncMessage({
+          message: error.response?.data?.message || error.message,
+        }),
+      );
+    }
+  },
+);
+
 export const cartsSlice = createSlice({
   name: "carts",
   initialState: {
     carts: [],
     totalPrice: 0,
+    finalPrice: 0,
     totalQuantity: 0, //for header badge
   },
   reducers: {
@@ -90,10 +111,8 @@ export const cartsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAsyncCarts.fulfilled, (state, action) => {
       state.carts = action.payload.carts;
-      state.totalPrice = action.payload.carts.reduce(
-        (sum, cart) => sum + cart.product.price * cart.qty,
-        0,
-      );
+      state.totalPrice = action.payload.total;
+      state.finalPrice = action.payload.final_total;
       state.totalQuantity = action.payload.carts.reduce(
         (sum, item) => sum + item.qty,
         0,

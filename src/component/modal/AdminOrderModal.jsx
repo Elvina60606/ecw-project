@@ -6,10 +6,14 @@ const AdminOrderModal = () => {
   const adminOrder = useSelector((state) => state.adminOrders.adminOrder);
 
   const orderProducts = Object.values(adminOrder.products || {});
+
+  //price
   const totalPrice = orderProducts.reduce(
-    (sum, item) => sum + item.total * item.qty,
+    (sum, item) => sum + item.product.price * item.qty,
     0,
   );
+  const finalPrice = adminOrder.total;
+  const codePrice = totalPrice - finalPrice || 0;
 
   if (!adminOrder) return null;
 
@@ -28,11 +32,14 @@ const AdminOrderModal = () => {
                   <div key={item.id} className="mb-4">
                     <p>{item.product.title}</p>
                     <p>
-                      ${item.total} x {item.qty} = ${item.total * item.qty}
+                      ${item.product.price} x {item.qty} = $
+                      {item.product.price * item.qty}
                     </p>
                   </div>
                 ))}
-                <h4>訂單總金額：${totalPrice}</h4>
+                <h5>原價：${totalPrice}</h5>
+                <h5>優惠：- ${codePrice}</h5>
+                <h4 className="my-4">訂單總金額：${finalPrice}</h4>
               </div>
               <div className="col-6">
                 <h5 className="mb-3">收件人資訊</h5>

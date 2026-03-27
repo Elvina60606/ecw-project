@@ -21,9 +21,12 @@ import { useNavigate } from "react-router";
 const Carts = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { carts, totalPrice } = useSelector((state) => state.carts);
+  const { carts, totalPrice, finalPrice } = useSelector((state) => state.carts);
+
+  //price
   const shippingCost = totalPrice > 1000 ? 0 : 60;
-  const finalPrice = totalPrice + shippingCost;
+  const codePrice = totalPrice - finalPrice;
+  const terminalPrice = finalPrice + shippingCost;
 
   const formatPrice = (price) => price.toLocaleString("zh-Hant");
 
@@ -109,7 +112,8 @@ const Carts = () => {
         <OrderPrice
           totalPrice={totalPrice}
           shippingCost={shippingCost}
-          finalPrice={finalPrice}
+          codePrice={codePrice}
+          terminalPrice={terminalPrice}
           formatPrice={formatPrice}
         />
       </section>

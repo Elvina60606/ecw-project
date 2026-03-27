@@ -19,6 +19,7 @@ import AdminOrders from "../views/admin/AdminOrders";
 import Dashboard from "../views/admin/Dashboard";
 
 import NotFound from "../views/NotFound";
+import AdminCoupons from "../views/admin/AdminCoupons";
 
 const routes = [
   {
@@ -102,6 +103,10 @@ const routes = [
           {
             path: "admin_orders",
             element: <AdminOrders />,
+          },
+          {
+            path: "admin_coupons",
+            element: <AdminCoupons />,
           },
         ],
       },

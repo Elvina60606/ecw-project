@@ -4,12 +4,14 @@ import { useNavigate } from "react-router";
 import Modal from "./Modal";
 import AdminModal from "./AdminModal";
 import AdminOrderModal from "./AdminOrderModal";
+import AdminCouponModal from "./AdminCouponModal";
 import { closeModal } from "../../slices/modalSlice";
 import { logout } from "../../slices/loginSlice";
 
 const MODAL_COMPONENT = {
   PRODUCT: AdminModal,
   ORDER: AdminOrderModal,
+  COUPON: AdminCouponModal,
 };
 
 const MODAL_CONTENTS = {

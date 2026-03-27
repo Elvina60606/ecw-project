@@ -34,6 +34,16 @@ const AdminLayout = () => {
             訂單管理
           </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink
+            to="/admin/admin_coupons"
+            className={({ isActive }) =>
+              `nav-link ${isActive ? "active text-primary-600 border-bottom border-3 border-neutral-500" : ""}`
+            }
+          >
+            優惠卷管理
+          </NavLink>
+        </li>
       </ul>
       <Outlet />
     </>
