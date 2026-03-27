@@ -24,7 +24,7 @@ const Carts = () => {
   const { carts, totalPrice, finalPrice } = useSelector((state) => state.carts);
 
   //price
-  const shippingCost = totalPrice > 1000 ? 0 : 60;
+  const shippingCost = finalPrice > 1000 ? 0 : 60;
   const codePrice = totalPrice - finalPrice;
   const terminalPrice = finalPrice + shippingCost;
 

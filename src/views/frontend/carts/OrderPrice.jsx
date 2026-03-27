@@ -21,7 +21,7 @@ const OrderPrice = ({
           </div>
           <div className="d-flex justify-content-between mb-2">
             <p className="fs-7">點數</p>
-            <p className="fs-7">$ 0</p>
+            <p className="fs-7">-</p>
           </div>
           <div className="d-flex justify-content-between mb-2">
             <p className="fs-7">優惠碼</p>
@@ -29,7 +29,7 @@ const OrderPrice = ({
           </div>
           <div className="d-flex justify-content-between mb-2 pb-2 border-bottom">
             <p className="fs-7">優惠券</p>
-            <p className="fs-7">$ 0</p>
+            <p className="fs-7">-</p>
           </div>
           <div className="d-flex justify-content-between align-items-center mb-2">
             <h5 className="fw-500">總金額</h5>
