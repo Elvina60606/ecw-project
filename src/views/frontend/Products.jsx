@@ -17,11 +17,6 @@ const Products = () => {
     (state) => state.products,
   );
 
-  // 切分類 → reset page
-  useEffect(() => {
-    dispatch(setCurrentPage(1));
-  }, [category, dispatch]);
-
   // 抓資料
   useEffect(() => {
     dispatch(getAsyncProducts({ page: currentPage, category }));

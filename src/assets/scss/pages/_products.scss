@@ -13,7 +13,6 @@
   border-radius: 8px;
   padding-left: 0;
   list-style-type: none;
-  
 }
 
 .sidebar-item {
@@ -21,7 +20,7 @@
   padding: 1rem 2.5rem;
   color: $primary-800;
 
-// 圓角處理
+  // 圓角處理
   &:first-child {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
@@ -34,7 +33,7 @@
   + .sidebar-item {
     border-top-width: 0;
   }
-  
+
   a {
     display: block; // 讓 a 填滿整個 li
   }
@@ -44,14 +43,21 @@
     color: $primary-600;
     pointer-events: none;
   }
-&:hover{
-    color:$secondary-500;
+  &:hover {
+    color: $secondary-500;
+  }
 }
 
+.sidebar-head {
+  background-color: $secondary-50;
+  color: $primary-600;
+  pointer-events: none;
 }
 
-.sidebar-head{
-    background-color: $secondary-50;
-    color: $primary-600;
-    pointer-events: none;
+.sidebar-link {
+  &.active {
+    h5 {
+      color: $secondary-500;
+    }
+  }
 }
