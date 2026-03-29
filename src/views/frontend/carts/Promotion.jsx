@@ -62,6 +62,7 @@ const Promotion = () => {
                   type="button"
                   className="btn btn-coupon me-4 w-50 flex-fill"
                   onClick={() => dispatch(applyCoupon(couponCode))}
+                  disabled={!couponCode.trim()}
                 >
                   使用
                 </button>
@@ -69,6 +70,7 @@ const Promotion = () => {
                   type="button"
                   className="btn btn-coupon-clear w-50 flex-fill"
                   onClick={() => setCouponCode("")}
+                  disabled={!couponCode.trim()}
                 >
                   清除
                 </button>

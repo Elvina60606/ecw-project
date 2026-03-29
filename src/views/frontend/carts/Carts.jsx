@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 
@@ -17,18 +17,19 @@ import CheckoutForm from "./CheckoutForm";
 import { getAsyncMessage } from "../../../slices/messageSlice";
 import { updateCartQtyLocal } from "../../../slices/cartsSlice";
 import { useNavigate } from "react-router";
+import { useDebounce } from "@uidotdev/usehooks";
 
 const Carts = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { carts, totalPrice, finalPrice } = useSelector((state) => state.carts);
 
-  //price
+  //price ----------------------------------------
   const shippingCost = finalPrice > 1000 ? 0 : 60;
   const codePrice = totalPrice - finalPrice;
   const terminalPrice = finalPrice + shippingCost;
-
   const formatPrice = (price) => price.toLocaleString("zh-Hant");
+  //-------------------------------------------------
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -41,24 +42,30 @@ const Carts = () => {
     fetchCarts();
   }, [dispatch]);
 
-  const changeQty = (cart, delta) => {
-    const newQty = cart.qty + delta;
+  const [pendingQty, setPendingQty] = useState(null);
+  const debouncedQty = useDebounce(pendingQty, 300);
+
+  const changeQty = (cartId, delta) => {
+    const currentCart = carts.find((c) => c.id === cartId);
+    const newQty = currentCart.qty + delta;
 
     if (newQty < 1 || newQty > 10) return;
 
-    const prevQty = cart.qty;
+    dispatch(updateCartQtyLocal({ cartId, qty: newQty }));
 
-    dispatch(updateCartQtyLocal({ cartId: cart.id, qty: newQty }));
-
-    dispatch(
-      updateAsyncCarts({
-        cartId: cart.id,
-        productId: cart.product.id,
-        qty: newQty,
-        prevQty,
-      }),
-    );
+    setPendingQty({
+      cartId,
+      productId: currentCart.product.id,
+      qty: newQty,
+      prevQty: currentCart.qty,
+    });
   };
+
+  useEffect(() => {
+    if (!debouncedQty) return;
+
+    dispatch(updateAsyncCarts(debouncedQty));
+  }, [debouncedQty, dispatch]);
 
   const deleteCart = (cartId) => {
     dispatch(deleteAsyncCarts(cartId));

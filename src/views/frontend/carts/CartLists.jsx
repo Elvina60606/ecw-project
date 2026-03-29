@@ -57,7 +57,7 @@ const CartLists = ({ carts, changeQty, deleteCart, formatPrice }) => {
                             <button
                               type="button"
                               className={`btn btn-qty ${cart.qty === 1 ? "disabled" : ""}`}
-                              onClick={() => changeQty(cart, -1)}
+                              onClick={() => changeQty(cart.id, -1)}
                             >
                               <i className="bi bi-dash-lg"></i>
                             </button>
@@ -65,7 +65,7 @@ const CartLists = ({ carts, changeQty, deleteCart, formatPrice }) => {
                             <button
                               type="button"
                               className={`btn btn-qty ${cart.qty === 10 ? "disabled" : ""}`}
-                              onClick={() => changeQty(cart, +1)}
+                              onClick={() => changeQty(cart.id, +1)}
                             >
                               <i className="bi bi-plus-lg"></i>
                             </button>

@@ -49,7 +49,6 @@ export const updateAsyncCarts = createAsyncThunk(
         `${VITE_URL}/v2/api/${VITE_PATH}/cart/${cartId}`,
         { data },
       );
-      dispatch(getAsyncCarts());
       dispatch(getAsyncMessage(res.data));
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
