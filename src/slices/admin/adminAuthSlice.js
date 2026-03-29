@@ -37,10 +37,27 @@ export const asyncLogout = createAsyncThunk(
   },
 );
 
+export const checkAsyncAuth = createAsyncThunk(
+  "adminAuth/checkAsyncAuth",
+  async (_, { dispatch }) => {
+    try {
+      const res = await axios.post(`${VITE_URL}/v2/api/user/check`);
+      dispatch(getAsyncMessage({ ...res.data, message: "登入中" }));
+    } catch (error) {
+      dispatch(asyncLogout("請重新登入"));
+      dispatch(setAdminAuth(false));
+      dispatch(getAsyncMessage(error.response.data));
+    } finally {
+      dispatch(setAuthChecked(true));
+    }
+  },
+);
+
 export const adminAuthSlice = createSlice({
   name: "adminAuth",
   initialState: {
     adminAuth: false,
+    isAuthChecked: false,
     token: null,
     success: false,
   },
@@ -49,6 +66,9 @@ export const adminAuthSlice = createSlice({
       state.adminAuth = true;
       state.token = action.payload;
       state.success = true;
+    },
+    setAuthChecked: (state, action) => {
+      state.isAuthChecked = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -66,6 +86,6 @@ export const adminAuthSlice = createSlice({
   },
 });
 
-export const { setAdminAuth } = adminAuthSlice.actions;
+export const { setAdminAuth, setAuthChecked } = adminAuthSlice.actions;
 
 export default adminAuthSlice.reducer;
