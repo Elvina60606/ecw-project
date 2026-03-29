@@ -1,9 +1,9 @@
 import images from "../../assets/images/images";
+import LoadingDNA from "../../component/utils/LoadingDNA";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
 import { getAsyncOrder } from "../../slices/ordersSlice";
 import { useEffect } from "react";
-import { Comment } from "react-loader-spinner";
 
 const OrderSuccess = () => {
   const dispatch = useDispatch();
@@ -17,21 +17,7 @@ const OrderSuccess = () => {
 
   const order = useSelector((state) => state.orders.order);
 
-  if (!order)
-    return (
-      <div className="text-center my-13" style={{ minHeight: 400 }}>
-        <Comment
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="comment-loading"
-          wrapperStyle={{}}
-          wrapperClass="comment-wrapper"
-          color="#fff"
-          backgroundColor="#F4442E"
-        />
-      </div>
-    );
+  if (!order) return <LoadingDNA />;
 
   return (
     <>

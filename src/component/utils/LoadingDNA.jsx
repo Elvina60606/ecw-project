@@ -2,7 +2,7 @@ import { DNA } from "react-loader-spinner";
 const LoadingDNA = () => {
   return (
     <>
-      <div className="container  text-center my-12">
+      <div className="container text-center my-13">
         <DNA
           visible={true}
           height="80"

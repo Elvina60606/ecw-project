@@ -4,8 +4,8 @@ import { Link, NavLink, useParams } from "react-router";
 
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
 import { getAsyncCarts, postAsyncCarts } from "../../slices/cartsSlice";
-import { MagnifyingGlass } from "react-loader-spinner";
 
+import LoadingDNA from "../../component/utils/LoadingDNA";
 import categories from "../../data/categories";
 import Pagination from "../../component/utils/Pagination";
 import MessageToast from "../../component/utils/MessageToast";
@@ -43,17 +43,8 @@ const Products = () => {
 
   if (isLoading)
     return (
-      <div className="col-md-6 text-center" style={{ minHeight: 400 }}>
-        <MagnifyingGlass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="magnifying-glass-loading"
-          wrapperStyle={{}}
-          wrapperClass="magnifying-glass-wrapper"
-          glassColor="#c0efff"
-          color="#73654f"
-        />
+      <div className="col-md-9">
+        <LoadingDNA />
       </div>
     );
 

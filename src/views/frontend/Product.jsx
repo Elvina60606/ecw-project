@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 
 import { getAsyncProduct } from "../../slices/productsSlice";
 import { postAsyncCarts } from "../../slices/cartsSlice";
-import { ProgressBar } from "react-loader-spinner";
+import { getAsyncMessage } from "../../slices/messageSlice";
 
+import LoadingDNA from "../../component/utils/LoadingDNA";
 import ProductImages from "../../component/product/ProductImages";
 import ProductNote from "../../component/product/ProductNote";
 import HotProductsContainer from "../../component/utils/hotProducts/HotProductsContainer";
 import MessageToast from "../../component/utils/MessageToast";
-import { getAsyncMessage } from "../../slices/messageSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -65,19 +65,7 @@ const Product = () => {
   };
 
   if (!product) {
-    return (
-      <div className="container my-5 text-center">
-        <ProgressBar
-          visible={true}
-          height="80"
-          width="80"
-          color="#FC8D5D"
-          barColor="#FECDB9"
-          borderColor="#BDBDBD"
-          ariaLabel="progress-bar-loading"
-        />
-      </div>
-    );
+    return <LoadingDNA />;
   }
 
   return (
