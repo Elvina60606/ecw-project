@@ -64,7 +64,11 @@ const Carts = () => {
   useEffect(() => {
     if (!debouncedQty) return;
 
-    dispatch(updateAsyncCarts(debouncedQty));
+    const updateCart = async () => {
+      await dispatch(updateAsyncCarts(debouncedQty));
+      dispatch(getAsyncCarts());
+    };
+    updateCart();
   }, [debouncedQty, dispatch]);
 
   const deleteCart = (cartId) => {
