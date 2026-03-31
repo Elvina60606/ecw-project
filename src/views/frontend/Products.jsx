@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useParams } from "react-router";
 
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
-import { getAsyncCarts, postAsyncCarts } from "../../slices/cartsSlice";
+import { postAsyncCarts } from "../../slices/cartsSlice";
 
 import LoadingDNA from "../../component/utils/LoadingDNA";
 import categories from "../../data/categories";
@@ -24,14 +24,13 @@ const Products = () => {
 
   const [dropdownShow, setDropdownShow] = useState(false);
 
-  const addOneToCart = async (id) => {
-    await dispatch(
+  const addOneToCart = (id) => {
+    dispatch(
       postAsyncCarts({
         productId: id,
         qty: 1,
       }),
     );
-    dispatch(getAsyncCarts());
   };
 
   const displayProducts = products;

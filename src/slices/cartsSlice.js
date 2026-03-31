@@ -80,7 +80,7 @@ export const applyCoupon = createAsyncThunk(
       const res = await axios.post(`${VITE_URL}/v2/api/${VITE_PATH}/coupon`, {
         data: { code },
       });
-      dispatch(getAsyncCarts());
+      //dispatch(getAsyncCarts());
       dispatch(getAsyncMessage(res.data));
     } catch (error) {
       dispatch(
