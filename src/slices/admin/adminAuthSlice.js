@@ -41,6 +41,8 @@ export const checkAsyncAuth = createAsyncThunk(
   "adminAuth/checkAsyncAuth",
   async (token, { dispatch }) => {
     try {
+      if (!token) return { success: false };
+
       const res = await axios.post(`${VITE_URL}/v2/api/user/check`);
       dispatch(getAsyncMessage({ ...res.data, message: "登入中" }));
       return res.data;
