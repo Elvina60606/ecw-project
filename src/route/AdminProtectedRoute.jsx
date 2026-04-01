@@ -2,12 +2,9 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  checkAsyncAuth,
-  setAdminAuth,
-  setAuthChecked,
-} from "../slices/admin/AdminAuthSlice";
+import { checkAsyncAuth, setAuthStatus } from "../slices/admin/AdminAuthSlice";
 import LoadindDNA from "../component/utils/LoadingDNA";
+import { getAsyncMessage } from "../slices/messageSlice";
 
 const getCookie = (name) => {
   return document.cookie
@@ -24,10 +21,10 @@ const AdminProtectedRoute = () => {
     const token = getCookie("hexToken");
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
-      dispatch(setAdminAuth(token));
-      dispatch(checkAsyncAuth());
-    } else {
-      dispatch(setAuthChecked(true));
+      dispatch(checkAsyncAuth(token));
+    } else if (!token) {
+      dispatch(getAsyncMessage({ message: "請先登入" }));
+      dispatch(setAuthStatus({ adminAuth: false }));
     }
   }, [dispatch]);
 

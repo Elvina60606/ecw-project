@@ -15,8 +15,8 @@ const Dashboard = () => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      username: "",
-      password: "",
+      username: "sweetchen709+1@gmail.com",
+      password: "ononcake666",
     },
   });
 
