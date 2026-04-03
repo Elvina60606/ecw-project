@@ -34,6 +34,7 @@ const Products = () => {
   };
 
   const displayProducts = products;
+  const currentCategory = categories.find((c) => c.id === category);
 
   //pagination
   const handlePageChange = (page) => {
@@ -53,22 +54,26 @@ const Products = () => {
       <section className="col-md-9">
         <h2 className="fs-3 fs-lg-2 mb-6 mb-md-0">商品介紹</h2>
         <div className="dropdown d-block d-md-none">
-          <Link
-            to="/products_sidebar_layout/products"
+          <div
             className="form-select text-primary-800 text-start py-2"
             onClick={() => setDropdownShow((prev) => !prev)}
           >
-            商品總覽
-          </Link>
-          <ul className={`dropdown-menu w-100 mt-1 ${dropdownShow && "show"}`}>
+            {currentCategory?.name || "商品總覽"}
+          </div>
+          <ul
+            className={`dropdown-menu w-100 mt-1 ${dropdownShow ? "show" : ""}`}
+          >
             {categories.map((c) => (
-              <li key={c.id}>
+              <li key={c.id} className="dropdown-item">
                 <NavLink
                   to={
-                    c.id
-                      ? `/products_sidebar_layout/products/${c.id}`
-                      : `/products_sidebar_layout/products`
+                    c.id === "all"
+                      ? "/products_sidebar_layout/products"
+                      : `/products_sidebar_layout/products/${c.id}`
                   }
+                  end={c.id === "all"}
+                  className="w-100"
+                  onClick={() => setDropdownShow(false)}
                 >
                   {c.name}
                 </NavLink>

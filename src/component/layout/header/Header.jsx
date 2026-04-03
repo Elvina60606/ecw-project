@@ -32,7 +32,7 @@ const Header = ({ mobileOpen, setMobileOpen }) => {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg navbar-light bg-light mb-auto ${!mobileOpen && "shadow"}`}
+        className={`navbar navbar-expand-lg navbar-light bg-light ${!mobileOpen && "shadow"}`}
       >
         <div className="container">
           {/* Logo */}

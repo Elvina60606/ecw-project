@@ -11,7 +11,10 @@ const MainLayout = () => {
     <>
       <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
         <Header mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
-        <main style={{ display: mobileOpen ? "none" : "block" }}>
+        <main
+          style={{ display: mobileOpen ? "none" : "block" }}
+          className="mb-auto"
+        >
           <ScrollToTop />
           <Outlet />
         </main>

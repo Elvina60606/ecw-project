@@ -23,7 +23,7 @@ const MemberSidebarLayout = () => {
                   />
                   <p className="fs-6 border-bottom pb-7">Claire158872</p>
                 </div>
-                <ul className="li-style-none d-flex flex-column justify-content-start p-0">
+                <ul className="list-unstyled d-flex flex-column justify-content-start p-0">
                   <li className="mx-6" role="presentation">
                     <Link
                       to="#"

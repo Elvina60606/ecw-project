@@ -17,7 +17,9 @@ const DesktopNav = ({
     <>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-6 align-items-center d-none d-lg-flex">
         <li className="nav-item">
-          <a className="nav-link">最新消息</a>
+          <Link to="/newslayout/latest_news" className="nav-link">
+            最新消息
+          </Link>
         </li>
         <li className="nav-item">
           <Link to="/products_sidebar_layout/products" className="nav-link">

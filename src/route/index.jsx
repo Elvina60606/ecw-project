@@ -11,6 +11,9 @@ import OrderSuccess from "../views/frontend/OrderSuccess";
 import MemberSidebarLayout from "../layout/MemberSidebarLayout";
 import Orders from "../views/frontend/Orders";
 import Coupons from "../views/frontend/Coupon";
+import NewsLayout from "../layout/NewsLayout";
+import LatestNews from "../views/frontend/latestNews/LatestNews";
+import SpendAndSave from "../views/frontend/latestNews/SpendAndSave";
 
 import AdminLayout from "../layout/AdminLayout";
 import AdminProtectedRoute from "./AdminProtectedRoute";
@@ -37,6 +40,20 @@ const routes = [
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/newslayout",
+        element: <NewsLayout />,
+        children: [
+          {
+            path: "latest_news",
+            element: <LatestNews />,
+          },
+          {
+            path: "spend_and_save",
+            element: <SpendAndSave />,
+          },
+        ],
       },
       {
         path: "/products_sidebar_layout",

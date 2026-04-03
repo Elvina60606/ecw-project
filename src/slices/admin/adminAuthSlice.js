@@ -48,6 +48,7 @@ export const checkAsyncAuth = createAsyncThunk(
       return res.data;
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
+      dispatch(setAuthStatus({ adminAuth: false }));
       return { success: false };
     }
   },

@@ -9,6 +9,7 @@ import canele1 from "./canele1.png";
 import canele2 from "./canele2.png";
 import caneleBanner from "./caneleBanner.jpg";
 import caneleBannerMd from "./caneleBannerMd.jpg";
+import canaleBannerMd2 from "./canaleBannerMd2.png";
 import caneleBg from "./caneleBg.png";
 import caneleSub from "./caneleSub.png";
 import caneleVector from "./caneleVector.png";
@@ -86,6 +87,7 @@ const images = {
   canele1,
   caneleBg,
   caramelAlmondCanele,
+  canaleBannerMd2,
   chocolateBasque,
   facebookWhite,
   hojichaCanele,

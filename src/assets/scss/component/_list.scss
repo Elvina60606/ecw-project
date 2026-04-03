@@ -1,3 +1,8 @@
-.li-style-none{
-    list-style: none;
+.list-news {
+  background-color: $primary;
+  border-radius: 8px;
+  .active {
+    background-color: $success-700;
+    border-radius: 8px;
+  }
 }
