@@ -30,7 +30,7 @@ const NewsLayout = () => {
           </li>
           <li className="nav-item list-news">
             <NavLink
-              to="/newslayout"
+              to="/newslayout/festival"
               className={({ isActive }) =>
                 `${isActive ? "active" : ""} nav-link px-10 text-white`
               }
