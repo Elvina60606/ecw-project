@@ -25,7 +25,7 @@ const Carts = () => {
   const { carts, totalPrice, finalPrice } = useSelector((state) => state.carts);
 
   //price ----------------------------------------
-  const shippingCost = finalPrice > 1000 ? 0 : 60;
+  const shippingCost = finalPrice > 2000 ? 0 : 60;
   const codePrice = totalPrice - finalPrice;
   const terminalPrice = finalPrice + shippingCost;
   const formatPrice = (price) => price.toLocaleString("zh-Hant");

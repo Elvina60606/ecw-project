@@ -82,7 +82,7 @@ const MobileNav = ({ isLogin, images }) => {
             style={{ height: "4px" }}
           ></div>
           <li>
-            <Link to="/newslayout/latest_news" className="py-3 w-100">
+            <Link to="/newslayout/all_news" className="py-3 w-100">
               最新消息
             </Link>
           </li>
@@ -131,7 +131,7 @@ const MobileNav = ({ isLogin, images }) => {
             </button>
           </form>
           <li>
-            <Link to="/newslayout/latest_news" className="py-3 w-100">
+            <Link to="/newslayout/all_news" className="py-3 w-100">
               最新消息
             </Link>
           </li>

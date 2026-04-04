@@ -17,7 +17,7 @@ const DesktopNav = ({
     <>
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-6 align-items-center d-none d-lg-flex">
         <li className="nav-item">
-          <Link to="/newslayout/latest_news" className="nav-link">
+          <Link to="/newslayout/all_news" className="nav-link">
             最新消息
           </Link>
         </li>
@@ -90,7 +90,7 @@ const DesktopNav = ({
                   }}
                 >
                   <li>
-                    <Link to="#" className="dropdown-item px-6 py-2">
+                    <Link to="#" className="dropdown-item px-6">
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">
                           person
@@ -100,7 +100,7 @@ const DesktopNav = ({
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" className="dropdown-item px-6 py-2">
+                    <Link to="#" className="dropdown-item px-6">
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">
                           edit
@@ -110,7 +110,7 @@ const DesktopNav = ({
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" className="dropdown-item px-6 py-2">
+                    <Link to="#" className="dropdown-item px-6">
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">
                           lock
@@ -122,7 +122,7 @@ const DesktopNav = ({
                   <li>
                     <Link
                       to="/member_sidebar_layout/orders"
-                      className="dropdown-item px-6 py-2"
+                      className="dropdown-item px-6"
                     >
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined align-bottom me-2 text-primary-300">
@@ -135,7 +135,7 @@ const DesktopNav = ({
                   <li>
                     <Link
                       to="/member_sidebar_layout/coupons"
-                      className="dropdown-item px-6 py-2"
+                      className="dropdown-item px-6"
                     >
                       <span className="fs-6 text-primary-700">
                         <span className="material-symbols-outlined fill align-bottom me-2 text-primary-300">
@@ -148,7 +148,7 @@ const DesktopNav = ({
                   <li>
                     <button
                       type="button"
-                      className="dropdown-item px-6 py-2"
+                      className="dropdown-item px-6"
                       onClick={() =>
                         dispatch(openModal({ type: "SWEET_PLAN" }))
                       }
@@ -164,7 +164,7 @@ const DesktopNav = ({
                   <li className="border-top">
                     <button
                       type="button"
-                      className="dropdown-item px-6 py-2"
+                      className="dropdown-item px-6"
                       onClick={() => dispatch(openModal({ type: "LOGOUT" }))}
                     >
                       <span className="fs-6 text-primary-700">

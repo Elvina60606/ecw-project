@@ -4,3 +4,7 @@
   object-fit: cover;
   height: 400px;
 }
+
+.border-dashed {
+  border-bottom: 3px dashed $primary-200;
+}

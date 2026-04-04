@@ -9,7 +9,7 @@ const AdminOrderModal = () => {
 
   //price
   const finalPrice = adminOrder.total;
-  const shippingCost = finalPrice > 1000 ? 0 : 60;
+  const shippingCost = finalPrice > 2000 ? 0 : 60;
   const totalPrice = orderProducts.reduce(
     (sum, item) => sum + item.product.price * item.qty,
     0,

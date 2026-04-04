@@ -60,11 +60,12 @@ const Products = () => {
           >
             {currentCategory?.name || "商品總覽"}
           </div>
-          <ul
-            className={`dropdown-menu w-100 mt-1 ${dropdownShow ? "show" : ""}`}
-          >
-            {categories.map((c) => (
-              <li key={c.id} className="dropdown-item">
+          <ul className={`dropdown-menu w-100 ${dropdownShow ? "show" : ""}`}>
+            {categories.map((c, i) => (
+              <li
+                key={c.id}
+                className={`dropdown-item ${i === categories.length - 1 ? "" : "border-bottom"}`}
+              >
                 <NavLink
                   to={
                     c.id === "all"
