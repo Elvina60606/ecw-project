@@ -5,8 +5,8 @@ import { Link, NavLink, useParams } from "react-router";
 import { getAsyncProducts, setCurrentPage } from "../../slices/productsSlice";
 import { postAsyncCarts } from "../../slices/cartsSlice";
 
-import LoadingDNA from "../../component/utils/LoadingDNA";
 import categories from "../../data/categories";
+import LoadingDNA from "../../component/utils/LoadingDNA";
 import Pagination from "../../component/utils/Pagination";
 import MessageToast from "../../component/utils/MessageToast";
 

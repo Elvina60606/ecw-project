@@ -12,9 +12,7 @@ import MemberSidebarLayout from "../layout/MemberSidebarLayout";
 import Orders from "../views/frontend/Orders";
 import Coupons from "../views/frontend/Coupon";
 import NewsLayout from "../layout/NewsLayout";
-import AllNews from "../views/frontend/latestNews/AllNews";
-import SpendAndSave from "../views/frontend/latestNews/SpendAndSave";
-import Festival from "../views/frontend/latestNews/Festival";
+import News from "../views/frontend/latestNews/News";
 
 import AdminLayout from "../layout/AdminLayout";
 import AdminProtectedRoute from "./AdminProtectedRoute";
@@ -47,16 +45,8 @@ const routes = [
         element: <NewsLayout />,
         children: [
           {
-            path: "all_news",
-            element: <AllNews />,
-          },
-          {
-            path: "spend_and_save",
-            element: <SpendAndSave />,
-          },
-          {
-            path: "festival",
-            element: <Festival />,
+            path: ":newsCategory?",
+            element: <News />,
           },
         ],
       },
