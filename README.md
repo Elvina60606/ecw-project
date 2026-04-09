@@ -71,6 +71,9 @@ src/
 購物車 <br>
 <img src='screenshot/carts.png' alt='Carts_page' width='400'/><br>
 
+後台產品管理 <br>
+<img src='screenshot/admin_products.png' alt='Admin_products_page' width='400'/><br>
+
 後台訂單管理 <br>
 <img src='screenshot/admin_orders.png' alt='Admin_orders_page' width='400'/><br>
 
