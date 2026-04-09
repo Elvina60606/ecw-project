@@ -8,7 +8,7 @@
 
 ## Demo
 
-[點擊這裡開啟網站](https://elvina60606.github.io/ecw-project/#/)
+[看看網站～](https://elvina60606.github.io/ecw-project/#/)
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## 🛠 技術架構
 
-- **Frontend**：React（搭配 Vite）
+- **Frontend**：React + Vite (SPA / CSR)
 - **狀態管理**：Redux Toolkit
 - **路由管理**：React Router
 - **表單處理**：React-hook-form
@@ -59,10 +59,17 @@ src/
 
 ## 📸 畫面截圖
 
-首頁圖 <img src='screenshot/home.png' alt='Home_page' width='400'/>
-商品列表 <img src='screenshot/products.png' alt='Products_page' width='400'/>
-購物車 <img src='screenshot/carts.png' alt='Carts_page' width='400'/>
-後台訂單管理 <img src='screenshot/admin_orders.png' alt='Admin_orders_page' width='400'/>
+首頁圖 <br>
+<img src='screenshot/home.png' alt='Home_page' width='400'/><br>
+
+商品列表 <br>
+<img src='screenshot/products.png' alt='Products_page' width='400'/><br>
+
+購物車 <br>
+<img src='screenshot/carts.png' alt='Carts_page' width='400'/><br>
+
+後台訂單管理 <br>
+<img src='screenshot/admin_orders.png' alt='Admin_orders_page' width='400'/><br>
 
 ---
 
