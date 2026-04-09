@@ -1,16 +1,73 @@
-# React + Vite
+## 甜點電商網站（Dessert E-commerce Website）
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+這是一個模擬真實電商網站的前端專案作品。
+前台提供使用者瀏覽商品、加入購物車並送出訂單的功能，著重於狀態管理與使用者操作體驗。
+後台提供管理者管理商品、訂單及優惠卷的功能。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
 
-## React Compiler
+[點擊這裡開啟網站](https://elvina60606.github.io/ecw-project/#/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 功能介紹
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 商品列表頁瀏覽（支援分類篩選）
+- 商品詳細頁展示
+- 購物車功能（新增 / 刪除商品，可即時更新畫面）
+- 會員註冊與登入，可使用會員功能瀏覽訂單狀態
+- 響應式設計（支援手機與桌面）
+
+---
+
+## 🛠 技術架構
+
+- **Frontend**：React（搭配 Vite）
+- **狀態管理**：Redux Toolkit
+- **路由管理**：React Router
+- **表單處理**：React-hook-form
+- **UI 設計**：Bootstrap / CSS
+- **其他工具**：Axios / React-loader-spinner / Swiper
+
+---
+
+## 📌 專案亮點
+
+- 以 Redux Toolkit 管理購物車全域狀態，確保資料一致性
+- 元件化設計，提高專案可維護性與擴展性
+- 使用 react-hook-form 優化表單效能與驗證流程
+- 即時更新 UI，提升使用者操作體驗
+
+---
+
+## 📁 專案結構
+
+```
+src/
+├── components/   # 可重用元件
+├── views/        # 前後台頁面
+├── route/        # 路由管理
+├── slices/       # Redux 狀態管理
+├── layout/       # 共用版面與樣板
+├── data/         # JSON檔及相關資料
+├── assets/       # scss 及靜態資源（圖片、圖示等）
+```
+
+---
+
+## 📸 畫面截圖
+
+首頁圖 <img src='screenshot/home.png' alt='Home_page' width='400'/>
+商品列表 <img src='screenshot/products.png' alt='Products_page' width='400'/>
+購物車 <img src='screenshot/carts.png' alt='Carts_page' width='400'/>
+後台訂單管理 <img src='screenshot/admin_orders.png' alt='Admin_orders_page' width='400'/>
+
+---
+
+## 🚀 未來優化方向
+
+- 會員中心與修改會員資料頁面
+- 導入付款流程（如金流模擬）
+- 優化效能（例如：lazy loading）
