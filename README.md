@@ -8,7 +8,7 @@
 
 ## Demo
 
-[![看看 Demo](https://img.shields.io/badge/看看%20Demo-FFB6C1?style=for-the-badge&logo=github&logoColor=white)](https://elvina60606.github.io/ecw-project/#/)
+[![看看 Demo](https://img.shields.io/badge/看看%20Demo-FFB6C1)](https://elvina60606.github.io/ecw-project/#/)
 
 ---
 
