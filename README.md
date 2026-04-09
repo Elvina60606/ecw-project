@@ -8,9 +8,7 @@
 
 ## Demo
 
-<a href='https://elvina60606.github.io/ecw-project/#/' target='_blank'>
-看看Demo
-</a>
+[![看看 Demo](https://img.shields.io/badge/看看%20Demo-FFB6C1?style=for-the-badge&logo=github&logoColor=white)](https://elvina60606.github.io/ecw-project/#/)
 
 ---
 
