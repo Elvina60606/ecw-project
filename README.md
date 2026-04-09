@@ -8,8 +8,7 @@
 
 ## Demo
 
-<a href='https://elvina60606.github.io/ecw-project/#/' 
-   style="display:inline-block; padding:10px 20px; background-color:#FFB6C1; color:white; text-decoration:none; border-radius:5px;"
+<a href='https://elvina60606.github.io/ecw-project/#/'    
    target='_blank'>
 看看Demo
 </a>
