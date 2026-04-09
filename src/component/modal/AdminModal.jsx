@@ -134,7 +134,7 @@ const AdminModal = ({ mode }) => {
                       )}
                       <button
                         type="button"
-                        className="btn btn-sm btn-danger mb-2 align-bottom"
+                        className="btn btn-sm btn-danger ms-3 mb-2 align-bottom"
                         onClick={() => remove(index)}
                       >
                         刪除
@@ -143,7 +143,7 @@ const AdminModal = ({ mode }) => {
                   ))}
                   <button
                     type="button"
-                    className="btn btn-primary mb-2 d-block"
+                    className="btn btn-primary my-3 d-block"
                     onClick={() => append("")}
                   >
                     新增附圖
