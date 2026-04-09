@@ -8,7 +8,11 @@
 
 ## Demo
 
-[看看網站～](https://elvina60606.github.io/ecw-project/#/)
+<a href='https://elvina60606.github.io/ecw-project/#/' 
+   style="display:inline-block; padding:10px 20px; background-color:#FFB6C1; color:white; text-decoration:none; border-radius:5px;"
+   target='_blank'>
+看看Demo
+</a>
 
 ---
 
