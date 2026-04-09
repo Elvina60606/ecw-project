@@ -8,8 +8,7 @@
 
 ## Demo
 
-<a href='https://elvina60606.github.io/ecw-project/#/'    
-   target='_blank'>
+<a href='https://elvina60606.github.io/ecw-project/#/' target='_blank'>
 看看Demo
 </a>
 
