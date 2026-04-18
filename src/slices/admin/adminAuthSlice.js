@@ -45,7 +45,7 @@ export const checkAsyncAuth = createAsyncThunk(
 
       const res = await axios.post(`${VITE_URL}/v2/api/user/check`);
       dispatch(getAsyncMessage({ ...res.data, message: "登入中" }));
-      return res.data;
+      return { ...res.data, token };
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
       dispatch(setAuthStatus({ adminAuth: false }));
@@ -83,9 +83,11 @@ export const adminAuthSlice = createSlice({
       .addCase(checkAsyncAuth.pending, (state) => {
         state.isAuthChecked = false;
       })
-      .addCase(checkAsyncAuth.fulfilled, (state) => {
+      .addCase(checkAsyncAuth.fulfilled, (state, action) => {
         state.isAuthChecked = true;
-        state.adminAuth = true;
+        state.adminAuth = action.payload.success;
+        state.success = action.payload.success;
+        state.token = action.payload.token;
       });
   },
 });
