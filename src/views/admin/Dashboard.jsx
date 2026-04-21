@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { asyncLogout, getAsyncAuth } from "../../slices/admin/AdminAuthSlice";
+import { asyncLogout, getAsyncAuth } from "../../slices/admin/adminAuthSlice";
 import { useForm } from "react-hook-form";
 
 import MessageToast from "../../component/utils/MessageToast";
@@ -15,8 +15,8 @@ const Dashboard = () => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      username: "",
-      password: "",
+      username: "sweetchen709+1@gmail.com",
+      password: "ononcake666",
     },
   });
 

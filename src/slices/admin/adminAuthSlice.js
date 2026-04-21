@@ -6,7 +6,7 @@ const { VITE_URL } = import.meta.env;
 
 export const getAsyncAuth = createAsyncThunk(
   "/adminAuth/getAsyncAuth",
-  async (data, { dispatch }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
       const res = await axios.post(`${VITE_URL}/v2/admin/signin`, data);
       dispatch(getAsyncMessage(res.data));
@@ -18,6 +18,7 @@ export const getAsyncAuth = createAsyncThunk(
       return res.data;
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -39,17 +40,18 @@ export const asyncLogout = createAsyncThunk(
 
 export const checkAsyncAuth = createAsyncThunk(
   "adminAuth/checkAsyncAuth",
-  async (token, { dispatch }) => {
+  async (token, { dispatch, rejectWithValue }) => {
     try {
-      if (!token) return { success: false };
+      if (!token) {
+        return rejectWithValue({ message: "No token" });
+      }
 
       const res = await axios.post(`${VITE_URL}/v2/api/user/check`);
       dispatch(getAsyncMessage({ ...res.data, message: "登入中" }));
       return { ...res.data, token };
     } catch (error) {
       dispatch(getAsyncMessage(error.response.data));
-      dispatch(setAuthStatus({ adminAuth: false }));
-      return { success: false };
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -75,6 +77,10 @@ export const adminAuthSlice = createSlice({
         state.token = action.payload.token;
         state.success = action.payload.success;
       })
+      .addCase(getAsyncAuth.rejected, (state) => {
+        state.adminAuth = false;
+        state.token = null;
+      })
       .addCase(asyncLogout.fulfilled, (state, action) => {
         state.adminAuth = false;
         state.token = null;
@@ -88,6 +94,11 @@ export const adminAuthSlice = createSlice({
         state.adminAuth = action.payload.success;
         state.success = action.payload.success;
         state.token = action.payload.token;
+      })
+      .addCase(checkAsyncAuth.rejected, (state) => {
+        state.adminAuth = false;
+        state.token = null;
+        state.isAuthChecked = true;
       });
   },
 });

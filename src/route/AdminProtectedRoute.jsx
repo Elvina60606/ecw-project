@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { checkAsyncAuth, setAuthStatus } from "../slices/admin/AdminAuthSlice";
+import { checkAsyncAuth, setAuthStatus } from "../slices/admin/adminAuthSlice";
 import LoadindDNA from "../component/utils/LoadingDNA";
 import { getAsyncMessage } from "../slices/messageSlice";
 
@@ -19,13 +19,15 @@ const AdminProtectedRoute = () => {
 
   useEffect(() => {
     const token = getCookie("hexToken");
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = token;
-      dispatch(checkAsyncAuth(token));
-    } else if (!token) {
+
+    if (!token) {
       dispatch(getAsyncMessage({ message: "請先登入" }));
-      dispatch(setAuthStatus({ adminAuth: false }));
+      dispatch(setAuthStatus({ adminAuth: false, isAuthChecked: true }));
+      return;
     }
+
+    axios.defaults.headers.common["Authorization"] = token;
+    dispatch(checkAsyncAuth(token));
   }, [dispatch]);
 
   if (!isAuthChecked) return <LoadindDNA />;
